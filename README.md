@@ -2,6 +2,8 @@
 
 A recruiter-friendly static portfolio built with HTML, CSS, and JavaScript.
 
+Live site: https://ali-jun.github.io/Portfolio/
+
 ## Files
 
 - `index.html` - main portfolio page with Skills and Projects sections
