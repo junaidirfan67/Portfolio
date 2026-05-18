@@ -14,6 +14,7 @@ Live site: https://ali-jun.github.io/Portfolio/
 - `script.js` - navigation, theme toggle, icon loop, reveal states, form helper, and print action
 - `images/developer-workspace.png` - generated hero image
 - `images/junaid-profile.png` - profile photo used in the hero
+- `images/task-manager-project.png` - Task Manager project screenshot
 - `assets/Junaid-Irfan-Resume.pdf` - generated resume PDF
 
 The homepage includes an icon-only moving skills banner using high-quality Devicon and Simple Icons SVGs for MERN, full stack tools, and AI tools: MongoDB, Express, React, Node.js, HTML5, CSS3, JavaScript, Tailwind CSS, Bootstrap, PHP, MySQL, Git, GitHub, Figma, VS Code, Vercel, Claude, ChatGPT, Codex, and DeepSeek.
