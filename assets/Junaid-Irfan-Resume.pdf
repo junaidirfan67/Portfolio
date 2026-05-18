@@ -15,7 +15,7 @@ endobj
 << /Type /Font /Subtype /Type1 /BaseFont /Helvetica-Bold >>
 endobj
 6 0 obj
-<< /Length 1728 >>
+<< /Length 1936 >>
 stream
 0.08 0.13 0.11 rg
 54 666 504 1.2 re f
@@ -29,21 +29,24 @@ BT /F1 10 Tf 54 680 Td (LinkedIn: linkedin.com/in/junaid-irfan-ba1027241) Tj ET
 BT /F2 14 Tf 54 654 Td (Profile) Tj ET
 BT /F1 11 Tf 54 634 Td (BS Software Engineering graduate building full-stack applications and seeking) Tj ET
 BT /F1 11 Tf 54 618 Td (internship or junior opportunities through real-world projects.) Tj ET
-BT /F2 14 Tf 54 582 Td (Skills) Tj ET
-BT /F1 11 Tf 54 562 Td (Frontend: React, JavaScript, Tailwind CSS, HTML, CSS, Bootstrap) Tj ET
-BT /F1 11 Tf 54 546 Td (Backend: Node.js, Express.js, PHP, REST APIs) Tj ET
-BT /F1 11 Tf 54 530 Td (Database: MongoDB, MySQL) Tj ET
-BT /F1 11 Tf 54 514 Td (Tools: Git, GitHub, Figma, VS Code, Vercel) Tj ET
-BT /F1 11 Tf 54 498 Td (AI Tools: Claude, ChatGPT, Codex, DeepSeek) Tj ET
-BT /F2 14 Tf 54 466 Td (Projects) Tj ET
-BT /F2 12 Tf 54 444 Td (HireHub Job Portal) Tj ET
-BT /F1 10.5 Tf 54 428 Td (Full stack hiring platform with listings, search, employer posts, and application flows.) Tj ET
-BT /F2 12 Tf 54 400 Td (Task Manager Application) Tj ET
-BT /F1 10.5 Tf 54 384 Td (Responsive productivity app for creating, filtering, and completing daily tasks.) Tj ET
-BT /F2 12 Tf 54 356 Td (Time-Off Microservice) Tj ET
-BT /F1 10.5 Tf 54 340 Td (Backend service for time-off requests, approvals, APIs, and database workflows.) Tj ET
-BT /F2 14 Tf 54 272 Td (Goals) Tj ET
-BT /F1 11 Tf 54 252 Td (Seeking internship and junior developer opportunities through real-world projects.) Tj ET
+BT /F2 14 Tf 54 586 Td (Education) Tj ET
+BT /F2 12 Tf 54 566 Td (BS Software Engineering) Tj ET
+BT /F1 10.5 Tf 54 550 Td (Focused on full-stack web applications, APIs, databases, and project delivery.) Tj ET
+BT /F2 14 Tf 54 518 Td (Skills) Tj ET
+BT /F1 11 Tf 54 498 Td (Frontend: React, JavaScript, Tailwind CSS, HTML, CSS, Bootstrap) Tj ET
+BT /F1 11 Tf 54 482 Td (Backend: Node.js, Express.js, PHP, REST APIs) Tj ET
+BT /F1 11 Tf 54 466 Td (Database: MongoDB, MySQL) Tj ET
+BT /F1 11 Tf 54 450 Td (Tools: Git, GitHub, Figma, VS Code, Vercel) Tj ET
+BT /F1 11 Tf 54 434 Td (AI Tools: Claude, ChatGPT, Codex, DeepSeek) Tj ET
+BT /F2 14 Tf 54 402 Td (Projects) Tj ET
+BT /F2 12 Tf 54 380 Td (HireHub Job Portal) Tj ET
+BT /F1 10.5 Tf 54 364 Td (Full stack hiring platform with listings, search, employer posts, and application flows.) Tj ET
+BT /F2 12 Tf 54 336 Td (Task Manager Application) Tj ET
+BT /F1 10.5 Tf 54 320 Td (Responsive productivity app for creating, filtering, and completing daily tasks.) Tj ET
+BT /F2 12 Tf 54 292 Td (Time-Off Microservice) Tj ET
+BT /F1 10.5 Tf 54 276 Td (Backend service for time-off requests, approvals, APIs, and database workflows.) Tj ET
+BT /F2 14 Tf 54 230 Td (Goals) Tj ET
+BT /F1 11 Tf 54 210 Td (Seeking internship and junior developer opportunities through real-world projects.) Tj ET
 endstream
 endobj
 xref
@@ -58,5 +61,5 @@ xref
 trailer
 << /Size 7 /Root 1 0 R >>
 startxref
-2176
+2384
 %%EOF

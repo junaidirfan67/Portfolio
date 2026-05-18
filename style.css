@@ -157,7 +157,24 @@ textarea {
 }
 
 .brand-text {
+  display: block;
   color: var(--text);
+  line-height: 1.05;
+}
+
+.brand-copy {
+  display: grid;
+  gap: 2px;
+}
+
+.brand-role {
+  display: block;
+  color: var(--accent);
+  font-size: 0.72rem;
+  font-weight: 800;
+  line-height: 1;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
 }
 
 .site-nav {
@@ -655,6 +672,7 @@ textarea {
 }
 
 .skill-card,
+.education-card,
 .project-card,
 .contact-form,
 .contact-panel {
@@ -668,15 +686,33 @@ textarea {
   padding: 26px;
 }
 
+.education-card {
+  padding: 28px;
+}
+
 .skill-card h3,
+.education-card h3,
 .project-card h3 {
   margin: 0;
   font-size: 1.2rem;
 }
 
 .skill-card p,
+.education-card p,
 .project-card p {
   color: var(--muted);
+}
+
+.education-card .chip-list {
+  margin-top: 18px;
+}
+
+.education-degree {
+  margin: 0 0 8px;
+  color: var(--accent);
+  font-size: 0.8rem;
+  font-weight: 800;
+  text-transform: uppercase;
 }
 
 .chip-list {
@@ -1161,7 +1197,7 @@ textarea {
     width: min(100% - 28px, var(--max-width));
   }
 
-  .brand-text {
+  .brand-copy {
     display: none;
   }
 
@@ -1205,6 +1241,7 @@ textarea {
   }
 
   .skill-card,
+  .education-card,
   .project-content,
   .contact-form,
   .contact-panel {

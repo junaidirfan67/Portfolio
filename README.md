@@ -6,7 +6,7 @@ Live site: https://ali-jun.github.io/Portfolio/
 
 ## Files
 
-- `index.html` - main portfolio page with Skills and Projects sections
+- `index.html` - main portfolio page with Education, Skills, and Projects sections
 - `about.html` - separate About page
 - `contact.html` - separate Contact page with email draft form
 - `resume.html` - printable resume page
