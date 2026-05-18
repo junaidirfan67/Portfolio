@@ -1067,9 +1067,24 @@ textarea {
   margin-top: 8px;
 }
 
+.resume-document ul {
+  margin: 4px 0 0;
+  padding-left: 18px;
+  color: #43524c;
+}
+
+.resume-document li + li {
+  margin-top: 4px;
+}
+
+.resume-item a {
+  color: #0f7a60;
+  font-weight: 800;
+}
+
 .resume-columns {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(2, 1fr);
   gap: 16px;
 }
 

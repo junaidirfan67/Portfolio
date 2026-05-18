@@ -15,38 +15,47 @@ endobj
 << /Type /Font /Subtype /Type1 /BaseFont /Helvetica-Bold >>
 endobj
 6 0 obj
-<< /Length 1936 >>
+<< /Length 3268 >>
 stream
 0.08 0.13 0.11 rg
 54 666 504 1.2 re f
 0.06 0.48 0.38 rg
 54 665 170 3 re f
 0 0 0 rg
-BT /F2 28 Tf 54 742 Td (Junaid Irfan) Tj ET
-BT /F1 13 Tf 54 719 Td (Full Stack Developer | MERN Stack Developer) Tj ET
-BT /F1 10 Tf 54 696 Td (Email: junaidirfan810@gmail.com | GitHub: github.com/Ali-Jun) Tj ET
-BT /F1 10 Tf 54 680 Td (LinkedIn: linkedin.com/in/junaid-irfan-ba1027241) Tj ET
-BT /F2 14 Tf 54 654 Td (Profile) Tj ET
-BT /F1 11 Tf 54 634 Td (BS Software Engineering graduate building full-stack applications and seeking) Tj ET
-BT /F1 11 Tf 54 618 Td (internship or junior opportunities through real-world projects.) Tj ET
-BT /F2 14 Tf 54 586 Td (Education) Tj ET
-BT /F2 12 Tf 54 566 Td (BS Software Engineering) Tj ET
-BT /F1 10.5 Tf 54 550 Td (Focused on full-stack web applications, APIs, databases, and project delivery.) Tj ET
-BT /F2 14 Tf 54 518 Td (Skills) Tj ET
-BT /F1 11 Tf 54 498 Td (Frontend: React, JavaScript, Tailwind CSS, HTML, CSS, Bootstrap) Tj ET
-BT /F1 11 Tf 54 482 Td (Backend: Node.js, Express.js, PHP, REST APIs) Tj ET
-BT /F1 11 Tf 54 466 Td (Database: MongoDB, MySQL) Tj ET
-BT /F1 11 Tf 54 450 Td (Tools: Git, GitHub, Figma, VS Code, Vercel) Tj ET
-BT /F1 11 Tf 54 434 Td (AI Tools: Claude, ChatGPT, Codex, DeepSeek) Tj ET
-BT /F2 14 Tf 54 402 Td (Projects) Tj ET
-BT /F2 12 Tf 54 380 Td (HireHub Job Portal) Tj ET
-BT /F1 10.5 Tf 54 364 Td (Full stack hiring platform with listings, search, employer posts, and application flows.) Tj ET
-BT /F2 12 Tf 54 336 Td (Task Manager Application) Tj ET
-BT /F1 10.5 Tf 54 320 Td (Responsive productivity app for creating, filtering, and completing daily tasks.) Tj ET
-BT /F2 12 Tf 54 292 Td (Time-Off Microservice) Tj ET
-BT /F1 10.5 Tf 54 276 Td (Backend service for time-off requests, approvals, APIs, and database workflows.) Tj ET
-BT /F2 14 Tf 54 230 Td (Goals) Tj ET
-BT /F1 11 Tf 54 210 Td (Seeking internship and junior developer opportunities through real-world projects.) Tj ET
+BT /F2 26 Tf 54 742 Td (Junaid Irfan) Tj ET
+BT /F1 12.5 Tf 54 720 Td (Full Stack Developer | MERN Stack Developer) Tj ET
+BT /F1 9.3 Tf 54 704 Td (Phone: 0320-6304078 | Email: junaidirfan810@gmail.com) Tj ET
+BT /F1 9.3 Tf 54 691 Td (LinkedIn: linkedin.com/in/junaid-irfan-ba1027241 | GitHub: github.com/Ali-Jun) Tj ET
+BT /F1 9.3 Tf 54 678 Td (Portfolio: https://ali-jun.github.io/Portfolio/) Tj ET
+BT /F2 13 Tf 54 650 Td (Professional Summary) Tj ET
+BT /F1 9.7 Tf 54 632 Td (Results-driven Full Stack Developer with hands-on experience building scalable MERN web applications.) Tj ET
+BT /F1 9.7 Tf 54 620 Td (Skilled in responsive frontend interfaces and secure backend APIs with authentication, roles, and databases.) Tj ET
+BT /F1 9.7 Tf 54 608 Td (Passionate about creating real-world applications and continuously learning modern technologies.) Tj ET
+BT /F2 13 Tf 54 584 Td (Technical Skills) Tj ET
+BT /F1 9.5 Tf 54 566 Td (Frontend: HTML5, CSS3, JavaScript, React.js, Tailwind CSS, Bootstrap) Tj ET
+BT /F1 9.5 Tf 54 554 Td (Backend: Node.js, Express.js, REST APIs | Database: MongoDB, MySQL) Tj ET
+BT /F1 9.5 Tf 54 542 Td (Authentication: JWT, bcrypt.js | Tools: Git, GitHub, Figma, VS Code, Vercel) Tj ET
+BT /F2 13 Tf 54 518 Td (Projects) Tj ET
+BT /F2 10 Tf 54 500 Td (HireHub Job Portal | React, Node.js, Express, MongoDB, JWT) Tj ET
+BT /F1 9.2 Tf 64 488 Td (- MERN job portal with candidate/employer authentication and role-based access.) Tj ET
+BT /F1 9.2 Tf 64 476 Td (- Built job posting, search, application tracking, and protected dashboards.) Tj ET
+BT /F1 9.2 Tf 64 464 Td (Live: https://lnkd.in/da95uY8H | GitHub: https://lnkd.in/dUQmbrYE) Tj ET
+BT /F2 10 Tf 54 444 Td (Portfolio Website | React, JavaScript, Tailwind CSS, GitHub Pages) Tj ET
+BT /F1 9.2 Tf 64 432 Td (- Portfolio website showcasing projects, skills, resume, and contact information.) Tj ET
+BT /F1 9.2 Tf 64 420 Td (Live: https://ali-jun.github.io/Portfolio/ | GitHub: https://github.com/Ali-Jun/Portfolio) Tj ET
+BT /F2 10 Tf 54 400 Td (Task Manager Application | JavaScript, Bootstrap, MySQL) Tj ET
+BT /F1 9.2 Tf 64 388 Td (- Full-stack task management application with CRUD functionality and responsive UI.) Tj ET
+BT /F1 9.2 Tf 64 376 Td (- Implemented client-side validation and real-time UI updates.) Tj ET
+BT /F1 9.2 Tf 64 364 Td (Live: https://ali-jun.github.io/Task-Manager/ | GitHub: https://github.com/Ali-Jun/Task-Manager) Tj ET
+BT /F2 10 Tf 54 344 Td (Time-Off Microservice | Microservice Architecture, Git) Tj ET
+BT /F1 9.2 Tf 64 332 Td (- Standalone leave/time-off microservice using REST principles.) Tj ET
+BT /F1 9.2 Tf 64 320 Td (GitHub: github.com/Ali-Jun/time-off-microservice) Tj ET
+BT /F2 13 Tf 54 292 Td (Education) Tj ET
+BT /F2 10 Tf 54 274 Td (BS Software Engineering, Lahore Leads University) Tj ET
+BT /F1 9.2 Tf 54 262 Td (Relevant Coursework: Data Structures & Algorithms, Database Systems, Software Engineering Principles,) Tj ET
+BT /F1 9.2 Tf 54 250 Td (Web Technologies, UI/UX Design) Tj ET
+BT /F2 13 Tf 54 222 Td (Core Strengths) Tj ET
+BT /F1 9.5 Tf 54 204 Td (Fast Learner, Team Collaboration, Problem Solving, Effective Communication, Adaptability, Attention to Detail) Tj ET
 endstream
 endobj
 xref
@@ -61,5 +70,5 @@ xref
 trailer
 << /Size 7 /Root 1 0 R >>
 startxref
-2384
+3716
 %%EOF
