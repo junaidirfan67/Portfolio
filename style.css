@@ -415,6 +415,12 @@ textarea {
   transform: translateY(-2px);
 }
 
+.button:disabled {
+  cursor: wait;
+  opacity: 0.7;
+  transform: none;
+}
+
 .button-primary {
   background: var(--accent);
   color: var(--ink);
@@ -1070,6 +1076,15 @@ textarea {
   gap: 18px;
 }
 
+.honeypot {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+  pointer-events: none;
+}
+
 .contact-form label {
   display: grid;
   gap: 8px;
@@ -1098,6 +1113,14 @@ textarea {
   min-height: 24px;
   margin: 0;
   color: var(--amber);
+}
+
+.form-status.is-success {
+  color: var(--mint);
+}
+
+.form-status.is-error {
+  color: var(--rose);
 }
 
 .contact-panel {

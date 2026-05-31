@@ -2,6 +2,7 @@ import { useEffect, useMemo, useState } from "react";
 
 const basePath = import.meta.env.BASE_URL;
 const asset = (path) => `${basePath}${path}`;
+const contactEndpoint = "https://formsubmit.co/ajax/junaidirfan810@gmail.com";
 
 const skillLinks = new Map([
   ["MongoDB", "https://www.mongodb.com/"],
@@ -783,24 +784,68 @@ function ResumeProject({ title, stack, bullets, links }) {
 }
 
 function ContactPage() {
-  const [status, setStatus] = useState("");
+  const [status, setStatus] = useState({ type: "", text: "" });
+  const [isSending, setIsSending] = useState(false);
 
-  const submitForm = (event) => {
+  const submitForm = async (event) => {
     event.preventDefault();
-    const formData = new FormData(event.currentTarget);
+    const form = event.currentTarget;
+    const formData = new FormData(form);
     const name = String(formData.get("name") || "").trim();
     const email = String(formData.get("email") || "").trim();
     const message = String(formData.get("message") || "").trim();
+    const honey = String(formData.get("_honey") || "").trim();
 
     if (!name || !email || !message) {
-      setStatus("Please complete every field.");
+      setStatus({ type: "error", text: "Please complete every field." });
       return;
     }
 
-    const subject = encodeURIComponent(`Portfolio inquiry from ${name}`);
-    const body = encodeURIComponent(`${message}\n\nFrom: ${name}\nEmail: ${email}`);
-    const mailto = `mailto:junaidirfan810@gmail.com?subject=${subject}&body=${body}`;
-    setStatus(mailto);
+    if (honey) {
+      setStatus({ type: "success", text: "Thanks, your message has been sent." });
+      form.reset();
+      return;
+    }
+
+    setIsSending(true);
+    setStatus({ type: "", text: "" });
+
+    try {
+      const response = await fetch(contactEndpoint, {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name,
+          email,
+          message,
+          _replyto: email,
+          _subject: `New portfolio inquiry from ${name}`,
+          _template: "table",
+          _captcha: "false",
+        }),
+      });
+
+      const result = await response.json().catch(() => ({}));
+      if (!response.ok || result.success === "false") {
+        throw new Error(result.message || "Message could not be sent.");
+      }
+
+      setStatus({
+        type: "success",
+        text: "Thanks, your message has been sent. Junaid will receive it by email.",
+      });
+      form.reset();
+    } catch (error) {
+      setStatus({
+        type: "error",
+        text: "Message could not be sent right now. Please email Junaid directly at junaidirfan810@gmail.com.",
+      });
+    } finally {
+      setIsSending(false);
+    }
   };
 
   return (
@@ -829,10 +874,11 @@ function ContactPage() {
           <div>
             <p className="section-kicker">Message</p>
             <h2>Send a focused note.</h2>
-            <p className="section-copy">The form prepares an email draft with your message so you can review it before sending.</p>
+            <p className="section-copy">The form sends your message directly to Junaid's email and keeps you on the portfolio page.</p>
           </div>
 
           <form className="contact-form" onSubmit={submitForm}>
+            <input className="honeypot" type="text" name="_honey" tabIndex="-1" autoComplete="off" aria-hidden="true" />
             <label>
               Name
               <input type="text" name="name" autoComplete="name" required />
@@ -845,11 +891,11 @@ function ContactPage() {
               Message
               <textarea name="message" rows="5" required></textarea>
             </label>
-            <button className="button button-primary" type="submit">
-              Prepare Message
+            <button className="button button-primary" type="submit" disabled={isSending}>
+              {isSending ? "Sending..." : "Send Message"}
             </button>
-            <p className="form-status" role="status" aria-live="polite">
-              {status.startsWith("mailto:") ? <a href={status}>Open email draft</a> : status}
+            <p className={`form-status ${status.type ? `is-${status.type}` : ""}`} role="status" aria-live="polite">
+              {status.text}
             </p>
           </form>
         </div>
