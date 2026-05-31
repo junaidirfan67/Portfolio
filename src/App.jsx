@@ -126,6 +126,21 @@ const projects = [
   },
 ];
 
+const focusAreas = [
+  {
+    title: "Application Frontends",
+    copy: "Modern React interfaces with responsive layouts, reusable components, and smooth user flows.",
+  },
+  {
+    title: "Backend Workflows",
+    copy: "REST APIs, authentication concepts, dashboard logic, and database-backed product features.",
+  },
+  {
+    title: "Deployment Ready",
+    copy: "Portfolio and project builds prepared for GitHub, Vercel, recruiters, and live demos.",
+  },
+];
+
 function useHashRoute() {
   const getRoute = () => {
     const value = window.location.hash.replace(/^#\/?/, "") || "home";
@@ -278,14 +293,22 @@ function HomePage({ showToast }) {
         />
         <div className="hero-shade" aria-hidden="true"></div>
         <div className="container hero-content">
-          <div className="hero-layout">
+          <div className="hero-layout" data-reveal>
             <div className="hero-text">
-              <p className="eyebrow">Full Stack Developer | MERN Stack Developer</p>
+              <div className="hero-meta-row">
+                <p className="eyebrow">Full Stack Developer | MERN Stack Developer</p>
+                <span className="availability-pill">Open to opportunities</span>
+              </div>
               <h1>Junaid Irfan</h1>
               <p className="hero-copy">
-                Passionate Full Stack Developer building scalable web applications using React, Node.js, Express, MongoDB,
-                and modern technologies.
+                Software Engineer building modern web products with React, Node.js, Express, MongoDB, and practical
+                full stack workflows.
               </p>
+              <div className="hero-stack chip-list compact" aria-label="Primary stack">
+                {["React", "Node.js", "Express.js", "MongoDB", "Vercel"].map((skill) => (
+                  <Chip label={skill} key={skill} />
+                ))}
+              </div>
               <div className="hero-actions" aria-label="Portfolio actions">
                 <a className="button button-primary" href="#/projects">
                   View Projects
@@ -299,10 +322,11 @@ function HomePage({ showToast }) {
               </div>
             </div>
             <figure className="hero-profile" aria-label="Junaid Irfan profile photo">
+              <span className="profile-status">Software Engineer</span>
               <img src={asset("images/junaid-profile.png")} alt="Portrait of Junaid Irfan" />
               <figcaption>
-                <strong>Full Stack Developer</strong>
-                <span>Frontend, backend, and database-driven web apps</span>
+                <strong>Building recruiter-ready web apps</strong>
+                <span>Frontend, backend, database, deployment, and AI-assisted development workflows.</span>
               </figcaption>
             </figure>
           </div>
@@ -324,11 +348,34 @@ function HomePage({ showToast }) {
       </section>
 
       <SkillsBanner />
+      <FocusSection />
       <SkillsSection />
       <EducationSection />
       <ProjectsSection showToast={showToast} />
       <ResumePanel />
     </main>
+  );
+}
+
+function FocusSection() {
+  return (
+    <section className="section focus-section" data-reveal>
+      <div className="container focus-layout">
+        <div className="section-heading">
+          <p className="section-kicker">Modern Portfolio</p>
+          <h2>Clean design, clear proof, and fast access to project work.</h2>
+        </div>
+        <div className="focus-grid">
+          {focusAreas.map((item, index) => (
+            <article className="focus-card" key={item.title}>
+              <span>{String(index + 1).padStart(2, "0")}</span>
+              <h3>{item.title}</h3>
+              <p>{item.copy}</p>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
   );
 }
 
@@ -445,8 +492,8 @@ function ProjectsSection({ showToast }) {
         </div>
 
         <div className="projects-grid">
-          {projects.map((project) => (
-            <article className="project-card" key={project.title}>
+          {projects.map((project, index) => (
+            <article className={`project-card ${index === 0 ? "is-featured" : ""}`} key={project.title}>
               <ProjectMedia project={project} />
               <div className="project-content">
                 <p className="project-type">{project.type}</p>
