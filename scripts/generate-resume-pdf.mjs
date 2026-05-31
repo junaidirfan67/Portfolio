@@ -1,6 +1,7 @@
+import { dirname } from "node:path";
 import { mkdirSync, writeFileSync } from "node:fs";
 
-const output = "assets/Junaid-Irfan-Resume.pdf";
+const outputs = ["assets/Junaid-Irfan-Resume.pdf", "public/assets/Junaid-Irfan-Resume.pdf"];
 
 const lines = [
   { text: "Junaid Irfan", size: 26, font: "F2", x: 54, y: 742 },
@@ -17,26 +18,27 @@ const lines = [
   { text: "Backend: Node.js, Express.js, REST APIs | Database: MongoDB, MySQL", size: 9.5, font: "F1", x: 54, y: 554 },
   { text: "Authentication: JWT, bcrypt.js | Tools: Git, GitHub, Figma, VS Code, Vercel", size: 9.5, font: "F1", x: 54, y: 542 },
   { text: "Projects", size: 13, font: "F2", x: 54, y: 518 },
-  { text: "HireHub Job Portal | React, Node.js, Express, MongoDB, JWT", size: 10, font: "F2", x: 54, y: 500 },
-  { text: "- MERN job portal with candidate/employer authentication and role-based access.", size: 9.2, font: "F1", x: 64, y: 488 },
-  { text: "- Built job posting, search, application tracking, and protected dashboards.", size: 9.2, font: "F1", x: 64, y: 476 },
-  { text: "Live: https://lnkd.in/da95uY8H | GitHub: https://lnkd.in/dUQmbrYE", size: 9.2, font: "F1", x: 64, y: 464 },
-  { text: "Portfolio Website | React, JavaScript, Tailwind CSS, GitHub Pages", size: 10, font: "F2", x: 54, y: 444 },
-  { text: "- Portfolio website showcasing projects, skills, resume, and contact information.", size: 9.2, font: "F1", x: 64, y: 432 },
-  { text: "Live: https://ali-jun.github.io/Portfolio/ | GitHub: https://github.com/Ali-Jun/Portfolio", size: 9.2, font: "F1", x: 64, y: 420 },
-  { text: "Task Manager Application | JavaScript, Bootstrap, MySQL", size: 10, font: "F2", x: 54, y: 400 },
-  { text: "- Full-stack task management application with CRUD functionality and responsive UI.", size: 9.2, font: "F1", x: 64, y: 388 },
-  { text: "- Implemented client-side validation and real-time UI updates.", size: 9.2, font: "F1", x: 64, y: 376 },
-  { text: "Live: https://ali-jun.github.io/Task-Manager/ | GitHub: https://github.com/Ali-Jun/Task-Manager", size: 9.2, font: "F1", x: 64, y: 364 },
-  { text: "Time-Off Microservice | Microservice Architecture, Git", size: 10, font: "F2", x: 54, y: 344 },
-  { text: "- Standalone leave/time-off microservice using REST principles.", size: 9.2, font: "F1", x: 64, y: 332 },
-  { text: "GitHub: github.com/Ali-Jun/time-off-microservice", size: 9.2, font: "F1", x: 64, y: 320 },
-  { text: "Education", size: 13, font: "F2", x: 54, y: 292 },
-  { text: "BS Software Engineering, Lahore Leads University", size: 10, font: "F2", x: 54, y: 274 },
-  { text: "Relevant Coursework: Data Structures & Algorithms, Database Systems, Software Engineering Principles,", size: 9.2, font: "F1", x: 54, y: 262 },
-  { text: "Web Technologies, UI/UX Design", size: 9.2, font: "F1", x: 54, y: 250 },
-  { text: "Core Strengths", size: 13, font: "F2", x: 54, y: 222 },
-  { text: "Fast Learner, Team Collaboration, Problem Solving, Effective Communication, Adaptability, Attention to Detail", size: 9.5, font: "F1", x: 54, y: 204 },
+  { text: "Auto Tech Management System | React.js, role-based dashboards, Vercel", size: 9.8, font: "F2", x: 54, y: 500 },
+  { text: "- Vehicle service portal with booking, mechanic assignment, invoices, PKR payments, feedback, and reports.", size: 8.9, font: "F1", x: 64, y: 488 },
+  { text: "Live: https://autotechmanagementsystem.vercel.app | GitHub: github.com/Ali-Jun/AutoTechmanagementsystem", size: 8.5, font: "F1", x: 64, y: 476 },
+  { text: "HireHub Job Portal | React, Node.js, Express, MongoDB, JWT", size: 9.8, font: "F2", x: 54, y: 456 },
+  { text: "- MERN job portal with candidate/employer authentication, job search, applications, and protected dashboards.", size: 8.9, font: "F1", x: 64, y: 444 },
+  { text: "Live: https://lnkd.in/da95uY8H | GitHub: https://lnkd.in/dUQmbrYE", size: 8.9, font: "F1", x: 64, y: 432 },
+  { text: "Portfolio Website | React, JavaScript, Tailwind CSS, GitHub Pages", size: 9.8, font: "F2", x: 54, y: 412 },
+  { text: "- Portfolio website showcasing projects, skills, resume, and contact information.", size: 8.9, font: "F1", x: 64, y: 400 },
+  { text: "Live: https://ali-jun.github.io/Portfolio/ | GitHub: github.com/Ali-Jun/Portfolio", size: 8.9, font: "F1", x: 64, y: 388 },
+  { text: "Task Manager Application | JavaScript, Bootstrap, MySQL", size: 9.8, font: "F2", x: 54, y: 368 },
+  { text: "- Full-stack task management app with CRUD functionality, validation, responsive UI, and real-time updates.", size: 8.9, font: "F1", x: 64, y: 356 },
+  { text: "Live: https://ali-jun.github.io/Task-Manager/ | GitHub: github.com/Ali-Jun/Task-Manager", size: 8.9, font: "F1", x: 64, y: 344 },
+  { text: "Time-Off Microservice | Microservice Architecture, Git", size: 9.8, font: "F2", x: 54, y: 324 },
+  { text: "- Standalone leave/time-off microservice using REST principles.", size: 8.9, font: "F1", x: 64, y: 312 },
+  { text: "GitHub: github.com/Ali-Jun/time-off-microservice", size: 8.9, font: "F1", x: 64, y: 300 },
+  { text: "Education", size: 13, font: "F2", x: 54, y: 272 },
+  { text: "BS Software Engineering, Lahore Leads University", size: 9.8, font: "F2", x: 54, y: 254 },
+  { text: "Relevant Coursework: Data Structures & Algorithms, Database Systems, Software Engineering Principles,", size: 8.9, font: "F1", x: 54, y: 242 },
+  { text: "Web Technologies, UI/UX Design", size: 8.9, font: "F1", x: 54, y: 230 },
+  { text: "Core Strengths", size: 13, font: "F2", x: 54, y: 204 },
+  { text: "Fast Learner, Team Collaboration, Problem Solving, Effective Communication, Adaptability, Attention to Detail", size: 9, font: "F1", x: 54, y: 186 },
 ];
 
 function escapePdfText(value) {
@@ -77,6 +79,8 @@ for (let index = 1; index < offsets.length; index += 1) {
 }
 pdf += `trailer\n<< /Size ${objects.length + 1} /Root 1 0 R >>\nstartxref\n${xrefOffset}\n%%EOF\n`;
 
-mkdirSync("assets", { recursive: true });
-writeFileSync(output, pdf);
-console.log(output);
+outputs.forEach((output) => {
+  mkdirSync(dirname(output), { recursive: true });
+  writeFileSync(output, pdf);
+});
+console.log(outputs.join("\n"));

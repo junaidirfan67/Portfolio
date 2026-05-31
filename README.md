@@ -1,22 +1,24 @@
 # Junaid Irfan Portfolio
 
-A recruiter-friendly static portfolio built with HTML, CSS, and JavaScript.
+A recruiter-friendly portfolio built with React, Vite, CSS, and JavaScript.
 
 Live site: https://ali-jun.github.io/Portfolio/
 
 ## Files
 
-- `index.html` - main portfolio page with Education, Skills, and Projects sections
-- `about.html` - separate About page
-- `contact.html` - separate Contact page with email draft form
-- `resume.html` - printable resume page
+- `src/App.jsx` - React portfolio app with Home, About, Resume, and Contact views
+- `src/main.jsx` - React entry point
+- `index.html` - Vite app shell
+- `about.html`, `contact.html`, `resume.html` - compatibility redirects to the React routes
 - `style.css` - responsive light/dark theme
-- `script.js` - navigation, theme toggle, icon loop, reveal states, form helper, and print action
+- `public/` - assets copied into the production build
+- `docs/` - production build served by GitHub Pages
 - `images/developer-workspace.png` - generated hero image
 - `images/junaid-profile.png` - profile photo used in the hero
 - `images/hirehub-project.png` - HireHub project screenshot
 - `images/task-manager-project.png` - Task Manager project screenshot
 - `assets/Junaid-Irfan-Resume.pdf` - generated resume PDF
+- `scripts/generate-resume-pdf.mjs` - regenerates the resume PDF in `assets/` and `public/assets/`
 
 The homepage includes an icon-only moving skills banner using high-quality Devicon and Simple Icons SVGs for MERN, full stack tools, and AI tools: MongoDB, Express, React, Node.js, HTML5, CSS3, JavaScript, Tailwind CSS, Bootstrap, PHP, MySQL, Git, GitHub, Figma, VS Code, Vercel, Claude, ChatGPT, Codex, and DeepSeek.
 
@@ -29,14 +31,21 @@ Current profile links:
 - GitHub: `https://github.com/Ali-Jun`
 - LinkedIn: `https://www.linkedin.com/in/junaid-irfan-ba1027241`
 
-Featured projects: HireHub Job Portal, Task Manager Application, and Time-Off Microservice.
+Featured projects: Auto Tech Management System, HireHub Job Portal, Task Manager Application, and Time-Off Microservice.
 
-## Before Publishing
+## Development
 
-Update these placeholders with real details:
+Install dependencies and run the React dev server:
 
-- Live demo URLs for each project card
-- Project-specific repository URLs if you want each card to link to a separate repo
-- Project descriptions after the real apps are complete
+```bash
+npm install
+npm run dev
+```
 
-The site can be opened directly from `index.html` or deployed to GitHub Pages, Netlify, or Vercel.
+Build for GitHub Pages:
+
+```bash
+npm run build
+```
+
+The live site is deployed from `main/docs` on GitHub Pages.

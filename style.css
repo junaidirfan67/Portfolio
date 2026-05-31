@@ -750,7 +750,7 @@ textarea {
 
 .projects-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 20px;
 }
 
@@ -807,6 +807,10 @@ textarea {
 
 .project-media-task {
   background: linear-gradient(135deg, #075985, #38bdf8);
+}
+
+.project-media-autotech {
+  background: linear-gradient(135deg, #0f172a, #0891b2 52%, #22c55e);
 }
 
 .project-media-screenshot::before {
