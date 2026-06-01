@@ -76,6 +76,7 @@ html {
 }
 
 body {
+  position: relative;
   margin: 0;
   background:
     linear-gradient(180deg, var(--bg) 0%, var(--bg-soft) 48%, var(--bg) 100%);
@@ -83,25 +84,48 @@ body {
   font-family: Inter, "Segoe UI", Arial, Helvetica, sans-serif;
   line-height: 1.6;
   text-rendering: optimizeLegibility;
+  transition: background 420ms ease, color 420ms ease;
+  overflow-x: hidden;
+}
+
+#root {
+  position: relative;
+  z-index: 1;
+  min-height: 100vh;
 }
 
 body::before {
   content: "";
   position: fixed;
   inset: 0;
-  z-index: -10;
+  z-index: 0;
   pointer-events: none;
   background:
     linear-gradient(rgba(255, 255, 255, 0.028) 1px, transparent 1px),
     linear-gradient(90deg, rgba(255, 255, 255, 0.024) 1px, transparent 1px);
   background-size: 44px 44px;
   mask-image: linear-gradient(180deg, #000 0%, transparent 78%);
+  animation: grid-drift 18s linear infinite;
 }
 
 :root[data-theme="light"] body::before {
   background:
     linear-gradient(rgba(15, 23, 42, 0.035) 1px, transparent 1px),
     linear-gradient(90deg, rgba(15, 23, 42, 0.03) 1px, transparent 1px);
+}
+
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(120deg, transparent 0%, rgba(56, 189, 248, 0.09) 46%, transparent 58%),
+    linear-gradient(240deg, transparent 8%, rgba(251, 191, 36, 0.08) 52%, transparent 66%);
+  background-size: 180% 180%;
+  opacity: 0.55;
+  animation: theme-flow 22s ease-in-out infinite alternate;
 }
 
 body.nav-open {
@@ -142,6 +166,7 @@ textarea {
   border-bottom: 1px solid transparent;
   backdrop-filter: blur(20px);
   transition: border-color 180ms ease, background 180ms ease, box-shadow 180ms ease;
+  animation: header-drop 520ms ease both;
 }
 
 .site-header.is-scrolled {
@@ -216,13 +241,17 @@ textarea {
   color: var(--muted);
   font-size: 0.94rem;
   font-weight: 700;
-  transition: color 180ms ease, background 180ms ease;
+  transition: color 180ms ease, background 180ms ease, transform 180ms ease;
 }
 
 .site-nav a:hover,
 .site-nav a.is-active {
   background: var(--nav-hover);
   color: var(--text);
+}
+
+.site-nav a:hover {
+  transform: translateY(-1px);
 }
 
 .theme-toggle,
@@ -237,6 +266,13 @@ textarea {
   background: var(--control-bg);
   color: var(--text);
   cursor: pointer;
+  transition: background 220ms ease, border-color 220ms ease, transform 220ms ease;
+}
+
+.theme-toggle:hover,
+.nav-toggle:hover {
+  border-color: var(--accent-line);
+  transform: translateY(-1px);
 }
 
 .theme-toggle-icon {
@@ -307,6 +343,8 @@ textarea {
   object-fit: cover;
   opacity: var(--hero-image-opacity);
   filter: saturate(0.92) contrast(1.02);
+  transform: scale(1.04);
+  animation: cover-drift 24s ease-in-out infinite alternate;
 }
 
 :root[data-theme="light"] .hero-image {
@@ -316,6 +354,17 @@ textarea {
 .hero-shade {
   z-index: -2;
   background: var(--hero-shade);
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background: linear-gradient(110deg, transparent 10%, rgba(56, 189, 248, 0.12) 46%, transparent 62%);
+  transform: translateX(-65%);
+  animation: hero-sheen 7s ease-in-out infinite;
 }
 
 .hero-content {
@@ -328,6 +377,7 @@ textarea {
   grid-template-columns: minmax(0, 1fr) minmax(300px, 380px);
   gap: 56px;
   align-items: center;
+  animation: hero-rise 680ms ease both;
 }
 
 .hero-text {
@@ -366,6 +416,7 @@ textarea {
   color: var(--mint);
   font-size: 0.82rem;
   font-weight: 800;
+  animation: soft-pulse 2.8s ease-in-out infinite;
 }
 
 .hero h1 {
@@ -374,6 +425,7 @@ textarea {
   font-size: 5.8rem;
   line-height: 0.95;
   letter-spacing: 0;
+  animation: text-in 720ms ease both;
 }
 
 .hero-copy {
@@ -381,6 +433,7 @@ textarea {
   margin: 24px 0 0;
   color: var(--hero-copy);
   font-size: 1.18rem;
+  animation: text-in 780ms ease both;
 }
 
 .hero-stack {
@@ -388,6 +441,7 @@ textarea {
   flex-wrap: wrap;
   gap: 8px;
   margin-top: 24px;
+  animation: text-in 840ms ease both;
 }
 
 .hero-actions {
@@ -395,6 +449,7 @@ textarea {
   flex-wrap: wrap;
   gap: 12px;
   margin-top: 34px;
+  animation: text-in 900ms ease both;
 }
 
 .button {
@@ -408,7 +463,7 @@ textarea {
   font-weight: 900;
   line-height: 1.15;
   cursor: pointer;
-  transition: transform 180ms ease, background 180ms ease, border-color 180ms ease, color 180ms ease;
+  transition: transform 180ms ease, background 180ms ease, border-color 180ms ease, color 180ms ease, box-shadow 180ms ease;
 }
 
 .button:hover {
@@ -430,6 +485,7 @@ textarea {
 .button-primary:hover {
   background: var(--accent-strong);
   color: #ffffff;
+  box-shadow: 0 18px 46px rgba(56, 189, 248, 0.34);
 }
 
 .button-secondary {
@@ -459,6 +515,8 @@ textarea {
   background: var(--surface-raised);
   box-shadow: var(--shadow);
   backdrop-filter: blur(18px);
+  animation: profile-float 5.8s ease-in-out infinite;
+  transition: transform 240ms ease, border-color 240ms ease, box-shadow 240ms ease;
 }
 
 .hero-profile::before {
@@ -468,6 +526,12 @@ textarea {
   z-index: -1;
   border: 1px solid var(--accent-line);
   border-radius: 8px;
+  animation: border-glow 4s ease-in-out infinite;
+}
+
+.hero-profile:hover {
+  border-color: var(--accent-line);
+  box-shadow: 0 32px 90px rgba(56, 189, 248, 0.18), var(--shadow);
 }
 
 .profile-status {
@@ -530,6 +594,12 @@ textarea {
   padding: 22px;
   background: var(--surface-raised);
   backdrop-filter: blur(18px);
+  transition: transform 220ms ease, background 220ms ease;
+}
+
+.hero-summary div:hover {
+  transform: translateY(-3px);
+  background: var(--surface);
 }
 
 .hero-summary strong,
@@ -595,6 +665,12 @@ textarea {
   border-radius: 8px;
   background: #ffffff;
   box-shadow: 0 14px 32px rgba(2, 6, 23, 0.18);
+  transition: transform 220ms ease, box-shadow 220ms ease;
+}
+
+.skill-logo-card:hover {
+  transform: translateY(-6px) scale(1.04);
+  box-shadow: 0 20px 44px rgba(2, 6, 23, 0.24);
 }
 
 .skill-logo-link {
@@ -628,6 +704,11 @@ textarea {
   width: 100%;
   height: 100%;
   object-fit: contain;
+  transition: transform 220ms ease;
+}
+
+.skill-logo-card:hover .skill-logo img {
+  transform: rotate(4deg) scale(1.06);
 }
 
 .ai-logo {
@@ -647,6 +728,147 @@ textarea {
 
   to {
     transform: translateX(calc(-50% - 6px));
+  }
+}
+
+@keyframes grid-drift {
+  from {
+    background-position: 0 0, 0 0;
+  }
+
+  to {
+    background-position: 44px 44px, 44px 44px;
+  }
+}
+
+@keyframes theme-flow {
+  from {
+    background-position: 0% 50%;
+  }
+
+  to {
+    background-position: 100% 50%;
+  }
+}
+
+@keyframes header-drop {
+  from {
+    transform: translateY(-18px);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes cover-drift {
+  from {
+    transform: scale(1.04) translate3d(0, 0, 0);
+  }
+
+  to {
+    transform: scale(1.08) translate3d(-14px, -8px, 0);
+  }
+}
+
+@keyframes hero-sheen {
+  0%,
+  36% {
+    transform: translateX(-70%);
+    opacity: 0;
+  }
+
+  48% {
+    opacity: 1;
+  }
+
+  70%,
+  100% {
+    transform: translateX(70%);
+    opacity: 0;
+  }
+}
+
+@keyframes hero-rise {
+  from {
+    transform: translateY(18px);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes text-in {
+  from {
+    transform: translateY(14px);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes soft-pulse {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgba(52, 211, 153, 0);
+  }
+
+  50% {
+    box-shadow: 0 0 0 6px rgba(52, 211, 153, 0.12);
+  }
+}
+
+@keyframes profile-float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes border-glow {
+  0%,
+  100% {
+    opacity: 0.6;
+  }
+
+  50% {
+    opacity: 1;
+  }
+}
+
+@keyframes media-frame {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-4px);
+  }
+}
+
+@keyframes media-bars {
+  0%,
+  100% {
+    opacity: 0.72;
+    transform: translateX(0);
+  }
+
+  50% {
+    opacity: 1;
+    transform: translateX(6px);
   }
 }
 
@@ -683,12 +905,25 @@ textarea {
   border-radius: 8px;
   background: var(--surface);
   box-shadow: var(--shadow-soft);
+  transition: transform 240ms ease, border-color 240ms ease, background 240ms ease, box-shadow 240ms ease;
+}
+
+.focus-card:hover,
+.skill-card:hover,
+.education-card:hover,
+.contact-panel:hover,
+.contact-form:hover {
+  transform: translateY(-6px);
+  border-color: var(--accent-line);
+  background: var(--surface-strong);
+  box-shadow: 0 24px 64px rgba(56, 189, 248, 0.14);
 }
 
 .focus-card span {
   border-color: var(--accent-line);
   background: var(--accent-soft);
   color: var(--accent);
+  animation: none;
 }
 
 .focus-card h3 {
@@ -815,6 +1050,7 @@ textarea {
   border-radius: 8px;
   background: var(--surface);
   box-shadow: var(--shadow-soft);
+  transition: transform 240ms ease, border-color 240ms ease, background 240ms ease, box-shadow 240ms ease;
 }
 
 .skill-card,
@@ -901,6 +1137,12 @@ textarea {
   overflow: hidden;
 }
 
+.project-card:hover {
+  transform: translateY(-7px);
+  border-color: var(--accent-line);
+  box-shadow: 0 28px 72px rgba(56, 189, 248, 0.16);
+}
+
 .project-card.is-featured {
   grid-column: 1 / -1;
   grid-template-columns: minmax(0, 1.02fr) minmax(320px, 0.98fr);
@@ -914,6 +1156,11 @@ textarea {
   overflow: hidden;
   border-bottom: 1px solid var(--line);
   background: var(--surface-strong);
+  transition: filter 240ms ease;
+}
+
+.project-card:hover .project-media {
+  filter: saturate(1.08) contrast(1.04);
 }
 
 .project-card.is-featured .project-media {
@@ -930,6 +1177,7 @@ textarea {
   border: 1px solid rgba(255, 255, 255, 0.28);
   border-radius: 8px;
   background: rgba(7, 17, 31, 0.34);
+  animation: media-frame 6s ease-in-out infinite;
 }
 
 .project-media span {
@@ -937,6 +1185,7 @@ textarea {
   display: block;
   border-radius: 8px;
   background: rgba(255, 255, 255, 0.82);
+  animation: media-bars 4.8s ease-in-out infinite;
 }
 
 .project-media span:nth-child(1) {
@@ -951,6 +1200,7 @@ textarea {
   top: 92px;
   width: 34%;
   height: 74px;
+  animation-delay: 0.25s;
 }
 
 .project-media span:nth-child(3) {
@@ -958,6 +1208,7 @@ textarea {
   top: 62px;
   width: 28%;
   height: 110px;
+  animation-delay: 0.5s;
 }
 
 .project-media-task {
@@ -990,6 +1241,11 @@ textarea {
   object-fit: cover;
   object-position: top left;
   transform: scale(1.01);
+  transition: transform 420ms ease;
+}
+
+.project-card:hover .project-media-screenshot img {
+  transform: scale(1.045);
 }
 
 .project-media-jobs {
