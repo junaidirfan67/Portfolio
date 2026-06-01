@@ -89,6 +89,9 @@ const projects = [
     type: "Service management portal",
     description:
       "React.js vehicle service management portal with role-based dashboards, service booking, mechanic assignment, invoices, PKR payments, feedback, reports, and Vercel deployment.",
+    role: "Frontend and deployment",
+    impact: "Shows production-style dashboard thinking with role-based workflows and service operations.",
+    features: ["Role-based dashboards", "Service booking flow", "Invoices and PKR payment workflow"],
     stack: ["React.js", "JavaScript", "Vercel", "Role-based dashboards"],
     live: "https://autotechmanagementsystem.vercel.app",
     source: "https://github.com/Ali-Jun/AutoTechmanagementsystem",
@@ -98,6 +101,9 @@ const projects = [
     title: "HireHub Job Portal",
     type: "Featured full stack app",
     description: "A hiring platform with job listings, search filters, employer posts, and candidate application flows.",
+    role: "Full stack app build",
+    impact: "Demonstrates job-market product logic, search UX, and candidate/employer workflows.",
+    features: ["Job discovery interface", "Employer pipeline cards", "Candidate application flow"],
     stack: ["React", "Node.js", "Express.js", "MongoDB"],
     live: "https://lnkd.in/da95uY8H",
     source: "https://lnkd.in/dUQmbrYE",
@@ -109,6 +115,9 @@ const projects = [
     title: "Task Manager Application",
     type: "Productivity app",
     description: "A dashboard-style task manager for creating, organizing, filtering, and completing tasks with a clean daily workflow.",
+    role: "Frontend application",
+    impact: "Highlights clean dashboard UI, task filtering, and practical productivity features.",
+    features: ["Task board dashboard", "Status and priority filters", "Progress and priority summaries"],
     stack: ["React", "JavaScript", "Tailwind CSS", "Local Storage"],
     live: "https://ali-jun.github.io/Task-Manager/",
     source: "https://github.com/Ali-Jun/Task-Manager",
@@ -120,10 +129,29 @@ const projects = [
     title: "Time-Off Microservice",
     type: "Backend architecture",
     description: "A backend-focused service for time-off requests, approval flows, API-style communication, and database-backed workflows.",
+    role: "Backend service design",
+    impact: "Shows API-first thinking for leave requests, approvals, and service boundaries.",
+    features: ["REST-style service structure", "Approval workflow logic", "Database-backed request flow"],
     stack: ["Node.js", "Express.js", "REST APIs", "MongoDB"],
     livePlaceholder: "Add the live Time-Off Microservice URL before publishing.",
     source: "https://github.com/Ali-Jun/time-off-microservice",
     mediaClass: "project-media-microservices",
+  },
+];
+
+const experienceItems = [
+  {
+    role: "Full Stack Developer - Internship Preparation",
+    organization: "Project-based practical experience",
+    period: "Current",
+    summary:
+      "Building and deploying real portfolio projects that demonstrate junior developer readiness across frontend, backend, database, and deployment workflows.",
+    bullets: [
+      "Built React interfaces, dashboard layouts, and reusable sections for portfolio and product-style applications.",
+      "Practiced API thinking with Node.js, Express.js, REST workflows, authentication concepts, and database-backed features.",
+      "Deployed projects on Vercel and GitHub Pages with live demos, source links, and recruiter-ready presentation.",
+    ],
+    stack: ["React", "Node.js", "Express.js", "MongoDB", "GitHub", "Vercel"],
   },
 ];
 
@@ -213,7 +241,7 @@ function Chip({ label }) {
 
 function Header({ route, theme, setTheme }) {
   const [isOpen, setIsOpen] = useState(false);
-  const isPage = (page) => route === page || (page === "home" && ["home", "education", "skills", "projects"].includes(route));
+  const isPage = (page) => route === page || (page === "home" && ["home", "experience", "education", "skills", "projects"].includes(route));
 
   const closeNav = () => setIsOpen(false);
   const toggleTheme = () => setTheme(theme === "dark" ? "light" : "dark");
@@ -245,6 +273,9 @@ function Header({ route, theme, setTheme }) {
         <a href="#/education" className={route === "education" ? "is-active" : ""} onClick={closeNav}>
           Education
         </a>
+        <a href="#/experience" className={route === "experience" ? "is-active" : ""} onClick={closeNav}>
+          Experience
+        </a>
         <a href="#/skills" className={route === "skills" ? "is-active" : ""} onClick={closeNav}>
           Skills
         </a>
@@ -258,6 +289,10 @@ function Header({ route, theme, setTheme }) {
           Contact
         </a>
       </nav>
+
+      <a className="header-resume" href={asset("assets/Junaid-Irfan-Resume.pdf")} download onClick={closeNav}>
+        Download Resume
+      </a>
 
       <button
         className="theme-toggle"
@@ -297,13 +332,13 @@ function HomePage({ showToast }) {
           <div className="hero-layout" data-reveal>
             <div className="hero-text">
               <div className="hero-meta-row">
-                <p className="eyebrow">Full Stack Developer | MERN Stack Developer</p>
+                <p className="eyebrow">Junaid Irfan | Full Stack Developer</p>
                 <span className="availability-pill">Open to opportunities</span>
               </div>
-              <h1>Junaid Irfan</h1>
+              <h1>Junior Full Stack Developer Building MERN Web Applications</h1>
               <p className="hero-copy">
-                Software Engineer building modern web products with React, Node.js, Express, MongoDB, and practical
-                full stack workflows.
+                I build recruiter-ready React interfaces, dashboard workflows, REST API concepts, and deployed projects
+                that show practical junior developer skills.
               </p>
               <div className="hero-stack chip-list compact" aria-label="Primary stack">
                 {["React", "Node.js", "Express.js", "MongoDB", "Vercel"].map((skill) => (
@@ -311,11 +346,11 @@ function HomePage({ showToast }) {
                 ))}
               </div>
               <div className="hero-actions" aria-label="Portfolio actions">
-                <a className="button button-primary" href="#/projects">
-                  View Projects
-                </a>
-                <a className="button button-ghost" href={asset("assets/Junaid-Irfan-Resume.pdf")} download>
+                <a className="button button-primary" href={asset("assets/Junaid-Irfan-Resume.pdf")} download>
                   Download Resume
+                </a>
+                <a className="button button-ghost" href="#/projects">
+                  View Projects
                 </a>
                 <a className="button button-secondary" href="#/contact">
                   Contact Me
@@ -350,9 +385,10 @@ function HomePage({ showToast }) {
 
       <SkillsBanner />
       <FocusSection />
+      <ExperienceSection />
+      <ProjectsSection showToast={showToast} />
       <SkillsSection />
       <EducationSection />
-      <ProjectsSection showToast={showToast} />
       <ResumePanel />
     </main>
   );
@@ -372,6 +408,47 @@ function FocusSection() {
               <span>{String(index + 1).padStart(2, "0")}</span>
               <h3>{item.title}</h3>
               <p>{item.copy}</p>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function ExperienceSection() {
+  return (
+    <section className="section experience-section" id="experience" data-reveal>
+      <div className="container">
+        <div className="section-heading section-heading-wide">
+          <div>
+            <p className="section-kicker">Internship Experience</p>
+            <h2>Practical experience for junior developer roles.</h2>
+          </div>
+          <p>Focused on the day-to-day skills expected from an intern or junior full stack developer.</p>
+        </div>
+
+        <div className="experience-list">
+          {experienceItems.map((item) => (
+            <article className="experience-card" key={item.role}>
+              <div className="experience-meta">
+                <span>{item.period}</span>
+                <strong>{item.organization}</strong>
+              </div>
+              <div className="experience-content">
+                <h3>{item.role}</h3>
+                <p>{item.summary}</p>
+                <ul>
+                  {item.bullets.map((bullet) => (
+                    <li key={bullet}>{bullet}</li>
+                  ))}
+                </ul>
+                <div className="chip-list compact">
+                  {item.stack.map((skill) => (
+                    <Chip label={skill} key={skill} />
+                  ))}
+                </div>
+              </div>
             </article>
           ))}
         </div>
@@ -487,9 +564,9 @@ function ProjectsSection({ showToast }) {
         <div className="section-heading section-heading-wide">
           <div>
             <p className="section-kicker">Projects</p>
-            <h2>Selected work</h2>
+            <h2>Projects that prove practical full stack skill.</h2>
           </div>
-          <p>Project cards are structured for recruiter scanning: problem, features, stack, live demo, and source link.</p>
+          <p>Each card now highlights role, product value, key features, stack, live demo, and source code for faster recruiter review.</p>
         </div>
 
         <div className="projects-grid">
@@ -500,6 +577,15 @@ function ProjectsSection({ showToast }) {
                 <p className="project-type">{project.type}</p>
                 <h3>{project.title}</h3>
                 <p>{project.description}</p>
+                <div className="project-proof">
+                  <span>{project.role}</span>
+                  <strong>{project.impact}</strong>
+                </div>
+                <ul className="project-feature-list">
+                  {project.features.map((feature) => (
+                    <li key={feature}>{feature}</li>
+                  ))}
+                </ul>
                 <div className="chip-list compact">
                   {project.stack.map((item) => (
                     <Chip label={item} key={item} />
@@ -508,7 +594,7 @@ function ProjectsSection({ showToast }) {
                 <div className="project-links">
                   {project.live ? (
                     <a href={project.live} target="_blank" rel="noreferrer">
-                      Live demo
+                      Live Demo
                     </a>
                   ) : (
                     <a
@@ -518,11 +604,11 @@ function ProjectsSection({ showToast }) {
                         showToast(project.livePlaceholder || "Add the final project URL before publishing.");
                       }}
                     >
-                      Live demo
+                      Live Demo
                     </a>
                   )}
                   <a href={project.source} target="_blank" rel="noreferrer">
-                    GitHub
+                    Source Code
                   </a>
                 </div>
               </div>
@@ -540,8 +626,8 @@ function ResumePanel() {
       <div className="container resume-panel">
         <div>
           <p className="section-kicker">Resume</p>
-          <h2>Ready for internships, junior roles, and freelance web work.</h2>
-          <p>Download the resume PDF or open the printable resume page for a quick review of skills, projects, and contact details.</p>
+          <h2>Download the resume for internships and junior developer roles.</h2>
+          <p>Use the PDF for applications, recruiter messages, and LinkedIn outreach. The printable page stays available for quick review.</p>
         </div>
         <div className="resume-actions">
           <a className="button button-primary" href={asset("assets/Junaid-Irfan-Resume.pdf")} download>
@@ -929,7 +1015,7 @@ export default function App() {
   const [theme, setTheme] = useTheme();
   const [toast, setToast] = useState("");
   const normalizedRoute = ["about", "resume", "contact"].includes(route) ? route : "home";
-  const sectionTarget = ["education", "skills", "projects"].includes(route) ? route : null;
+  const sectionTarget = ["experience", "education", "skills", "projects"].includes(route) ? route : null;
 
   useReveal(route);
 
