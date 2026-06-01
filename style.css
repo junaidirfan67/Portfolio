@@ -1349,6 +1349,75 @@ textarea {
   font-weight: 900;
 }
 
+.project-media-gallery {
+  display: grid;
+  grid-template-rows: minmax(0, 1fr) auto;
+  gap: 12px;
+  padding: 16px;
+}
+
+.project-media-gallery::before,
+.project-media-gallery::after {
+  display: none;
+}
+
+.gallery-main,
+.gallery-thumb {
+  position: relative;
+  margin: 0;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.92);
+  box-shadow: 0 16px 38px rgba(0, 0, 0, 0.2);
+}
+
+.gallery-main {
+  min-height: 240px;
+}
+
+.gallery-main img,
+.gallery-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top left;
+  transition: transform 420ms ease;
+}
+
+.project-card:hover .gallery-main img,
+.project-card:hover .gallery-thumb img {
+  transform: scale(1.035);
+}
+
+.gallery-main figcaption,
+.gallery-thumb figcaption {
+  position: absolute;
+  left: 10px;
+  bottom: 10px;
+  max-width: calc(100% - 20px);
+  padding: 5px 8px;
+  border-radius: 8px;
+  background: rgba(8, 17, 31, 0.82);
+  color: #ffffff;
+  font-size: 0.72rem;
+  font-weight: 900;
+}
+
+.gallery-strip {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.gallery-thumb {
+  aspect-ratio: 16 / 10;
+}
+
+.gallery-thumb figcaption {
+  font-size: 0.62rem;
+}
+
 .project-media-screenshot::before {
   display: none;
 }
@@ -1800,6 +1869,11 @@ textarea {
     border-bottom: 1px solid var(--line);
   }
 
+  .project-card.is-featured .project-media-gallery {
+    aspect-ratio: auto;
+    min-height: 420px;
+  }
+
   .focus-grid {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
@@ -1955,6 +2029,22 @@ textarea {
     right: 24px;
     bottom: 22px;
     font-size: 1rem;
+  }
+
+  .project-card.is-featured .project-media-gallery {
+    min-height: 470px;
+  }
+
+  .project-media-gallery {
+    padding: 12px;
+  }
+
+  .gallery-main {
+    min-height: 190px;
+  }
+
+  .gallery-strip {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
   .resume-document {

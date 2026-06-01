@@ -95,6 +95,33 @@ const projects = [
     stack: ["React.js", "JavaScript", "Vercel", "Role-based dashboards"],
     live: "https://autotechmanagementsystem.vercel.app",
     source: "https://github.com/Ali-Jun/AutoTechmanagementsystem",
+    screenshots: [
+      {
+        image: "images/autotech-admin-dashboard.png",
+        alt: "Auto Tech admin dashboard showing workshop control center, booking queue, revenue, ratings, and assignment needs",
+        label: "Admin dashboard",
+      },
+      {
+        image: "images/autotech-customer-booking.png",
+        alt: "Auto Tech customer booking screen for scheduling vehicle service and selecting service type, vehicle, date, and priority",
+        label: "Customer booking",
+      },
+      {
+        image: "images/autotech-bookings-management.png",
+        alt: "Auto Tech bookings management screen for assigning and tracking service jobs",
+        label: "Bookings",
+      },
+      {
+        image: "images/autotech-payments-pkr.png",
+        alt: "Auto Tech payments screen showing invoice payments recorded in PKR",
+        label: "PKR payments",
+      },
+      {
+        image: "images/autotech-login-screen.png",
+        alt: "Auto Tech login screen with Admin, Customer, and Mechanic role options",
+        label: "Login",
+      },
+    ],
     mediaClass: "project-media-autotech",
   },
   {
@@ -541,6 +568,25 @@ function EducationSection() {
 
 function ProjectMedia({ project }) {
   const className = `project-media ${project.mediaClass || ""} ${project.image ? "project-media-screenshot" : ""}`.trim();
+  if (project.screenshots?.length) {
+    const [mainShot, ...shots] = project.screenshots;
+    return (
+      <div className={`${className} project-media-gallery`}>
+        <figure className="gallery-main">
+          <img src={asset(mainShot.image)} alt={mainShot.alt} />
+          <figcaption>{mainShot.label}</figcaption>
+        </figure>
+        <div className="gallery-strip" aria-label={`${project.title} screenshots`}>
+          {shots.map((shot) => (
+            <figure className="gallery-thumb" key={shot.image}>
+              <img src={asset(shot.image)} alt={shot.alt} />
+              <figcaption>{shot.label}</figcaption>
+            </figure>
+          ))}
+        </div>
+      </div>
+    );
+  }
   if (project.image) {
     return (
       <div className={className}>
