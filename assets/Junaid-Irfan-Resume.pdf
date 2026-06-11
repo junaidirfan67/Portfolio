@@ -15,7 +15,7 @@ endobj
 << /Type /Font /Subtype /Type1 /BaseFont /Helvetica-Bold >>
 endobj
 6 0 obj
-<< /Length 3482 >>
+<< /Length 3944 >>
 stream
 0.08 0.13 0.11 rg
 54 666 504 1.2 re f
@@ -23,40 +23,43 @@ stream
 54 665 170 3 re f
 0 0 0 rg
 BT /F2 26 Tf 54 742 Td (Junaid Irfan) Tj ET
-BT /F1 12.5 Tf 54 720 Td (Full Stack Developer | MERN Stack Developer) Tj ET
+BT /F1 12.2 Tf 54 720 Td (Full Stack Developer | MERN Stack Developer | Freelance Web Developer) Tj ET
 BT /F1 9.3 Tf 54 704 Td (Phone: 0320-6304078 | Email: junaidirfan810@gmail.com) Tj ET
 BT /F1 9.3 Tf 54 691 Td (LinkedIn: linkedin.com/in/junaid-irfan-ba1027241 | GitHub: github.com/Ali-Jun) Tj ET
 BT /F1 9.3 Tf 54 678 Td (Portfolio: https://ali-jun.github.io/Portfolio/) Tj ET
-BT /F2 13 Tf 54 650 Td (Professional Summary) Tj ET
-BT /F1 9.7 Tf 54 632 Td (Results-driven Full Stack Developer with hands-on experience building scalable MERN web applications.) Tj ET
-BT /F1 9.7 Tf 54 620 Td (Skilled in responsive frontend interfaces and secure backend APIs with authentication, roles, and databases.) Tj ET
-BT /F1 9.7 Tf 54 608 Td (Passionate about creating real-world applications and continuously learning modern technologies.) Tj ET
-BT /F2 13 Tf 54 584 Td (Technical Skills) Tj ET
-BT /F1 9.5 Tf 54 566 Td (Frontend: HTML5, CSS3, JavaScript, React.js, Tailwind CSS, Bootstrap) Tj ET
-BT /F1 9.5 Tf 54 554 Td (Backend: Node.js, Express.js, REST APIs | Database: MongoDB, MySQL) Tj ET
-BT /F1 9.5 Tf 54 542 Td (Authentication: JWT, bcrypt.js | Tools: Git, GitHub, Figma, VS Code, Vercel) Tj ET
-BT /F2 13 Tf 54 518 Td (Projects) Tj ET
-BT /F2 9.8 Tf 54 500 Td (Auto Tech Management System | React.js, role-based dashboards, Vercel) Tj ET
-BT /F1 8.9 Tf 64 488 Td (- Vehicle service portal with booking, mechanic assignment, invoices, PKR payments, feedback, and reports.) Tj ET
-BT /F1 8.5 Tf 64 476 Td (Live: https://autotechmanagementsystem.vercel.app | GitHub: github.com/Ali-Jun/AutoTechmanagementsystem) Tj ET
-BT /F2 9.8 Tf 54 456 Td (HireHub Job Portal | React, Node.js, Express, MongoDB, JWT) Tj ET
-BT /F1 8.9 Tf 64 444 Td (- MERN job portal with candidate/employer authentication, job search, applications, and protected dashboards.) Tj ET
-BT /F1 8.9 Tf 64 432 Td (Live: https://lnkd.in/da95uY8H | GitHub: https://lnkd.in/dUQmbrYE) Tj ET
-BT /F2 9.8 Tf 54 412 Td (Portfolio Website | React, JavaScript, Tailwind CSS, GitHub Pages) Tj ET
-BT /F1 8.9 Tf 64 400 Td (- Portfolio website showcasing projects, skills, resume, and contact information.) Tj ET
-BT /F1 8.9 Tf 64 388 Td (Live: https://ali-jun.github.io/Portfolio/ | GitHub: github.com/Ali-Jun/Portfolio) Tj ET
-BT /F2 9.8 Tf 54 368 Td (Task Manager Application | JavaScript, Bootstrap, MySQL) Tj ET
-BT /F1 8.9 Tf 64 356 Td (- Full-stack task management app with CRUD functionality, validation, responsive UI, and real-time updates.) Tj ET
-BT /F1 8.9 Tf 64 344 Td (Live: https://ali-jun.github.io/Task-Manager/ | GitHub: github.com/Ali-Jun/Task-Manager) Tj ET
-BT /F2 9.8 Tf 54 324 Td (Time-Off Microservice | Microservice Architecture, Git) Tj ET
-BT /F1 8.9 Tf 64 312 Td (- Standalone leave/time-off microservice using REST principles.) Tj ET
-BT /F1 8.9 Tf 64 300 Td (GitHub: github.com/Ali-Jun/time-off-microservice) Tj ET
-BT /F2 13 Tf 54 272 Td (Education) Tj ET
-BT /F2 9.8 Tf 54 254 Td (BS Software Engineering, Lahore Leads University) Tj ET
-BT /F1 8.9 Tf 54 242 Td (Relevant Coursework: Data Structures & Algorithms, Database Systems, Software Engineering Principles,) Tj ET
-BT /F1 8.9 Tf 54 230 Td (Web Technologies, UI/UX Design) Tj ET
-BT /F2 13 Tf 54 204 Td (Core Strengths) Tj ET
-BT /F1 9 Tf 54 186 Td (Fast Learner, Team Collaboration, Problem Solving, Effective Communication, Adaptability, Attention to Detail) Tj ET
+BT /F2 13 Tf 54 652 Td (Professional Summary) Tj ET
+BT /F1 9.2 Tf 54 634 Td (Full Stack Developer focused on MERN apps, responsive React interfaces, dashboards, and freelance projects.) Tj ET
+BT /F1 9.2 Tf 54 622 Td (Hands-on with role-based dashboards, booking flows, job portals, marketplace portfolios, REST APIs, and databases.) Tj ET
+BT /F1 9.2 Tf 54 610 Td (Comfortable preparing client-ready UI, live demos, GitHub repositories, and Vercel/GitHub Pages deployment.) Tj ET
+BT /F2 13 Tf 54 586 Td (Technical Skills) Tj ET
+BT /F1 9 Tf 54 568 Td (Frontend: HTML5, CSS3, JavaScript, React.js, Tailwind CSS, Bootstrap) Tj ET
+BT /F1 9 Tf 54 556 Td (Backend: Node.js, Express.js, REST APIs | Database: MongoDB, MySQL) Tj ET
+BT /F1 9 Tf 54 544 Td (Auth/Tools: JWT, bcrypt.js, Git, GitHub, Figma, VS Code, Vercel) Tj ET
+BT /F1 9 Tf 54 532 Td (AI Workflow: Claude, ChatGPT, Codex, DeepSeek) Tj ET
+BT /F2 13 Tf 54 508 Td (Freelance Services) Tj ET
+BT /F1 8.9 Tf 54 490 Td (Upwork/Fiverr portfolio websites, personal brand sites, responsive landing pages, and contact form setup.) Tj ET
+BT /F1 8.9 Tf 54 478 Td (Admin panels, booking flows, tables, forms, React features, API integration, CRUD workflows, and bug fixes.) Tj ET
+BT /F1 8.9 Tf 54 466 Td (Clean UI, mobile polish, deployment support, and client-ready handoff for fixed-scope marketplace projects.) Tj ET
+BT /F2 13 Tf 54 442 Td (Project-Based Experience) Tj ET
+BT /F2 9.5 Tf 54 424 Td (Full Stack Developer - Portfolio & Freelance Project Work | Current) Tj ET
+BT /F1 8.7 Tf 64 412 Td (- Built and deployed React portfolio, dashboard, job portal, and service management projects.) Tj ET
+BT /F1 8.7 Tf 64 400 Td (- Designed responsive UI sections, project galleries, contact forms, and client/recruiter-facing flows.) Tj ET
+BT /F1 8.7 Tf 64 388 Td (- Practiced React, Node.js, Express.js, REST APIs, MongoDB/MySQL, GitHub, and Vercel workflows.) Tj ET
+BT /F2 13 Tf 54 364 Td (Projects) Tj ET
+BT /F2 9.4 Tf 54 346 Td (Auto Tech Management System | React.js, role-based dashboards, Vercel) Tj ET
+BT /F1 8.3 Tf 64 334 Td (- Vehicle service portal with booking, mechanic assignment, invoices, PKR payments, feedback, and reports.) Tj ET
+BT /F1 8 Tf 64 322 Td (Live: autotechmanagementsystem.vercel.app | Code: github.com/Ali-Jun/AutoTechmanagementsystem) Tj ET
+BT /F2 9.4 Tf 54 304 Td (HireHub Job Portal | React, Node.js, Express, MongoDB, JWT) Tj ET
+BT /F1 8.3 Tf 64 292 Td (- MERN job portal concept with candidate/employer auth, job search, applications, and protected dashboards.) Tj ET
+BT /F1 8.3 Tf 64 280 Td (Live: lnkd.in/da95uY8H | Code: lnkd.in/dUQmbrYE) Tj ET
+BT /F2 9.4 Tf 54 262 Td (Professional Portfolio Website | React, Vite, responsive CSS, Vercel, GitHub Pages) Tj ET
+BT /F1 8.3 Tf 64 250 Td (- Animated marketplace portfolio with case studies, resume download, skills banner, and working contact form.) Tj ET
+BT /F1 8.3 Tf 64 238 Td (Live: junaid-portfolio-two-phi.vercel.app | Code: github.com/Ali-Jun/Portfolio) Tj ET
+BT /F2 13 Tf 54 214 Td (Education) Tj ET
+BT /F2 9.4 Tf 54 196 Td (BS Software Engineering, Lahore Leads University) Tj ET
+BT /F1 8.3 Tf 54 184 Td (Coursework: Data Structures & Algorithms, Database Systems, Software Engineering, Web Technologies, UI/UX) Tj ET
+BT /F2 13 Tf 54 158 Td (Core Strengths) Tj ET
+BT /F1 8.8 Tf 54 140 Td (Client Communication, Fast Learning, Problem Solving, Team Collaboration, Scope Clarity, Adaptability, Detail) Tj ET
 endstream
 endobj
 xref
@@ -71,5 +74,5 @@ xref
 trailer
 << /Size 7 /Root 1 0 R >>
 startxref
-3930
+4392
 %%EOF

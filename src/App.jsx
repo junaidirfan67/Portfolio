@@ -139,46 +139,62 @@ const projects = [
     mediaClass: "project-media-jobs",
   },
   {
-    title: "Task Manager Application",
-    type: "Productivity app",
-    description: "A dashboard-style task manager for creating, organizing, filtering, and completing tasks with a clean daily workflow.",
-    role: "Frontend application",
-    impact: "Highlights clean dashboard UI, task filtering, and practical productivity features.",
-    features: ["Task board dashboard", "Status and priority filters", "Progress and priority summaries"],
-    stack: ["React", "JavaScript", "Tailwind CSS", "Local Storage"],
-    live: "https://ali-jun.github.io/Task-Manager/",
-    source: "https://github.com/Ali-Jun/Task-Manager",
-    image: "images/task-manager-project.png",
-    alt: "Task Manager dashboard showing task filters, progress stats, and priority mix",
-    mediaClass: "project-media-task",
-  },
-  {
-    title: "Time-Off Microservice",
-    type: "Backend architecture",
-    description: "A backend-focused service for time-off requests, approval flows, API-style communication, and database-backed workflows.",
-    role: "Backend service design",
-    impact: "Shows API-first thinking for leave requests, approvals, and service boundaries.",
-    features: ["REST-style service structure", "Approval workflow logic", "Database-backed request flow"],
-    stack: ["Node.js", "Express.js", "REST APIs", "MongoDB"],
-    livePlaceholder: "Add the live Time-Off Microservice URL before publishing.",
-    source: "https://github.com/Ali-Jun/time-off-microservice",
-    mediaClass: "project-media-microservices",
+    title: "Professional Portfolio Website",
+    type: "Marketplace portfolio",
+    description:
+      "A modern React portfolio built for freelance marketplace trust, recruiter review, project proof, resume downloads, and direct client messages.",
+    role: "Design, frontend, content, deployment",
+    impact: "Positions services clearly for Upwork, Fiverr, LinkedIn, and junior developer applications.",
+    features: ["Animated responsive layout", "Freelance services and project case studies", "Resume download and working contact form"],
+    stack: ["React", "Vite", "JavaScript", "Responsive CSS", "Vercel"],
+    live: "https://junaid-portfolio-two-phi.vercel.app",
+    source: "https://github.com/Ali-Jun/Portfolio",
+    image: "images/portfolio-website.png",
+    alt: "Junaid Irfan professional portfolio homepage for freelance and full stack development services",
+    mediaClass: "project-media-portfolio",
   },
 ];
 
 const experienceItems = [
   {
-    role: "Full Stack Developer - Internship Preparation",
-    organization: "Project-based practical experience",
+    role: "Full Stack Developer - Marketplace Portfolio Projects",
+    organization: "Project-based practical delivery",
     period: "Current",
     summary:
-      "Building and deploying real portfolio projects that demonstrate junior developer readiness across frontend, backend, database, and deployment workflows.",
+      "Building and deploying client-facing portfolio projects that demonstrate frontend, backend, database, dashboard, and deployment workflows.",
     bullets: [
-      "Built React interfaces, dashboard layouts, and reusable sections for portfolio and product-style applications.",
+      "Built React interfaces, dashboard layouts, reusable sections, and project case studies for product-style applications.",
       "Practiced API thinking with Node.js, Express.js, REST workflows, authentication concepts, and database-backed features.",
-      "Deployed projects on Vercel and GitHub Pages with live demos, source links, and recruiter-ready presentation.",
+      "Deployed projects on Vercel and GitHub Pages with live demos, source links, and marketplace-ready presentation.",
     ],
     stack: ["React", "Node.js", "Express.js", "MongoDB", "GitHub", "Vercel"],
+  },
+];
+
+const freelanceServices = [
+  {
+    title: "Portfolio & Personal Brand Websites",
+    copy: "Responsive React/Vite websites for developers, students, small businesses, personal brands, and Fiverr gigs.",
+    deliverables: ["Modern homepage and section layout", "Contact form setup", "Vercel or GitHub Pages deployment"],
+    meta: "Best for profile launch",
+  },
+  {
+    title: "Business Dashboards & Admin Panels",
+    copy: "Clean dashboard interfaces for booking, service management, admin workflows, and business operations.",
+    deliverables: ["Responsive dashboard UI", "CRUD-friendly page structure", "Reusable cards, tables, and forms"],
+    meta: "Best for web apps",
+  },
+  {
+    title: "MERN App Fixes & Feature Builds",
+    copy: "Focused help with React features, Node/Express API flows, MongoDB data handling, and Upwork bug-fix tasks.",
+    deliverables: ["Feature implementation", "Frontend and API integration", "Code cleanup and deployment support"],
+    meta: "Best for ongoing work",
+  },
+  {
+    title: "Landing Pages & UI Conversion",
+    copy: "High-quality landing pages and Figma-style UI conversions with polished responsive behavior for client campaigns.",
+    deliverables: ["Pixel-conscious React UI", "Mobile and desktop layout polish", "Performance-friendly styling"],
+    meta: "Best for fast delivery",
   },
 ];
 
@@ -193,7 +209,7 @@ const focusAreas = [
   },
   {
     title: "Deployment Ready",
-    copy: "Portfolio and project builds prepared for GitHub, Vercel, recruiters, and live demos.",
+    copy: "Portfolio and project builds prepared for GitHub, Vercel, client review, recruiters, and live demos.",
   },
 ];
 
@@ -268,7 +284,7 @@ function Chip({ label }) {
 
 function Header({ route, theme, setTheme }) {
   const [isOpen, setIsOpen] = useState(false);
-  const isPage = (page) => route === page || (page === "home" && ["home", "experience", "education", "skills", "projects"].includes(route));
+  const isPage = (page) => route === page || (page === "home" && ["home", "freelance", "experience", "education", "skills", "projects"].includes(route));
 
   const closeNav = () => setIsOpen(false);
   const toggleTheme = () => setTheme(theme === "dark" ? "light" : "dark");
@@ -302,6 +318,9 @@ function Header({ route, theme, setTheme }) {
         </a>
         <a href="#/experience" className={route === "experience" ? "is-active" : ""} onClick={closeNav}>
           Experience
+        </a>
+        <a href="#/freelance" className={route === "freelance" ? "is-active" : ""} onClick={closeNav}>
+          Freelance
         </a>
         <a href="#/skills" className={route === "skills" ? "is-active" : ""} onClick={closeNav}>
           Skills
@@ -359,16 +378,16 @@ function HomePage({ showToast }) {
           <div className="hero-layout" data-reveal>
             <div className="hero-text">
               <div className="hero-meta-row">
-                <p className="eyebrow">Junaid Irfan | Full Stack Developer</p>
-                <span className="availability-pill">Open to opportunities</span>
+                <p className="eyebrow">Junaid Irfan | Full Stack Developer for Freelance Marketplaces</p>
+                <span className="availability-pill">Available for Upwork & Fiverr projects</span>
               </div>
-              <h1>Junior Full Stack Developer Building MERN Web Applications</h1>
+              <h1>Client-Ready React Websites, Dashboards, and MERN Web Apps</h1>
               <p className="hero-copy">
-                I build recruiter-ready React interfaces, dashboard workflows, REST API concepts, and deployed projects
-                that show practical junior developer skills.
+                I help clients turn ideas into responsive portfolio websites, business dashboards, landing pages, and
+                MERN features with clean UI, working links, and deployment-ready code.
               </p>
               <div className="hero-stack chip-list compact" aria-label="Primary stack">
-                {["React", "Node.js", "Express.js", "MongoDB", "Vercel"].map((skill) => (
+                {["Upwork & Fiverr", "React", "Node.js", "Express.js", "MongoDB", "Vercel"].map((skill) => (
                   <Chip label={skill} key={skill} />
                 ))}
               </div>
@@ -380,7 +399,7 @@ function HomePage({ showToast }) {
                   View Projects
                 </a>
                 <a className="button button-secondary" href="#/contact">
-                  Contact Me
+                  Hire Me
                 </a>
               </div>
             </div>
@@ -388,8 +407,8 @@ function HomePage({ showToast }) {
               <span className="profile-status">Software Engineer</span>
               <img src={asset("images/junaid-profile.png")} alt="Portrait of Junaid Irfan" />
               <figcaption>
-                <strong>Building recruiter-ready web apps</strong>
-                <span>Frontend, backend, database, deployment, and AI-assisted development workflows.</span>
+                <strong>Building client-ready web apps</strong>
+                <span>Frontend, backend, database, deployment, and AI-assisted development workflows for real projects.</span>
               </figcaption>
             </figure>
           </div>
@@ -400,20 +419,21 @@ function HomePage({ showToast }) {
             <span>featured projects</span>
           </div>
           <div>
-            <strong>MERN + Full Stack</strong>
-            <span>React, Node.js, Express, MongoDB, PHP, MySQL</span>
+            <strong>Freelance services</strong>
+            <span>React websites, dashboards, UI fixes, API integrations</span>
           </div>
           <div>
-            <strong>Recruiter ready</strong>
-            <span>resume, links, and contact flow</span>
+            <strong>Upwork & Fiverr ready</strong>
+            <span>portfolio proof, resume, links, and contact flow</span>
           </div>
         </div>
       </section>
 
       <SkillsBanner />
       <FocusSection />
-      <ExperienceSection />
       <ProjectsSection showToast={showToast} />
+      <FreelanceSection />
+      <ExperienceSection />
       <SkillsSection />
       <EducationSection />
       <ResumePanel />
@@ -426,8 +446,8 @@ function FocusSection() {
     <section className="section focus-section" data-reveal>
       <div className="container focus-layout">
         <div className="section-heading">
-          <p className="section-kicker">Modern Portfolio</p>
-          <h2>Clean design, clear proof, and fast access to project work.</h2>
+          <p className="section-kicker">Marketplace Portfolio</p>
+          <h2>Clean project proof, clear services, and fast client contact.</h2>
         </div>
         <div className="focus-grid">
           {focusAreas.map((item, index) => (
@@ -443,16 +463,67 @@ function FocusSection() {
   );
 }
 
+function FreelanceSection() {
+  return (
+    <section className="section freelance-section" id="freelance" data-reveal>
+      <div className="container">
+        <div className="freelance-layout">
+          <div className="freelance-intro">
+            <p className="section-kicker">Freelance Web Development</p>
+            <h2>Upwork and Fiverr-ready services for clients who need clean, working web apps.</h2>
+            <p>
+              I can help with small business websites, portfolio builds, admin dashboards, MERN feature work, and
+              deployed React interfaces. The focus is simple: clear scope, responsive UI, working links, and clean handoff
+              for fixed-scope marketplace projects.
+            </p>
+            <div className="freelance-actions">
+              <a className="button button-primary" href="#/contact">
+                Hire Me for a Project
+              </a>
+              <a className="button button-ghost" href="#/projects">
+                View Work Samples
+              </a>
+            </div>
+          </div>
+          <div className="freelance-highlight">
+            <span>Client-ready focus</span>
+            <strong>Fast communication, practical builds, and portfolio-backed proof.</strong>
+            <p>Available for fixed-scope frontend work, MERN improvements, dashboard UI, Fiverr gigs, and Upwork contracts.</p>
+          </div>
+        </div>
+
+        <div className="freelance-grid" aria-label="Freelance services">
+          {freelanceServices.map((service, index) => (
+            <article className="freelance-card" key={service.title}>
+              <header>
+                <span className="freelance-number">{String(index + 1).padStart(2, "0")}</span>
+                <span className="service-meta">{service.meta}</span>
+              </header>
+              <h3>{service.title}</h3>
+              <p>{service.copy}</p>
+              <ul>
+                {service.deliverables.map((item) => (
+                  <li key={item}>{item}</li>
+                ))}
+              </ul>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
 function ExperienceSection() {
   return (
     <section className="section experience-section" id="experience" data-reveal>
       <div className="container">
         <div className="section-heading section-heading-wide">
           <div>
-            <p className="section-kicker">Internship Experience</p>
-            <h2>Practical experience for junior developer roles.</h2>
+            <p className="section-kicker">Project Experience</p>
+            <h2>Practical delivery experience for client-ready web work.</h2>
           </div>
-          <p>Focused on the day-to-day skills expected from an intern or junior full stack developer.</p>
+          <p>Focused on responsive UI, dashboard workflows, deployment, communication, and handoff for real portfolio projects.</p>
         </div>
 
         <div className="experience-list">
@@ -609,10 +680,10 @@ function ProjectsSection({ showToast }) {
       <div className="container">
         <div className="section-heading section-heading-wide">
           <div>
-            <p className="section-kicker">Projects</p>
-            <h2>Projects that prove practical full stack skill.</h2>
+            <p className="section-kicker">Selected Work</p>
+            <h2>Professional project samples for clients and recruiters.</h2>
           </div>
-          <p>Each card now highlights role, product value, key features, stack, live demo, and source code for faster recruiter review.</p>
+          <p>Only the strongest client-facing work is shown here, with clear outcomes, visuals, live links, and source code.</p>
         </div>
 
         <div className="projects-grid">
@@ -672,8 +743,8 @@ function ResumePanel() {
       <div className="container resume-panel">
         <div>
           <p className="section-kicker">Resume</p>
-          <h2>Download the resume for internships and junior developer roles.</h2>
-          <p>Use the PDF for applications, recruiter messages, and LinkedIn outreach. The printable page stays available for quick review.</p>
+          <h2>Download the resume for internships, junior roles, and freelance proposals.</h2>
+          <p>Use the PDF for applications, recruiter messages, LinkedIn outreach, Upwork proposals, and Fiverr client conversations. The printable page stays available for quick review.</p>
         </div>
         <div className="resume-actions">
           <a className="button button-primary" href={asset("assets/Junaid-Irfan-Resume.pdf")} download>
@@ -695,10 +766,10 @@ function AboutPage() {
         <div className="container page-hero-grid">
           <div>
             <p className="eyebrow">About Junaid</p>
-            <h1>Full Stack Developer building complete web experiences.</h1>
+            <h1>Full Stack Developer building client-ready web experiences.</h1>
             <p>
-              Junaid Irfan is a BS Software Engineering graduate building full-stack applications and seeking internship
-              or junior opportunities while continuously learning through real-world projects.
+              Junaid Irfan is a BS Software Engineering graduate building full-stack applications, marketplace-ready
+              portfolios, and dashboard interfaces for junior roles, Upwork work, and Fiverr gigs.
             </p>
           </div>
           <img className="about-photo" src={asset("images/junaid-profile.png")} alt="Portrait of Junaid Irfan" />
@@ -715,10 +786,9 @@ function AboutPage() {
             <p>
               Junaid works across the full stack, with growing strength in React, JavaScript, Tailwind CSS, Bootstrap,
               Node.js, Express.js, PHP, MongoDB, MySQL, and responsive frontend development. His portfolio is centered on
-              real project delivery: Auto Tech Management System, HireHub Job Portal, Task Manager Application, and
-              Time-Off Microservice.
+              real project delivery: Auto Tech Management System, HireHub Job Portal, and a Professional Portfolio Website.
             </p>
-            <p>He is positioning the portfolio for internship, junior developer, and freelance web work with clear project stories, recruiter-ready links, and a downloadable resume.</p>
+            <p>He is positioning the portfolio for internship, junior developer, Upwork, and Fiverr web work with clear project stories, live links, and a downloadable resume.</p>
           </div>
         </div>
       </section>
@@ -734,7 +804,7 @@ function AboutPage() {
               Junaid completed BS Software Engineering at Lahore Leads University, with coursework in Data Structures &
               Algorithms, Database Systems, Software Engineering Principles, Web Technologies, and UI/UX Design.
             </p>
-            <p>That foundation now carries into portfolio projects built for real hiring, productivity, service, and operations workflows.</p>
+            <p>That foundation now carries into portfolio projects built for real hiring, service, marketplace, and operations workflows.</p>
           </div>
         </div>
       </section>
@@ -773,7 +843,7 @@ function ResumePage() {
       <article className="resume-document">
         <header className="resume-title">
           <div>
-            <p className="eyebrow">Full Stack Developer | MERN Stack Developer</p>
+            <p className="eyebrow">Full Stack Developer | MERN Stack Developer | Freelance Web Developer</p>
             <h1>Junaid Irfan</h1>
           </div>
           <address>
@@ -794,10 +864,10 @@ function ResumePage() {
         <section>
           <h2>Professional Summary</h2>
           <p>
-            Results-driven Full Stack Developer with hands-on experience building scalable web applications using the
-            MERN stack. Skilled in developing responsive frontend interfaces and secure backend APIs with authentication,
-            role-based access, and database integration. Passionate about creating real-world applications and
-            continuously learning modern technologies.
+            Full Stack Developer focused on MERN web applications, responsive React interfaces, admin dashboards, and
+            deployment-ready freelance projects. Hands-on experience building role-based dashboards, service booking
+            workflows, job portal flows, marketplace portfolio sections, REST API concepts, database-backed features,
+            and clean Vercel/GitHub Pages deployments.
           </p>
         </section>
 
@@ -826,13 +896,36 @@ function ResumePage() {
         </section>
 
         <section>
+          <h2>Freelance Services</h2>
+          <div className="resume-columns">
+            <p><strong>Websites:</strong> portfolio websites, personal brand sites, responsive landing pages</p>
+            <p><strong>Dashboards:</strong> admin panels, booking flows, tables, forms, and operational screens</p>
+            <p><strong>MERN Work:</strong> React features, API integration, CRUD workflows, bug fixes</p>
+            <p><strong>Delivery:</strong> clean UI, mobile polish, deployment support, and client-ready handoff</p>
+          </div>
+        </section>
+
+        <section>
+          <h2>Project-Based Experience</h2>
+          <div className="resume-item">
+            <h3>Full Stack Developer - Portfolio & Freelance Project Work</h3>
+            <p>Current</p>
+            <ul>
+              <li>Built and deployed React portfolio, dashboard, job portal, and service management projects.</li>
+              <li>Designed responsive UI sections, reusable cards, project galleries, contact forms, and recruiter/client-facing flows.</li>
+              <li>Practiced full stack workflows across React, Node.js, Express.js, REST APIs, MongoDB/MySQL, GitHub, and Vercel.</li>
+            </ul>
+          </div>
+        </section>
+
+        <section>
           <h2>Projects</h2>
           <ResumeProject
             title="Auto Tech Management System"
             stack="React.js, vehicle service management, role-based dashboards, Vercel"
             bullets={[
-              "React.js vehicle service management portal with service booking, mechanic assignment, invoices, PKR payments, feedback, and reports.",
-              "Deployed on Vercel with live project and source repository available for review.",
+              "Built a service management portal with role-based dashboards, booking, mechanic assignment, invoices, PKR payments, feedback, and reports.",
+              "Presented multiple real product screens and deployed the app on Vercel with source code available for review.",
             ]}
             links={[
               ["Live Demo", "https://autotechmanagementsystem.vercel.app"],
@@ -843,8 +936,8 @@ function ResumePage() {
             title="HireHub Job Portal"
             stack="React, Node.js, Express, MongoDB, JWT"
             bullets={[
-              "Developed a MERN-based job portal with candidate/employer authentication and role-based access.",
-              "Built job posting, job search, application tracking, and protected dashboards.",
+              "Developed a MERN job portal concept with candidate/employer authentication, role-based access, and job search flows.",
+              "Built job posting, application tracking, and protected dashboard workflows for a hiring product experience.",
             ]}
             links={[
               ["Live Demo", "https://lnkd.in/da95uY8H"],
@@ -853,36 +946,21 @@ function ResumePage() {
           />
           <ResumeProject
             title="Portfolio Website"
-            stack="React, JavaScript, Tailwind CSS, GitHub Pages"
-            bullets={["Designed and developed a portfolio website showcasing projects, skills, resume, and contact information."]}
+            stack="React, Vite, JavaScript, responsive CSS, Vercel, GitHub Pages"
+            bullets={[
+              "Designed and developed a modern animated portfolio with project case studies, resume download, skills banner, and working contact form.",
+              "Positioned the site for junior developer applications, LinkedIn outreach, Upwork proposals, and Fiverr client conversations.",
+            ]}
             links={[
               ["Live Portfolio", "https://ali-jun.github.io/Portfolio/"],
               ["GitHub", "https://github.com/Ali-Jun/Portfolio"],
             ]}
           />
-          <ResumeProject
-            title="Task Manager Application"
-            stack="JavaScript, Bootstrap, MySQL"
-            bullets={[
-              "Developed a full-stack task management application with CRUD functionality and responsive UI.",
-              "Implemented client-side validation and real-time UI updates.",
-            ]}
-            links={[
-              ["Live Demo", "https://ali-jun.github.io/Task-Manager/"],
-              ["GitHub", "https://github.com/Ali-Jun/Task-Manager"],
-            ]}
-          />
-          <ResumeProject
-            title="Time-Off Microservice"
-            stack="Microservice Architecture, Git"
-            bullets={["Implemented standalone leave/time-off microservice using REST principles."]}
-            links={[["GitHub", "https://github.com/Ali-Jun/time-off-microservice"]]}
-          />
         </section>
 
         <section>
           <h2>Core Strengths</h2>
-          <p>Fast Learner, Team Collaboration, Problem Solving, Effective Communication, Adaptability, Attention to Detail.</p>
+          <p>Client Communication, Fast Learning, Problem Solving, Team Collaboration, Scope Clarity, Adaptability, Attention to Detail.</p>
         </section>
       </article>
     </main>
@@ -986,8 +1064,8 @@ function ContactPage() {
         <div className="container page-hero-grid">
           <div>
             <p className="eyebrow">Contact</p>
-            <h1>Let us build something useful.</h1>
-            <p>Reach out for full stack web development work, portfolio feedback, internships, or project collaboration.</p>
+            <h1>Start a freelance web project.</h1>
+            <p>Reach out for Upwork or Fiverr freelance work, full stack web development, portfolio websites, dashboards, internships, or project collaboration.</p>
           </div>
           <div className="contact-panel">
             <a href="mailto:junaidirfan810@gmail.com">junaidirfan810@gmail.com</a>
@@ -1006,7 +1084,7 @@ function ContactPage() {
           <div>
             <p className="section-kicker">Message</p>
             <h2>Send a focused note.</h2>
-            <p className="section-copy">The form sends your message directly to Junaid's email and keeps you on the portfolio page.</p>
+            <p className="section-copy">Share the project type, pages or features needed, deadline, and links. The form sends your message directly to Junaid's email.</p>
           </div>
 
           <form className="contact-form" onSubmit={submitForm}>
@@ -1061,7 +1139,7 @@ export default function App() {
   const [theme, setTheme] = useTheme();
   const [toast, setToast] = useState("");
   const normalizedRoute = ["about", "resume", "contact"].includes(route) ? route : "home";
-  const sectionTarget = ["experience", "education", "skills", "projects"].includes(route) ? route : null;
+  const sectionTarget = ["freelance", "experience", "education", "skills", "projects"].includes(route) ? route : null;
 
   useReveal(route);
 
