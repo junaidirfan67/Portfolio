@@ -381,13 +381,13 @@ function HomePage({ showToast }) {
                 <p className="eyebrow">Junaid Irfan | Full Stack Developer for Freelance Marketplaces</p>
                 <span className="availability-pill">Available for Upwork & Fiverr projects</span>
               </div>
-              <h1>Client-Ready React Websites, Dashboards, and MERN Web Apps</h1>
+              <h1>Building Modern & AI-Driven Applications</h1>
               <p className="hero-copy">
-                I have worked on 30+ projects and help clients turn ideas into responsive portfolio websites, business
-                dashboards, landing pages, and MERN features with clean UI, working links, and deployment-ready code.
+                I have worked on 30+ projects and help clients turn ideas into client-ready React websites, business
+                dashboards, landing pages, MERN features, and AI-assisted workflows with clean UI and deployment-ready code.
               </p>
               <div className="hero-stack chip-list compact" aria-label="Primary stack">
-                {["Upwork & Fiverr", "React", "Node.js", "Express.js", "MongoDB", "Vercel"].map((skill) => (
+                {["AI-Driven Apps", "Upwork & Fiverr", "React", "Node.js", "Express.js", "MongoDB", "Vercel"].map((skill) => (
                   <Chip label={skill} key={skill} />
                 ))}
               </div>
@@ -407,7 +407,7 @@ function HomePage({ showToast }) {
               <span className="profile-status">Software Engineer</span>
               <img src={asset("images/junaid-profile.png")} alt="Portrait of Junaid Irfan" />
               <figcaption>
-                <strong>Building client-ready web apps</strong>
+                <strong>Building modern & AI-driven applications</strong>
                 <span>Frontend, backend, database, deployment, and AI-assisted development workflows for real projects.</span>
               </figcaption>
             </figure>
@@ -419,8 +419,8 @@ function HomePage({ showToast }) {
             <span>projects worked on</span>
           </div>
           <div>
-            <strong>Freelance services</strong>
-            <span>React websites, dashboards, UI fixes, API integrations</span>
+            <strong>Modern + AI-driven</strong>
+            <span>React apps, dashboards, UI fixes, AI-assisted workflows</span>
           </div>
           <div>
             <strong>Upwork & Fiverr ready</strong>
@@ -766,11 +766,11 @@ function AboutPage() {
         <div className="container page-hero-grid">
           <div>
             <p className="eyebrow">About Junaid</p>
-            <h1>Full Stack Developer building client-ready web experiences.</h1>
+            <h1>Full Stack Developer building modern and AI-driven web experiences.</h1>
             <p>
               Junaid Irfan is a BS Software Engineering graduate building full-stack applications, marketplace-ready
-              portfolios, and dashboard interfaces for junior roles, Upwork work, and Fiverr gigs, with 30+ projects
-              completed across learning, practice, and client-style builds.
+              portfolios, AI-assisted workflows, and dashboard interfaces for junior roles, Upwork work, and Fiverr gigs,
+              with 30+ projects completed across learning, practice, and client-style builds.
             </p>
           </div>
           <img className="about-photo" src={asset("images/junaid-profile.png")} alt="Portrait of Junaid Irfan" />
@@ -844,7 +844,7 @@ function ResumePage() {
       <article className="resume-document">
         <header className="resume-title">
           <div>
-            <p className="eyebrow">Full Stack Developer | MERN Stack Developer | Freelance Web Developer</p>
+            <p className="eyebrow">Full Stack Developer | MERN Stack Developer | AI-Driven Applications</p>
             <h1>Junaid Irfan</h1>
           </div>
           <address>
@@ -865,10 +865,10 @@ function ResumePage() {
         <section>
           <h2>Professional Summary</h2>
           <p>
-            Full Stack Developer focused on MERN web applications, responsive React interfaces, admin dashboards, and
-            deployment-ready freelance projects. Worked on 30+ projects with hands-on experience building role-based dashboards, service booking
-            workflows, job portal flows, marketplace portfolio sections, REST API concepts, database-backed features,
-            and clean Vercel/GitHub Pages deployments.
+            Full Stack Developer focused on modern and AI-driven applications, MERN web apps, responsive React
+            interfaces, admin dashboards, and deployment-ready freelance projects. Worked on 30+ projects with hands-on
+            experience building role-based dashboards, service booking workflows, job portal flows, marketplace portfolio
+            sections, REST API concepts, database-backed features, and clean Vercel/GitHub Pages deployments.
           </p>
         </section>
 
@@ -914,7 +914,7 @@ function ResumePage() {
             <ul>
               <li>Worked on 30+ projects and built selected React portfolio, dashboard, job portal, and service management projects.</li>
               <li>Designed responsive UI sections, reusable cards, project galleries, contact forms, and recruiter/client-facing flows.</li>
-              <li>Practiced full stack workflows across React, Node.js, Express.js, REST APIs, MongoDB/MySQL, GitHub, and Vercel.</li>
+              <li>Practiced full stack and AI-assisted workflows across React, Node.js, Express.js, REST APIs, MongoDB/MySQL, GitHub, and Vercel.</li>
             </ul>
           </div>
         </section>

@@ -15,7 +15,7 @@ endobj
 << /Type /Font /Subtype /Type1 /BaseFont /Helvetica-Bold >>
 endobj
 6 0 obj
-<< /Length 3951 >>
+<< /Length 3965 >>
 stream
 0.08 0.13 0.11 rg
 54 666 504 1.2 re f
@@ -23,14 +23,14 @@ stream
 54 665 170 3 re f
 0 0 0 rg
 BT /F2 26 Tf 54 742 Td (Junaid Irfan) Tj ET
-BT /F1 12.2 Tf 54 720 Td (Full Stack Developer | MERN Stack Developer | Freelance Web Developer) Tj ET
+BT /F1 12.2 Tf 54 720 Td (Full Stack Developer | MERN Stack Developer | AI-Driven Applications) Tj ET
 BT /F1 9.3 Tf 54 704 Td (Phone: 0320-6304078 | Email: junaidirfan810@gmail.com) Tj ET
 BT /F1 9.3 Tf 54 691 Td (LinkedIn: linkedin.com/in/junaid-irfan-ba1027241 | GitHub: github.com/Ali-Jun) Tj ET
 BT /F1 9.3 Tf 54 678 Td (Portfolio: https://ali-jun.github.io/Portfolio/) Tj ET
 BT /F2 13 Tf 54 652 Td (Professional Summary) Tj ET
-BT /F1 9.2 Tf 54 634 Td (Full Stack Developer focused on MERN apps, responsive React interfaces, dashboards, and freelance projects.) Tj ET
+BT /F1 9.2 Tf 54 634 Td (Building modern & AI-driven applications with MERN apps, React interfaces, dashboards, and freelance projects.) Tj ET
 BT /F1 9.2 Tf 54 622 Td (Worked on 30+ projects across role-based dashboards, booking flows, job portals, marketplace portfolios,) Tj ET
-BT /F1 9.2 Tf 54 610 Td (REST API concepts, databases, client-ready UI, live demos, GitHub repositories, and deployment workflows.) Tj ET
+BT /F1 9.2 Tf 54 610 Td (AI-assisted workflows, REST API concepts, databases, live demos, GitHub repositories, and deployments.) Tj ET
 BT /F2 13 Tf 54 586 Td (Technical Skills) Tj ET
 BT /F1 9 Tf 54 568 Td (Frontend: HTML5, CSS3, JavaScript, React.js, Tailwind CSS, Bootstrap) Tj ET
 BT /F1 9 Tf 54 556 Td (Backend: Node.js, Express.js, REST APIs | Database: MongoDB, MySQL) Tj ET
@@ -44,7 +44,7 @@ BT /F2 13 Tf 54 442 Td (Project-Based Experience) Tj ET
 BT /F2 9.5 Tf 54 424 Td (Full Stack Developer - Portfolio & Freelance Project Work | Current) Tj ET
 BT /F1 8.7 Tf 64 412 Td (- Worked on 30+ projects and built selected React portfolio, dashboard, job portal, and service management apps.) Tj ET
 BT /F1 8.7 Tf 64 400 Td (- Designed responsive UI sections, project galleries, contact forms, and client/recruiter-facing flows.) Tj ET
-BT /F1 8.7 Tf 64 388 Td (- Practiced React, Node.js, Express.js, REST APIs, MongoDB/MySQL, GitHub, and Vercel workflows.) Tj ET
+BT /F1 8.7 Tf 64 388 Td (- Practiced full stack and AI-assisted workflows with React, Node.js, APIs, MongoDB/MySQL, GitHub, and Vercel.) Tj ET
 BT /F2 13 Tf 54 364 Td (Projects) Tj ET
 BT /F2 9.4 Tf 54 346 Td (Auto Tech Management System | React.js, role-based dashboards, Vercel) Tj ET
 BT /F1 8.3 Tf 64 334 Td (- Vehicle service portal with booking, mechanic assignment, invoices, PKR payments, feedback, and reports.) Tj ET
@@ -74,5 +74,5 @@ xref
 trailer
 << /Size 7 /Root 1 0 R >>
 startxref
-4399
+4413
 %%EOF
