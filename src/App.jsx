@@ -161,9 +161,9 @@ const experienceItems = [
     organization: "Project-based practical delivery",
     period: "Current",
     summary:
-      "Building and deploying client-facing portfolio projects that demonstrate frontend, backend, database, dashboard, and deployment workflows.",
+      "Worked on 30+ practice, academic, and client-style projects while building selected portfolio work that demonstrates frontend, backend, database, dashboard, and deployment workflows.",
     bullets: [
-      "Built React interfaces, dashboard layouts, reusable sections, and project case studies for product-style applications.",
+      "Built React interfaces, dashboard layouts, reusable sections, and project case studies across 30+ web development projects.",
       "Practiced API thinking with Node.js, Express.js, REST workflows, authentication concepts, and database-backed features.",
       "Deployed projects on Vercel and GitHub Pages with live demos, source links, and marketplace-ready presentation.",
     ],
@@ -383,8 +383,8 @@ function HomePage({ showToast }) {
               </div>
               <h1>Client-Ready React Websites, Dashboards, and MERN Web Apps</h1>
               <p className="hero-copy">
-                I help clients turn ideas into responsive portfolio websites, business dashboards, landing pages, and
-                MERN features with clean UI, working links, and deployment-ready code.
+                I have worked on 30+ projects and help clients turn ideas into responsive portfolio websites, business
+                dashboards, landing pages, and MERN features with clean UI, working links, and deployment-ready code.
               </p>
               <div className="hero-stack chip-list compact" aria-label="Primary stack">
                 {["Upwork & Fiverr", "React", "Node.js", "Express.js", "MongoDB", "Vercel"].map((skill) => (
@@ -415,8 +415,8 @@ function HomePage({ showToast }) {
         </div>
         <div className="container hero-summary" aria-label="Portfolio highlights">
           <div>
-            <strong>{projects.length}</strong>
-            <span>featured projects</span>
+            <strong>30+</strong>
+            <span>projects worked on</span>
           </div>
           <div>
             <strong>Freelance services</strong>
@@ -769,7 +769,8 @@ function AboutPage() {
             <h1>Full Stack Developer building client-ready web experiences.</h1>
             <p>
               Junaid Irfan is a BS Software Engineering graduate building full-stack applications, marketplace-ready
-              portfolios, and dashboard interfaces for junior roles, Upwork work, and Fiverr gigs.
+              portfolios, and dashboard interfaces for junior roles, Upwork work, and Fiverr gigs, with 30+ projects
+              completed across learning, practice, and client-style builds.
             </p>
           </div>
           <img className="about-photo" src={asset("images/junaid-profile.png")} alt="Portrait of Junaid Irfan" />
@@ -865,7 +866,7 @@ function ResumePage() {
           <h2>Professional Summary</h2>
           <p>
             Full Stack Developer focused on MERN web applications, responsive React interfaces, admin dashboards, and
-            deployment-ready freelance projects. Hands-on experience building role-based dashboards, service booking
+            deployment-ready freelance projects. Worked on 30+ projects with hands-on experience building role-based dashboards, service booking
             workflows, job portal flows, marketplace portfolio sections, REST API concepts, database-backed features,
             and clean Vercel/GitHub Pages deployments.
           </p>
@@ -911,7 +912,7 @@ function ResumePage() {
             <h3>Full Stack Developer - Portfolio & Freelance Project Work</h3>
             <p>Current</p>
             <ul>
-              <li>Built and deployed React portfolio, dashboard, job portal, and service management projects.</li>
+              <li>Worked on 30+ projects and built selected React portfolio, dashboard, job portal, and service management projects.</li>
               <li>Designed responsive UI sections, reusable cards, project galleries, contact forms, and recruiter/client-facing flows.</li>
               <li>Practiced full stack workflows across React, Node.js, Express.js, REST APIs, MongoDB/MySQL, GitHub, and Vercel.</li>
             </ul>
