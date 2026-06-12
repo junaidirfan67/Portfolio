@@ -60,6 +60,30 @@ const skillLogos = [
   ["DeepSeek", "https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/deepseek.svg", "ai-logo"],
 ];
 
+const contactLinks = [
+  {
+    label: "Gmail",
+    value: "junaidirfan810@gmail.com",
+    href: "mailto:junaidirfan810@gmail.com",
+    icon: "https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/gmail.svg",
+    iconClass: "gmail-logo",
+  },
+  {
+    label: "GitHub",
+    value: "github.com/Ali-Jun",
+    href: "https://github.com/Ali-Jun",
+    icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/github/github-original.svg",
+    iconClass: "github-contact-logo",
+  },
+  {
+    label: "LinkedIn",
+    value: "linkedin.com/in/junaid-irfan-ba1027241",
+    href: "https://www.linkedin.com/in/junaid-irfan-ba1027241",
+    icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/linkedin/linkedin-original.svg",
+    iconClass: "linkedin-logo",
+  },
+];
+
 const skillGroups = [
   {
     title: "Frontend",
@@ -1068,14 +1092,24 @@ function ContactPage() {
             <h1>Start a freelance web project.</h1>
             <p>Reach out for Upwork or Fiverr freelance work, full stack web development, portfolio websites, dashboards, internships, or project collaboration.</p>
           </div>
-          <div className="contact-panel">
-            <a href="mailto:junaidirfan810@gmail.com">junaidirfan810@gmail.com</a>
-            <a href="https://github.com/Ali-Jun" target="_blank" rel="noreferrer">
-              github.com/Ali-Jun
-            </a>
-            <a href="https://www.linkedin.com/in/junaid-irfan-ba1027241" target="_blank" rel="noreferrer">
-              linkedin.com/in/junaid-irfan-ba1027241
-            </a>
+          <div className="contact-panel" aria-label="Contact links">
+            {contactLinks.map((link) => (
+              <a
+                className="contact-link-card"
+                href={link.href}
+                target={link.href.startsWith("mailto:") ? undefined : "_blank"}
+                rel={link.href.startsWith("mailto:") ? undefined : "noreferrer"}
+                key={link.label}
+              >
+                <span className={`contact-link-icon ${link.iconClass}`} aria-hidden="true">
+                  <img src={link.icon} alt="" loading="lazy" />
+                </span>
+                <span>
+                  <strong>{link.label}</strong>
+                  <small>{link.value}</small>
+                </span>
+              </a>
+            ))}
           </div>
         </div>
       </section>

@@ -1778,9 +1778,67 @@ textarea {
   gap: 12px;
 }
 
-.contact-panel a {
-  color: var(--accent);
-  font-weight: 900;
+.contact-link-card {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  min-width: 0;
+  padding: 12px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--surface-raised);
+  color: var(--text);
+  text-decoration: none;
+  transition: transform 220ms ease, border-color 220ms ease, background 220ms ease, box-shadow 220ms ease;
+}
+
+.contact-link-card:hover,
+.contact-link-card:focus-visible {
+  transform: translateY(-3px);
+  border-color: var(--accent-line);
+  background: var(--surface-strong);
+  box-shadow: 0 18px 40px rgba(56, 189, 248, 0.14);
+}
+
+.contact-link-icon {
+  display: grid;
+  place-items: center;
+  flex: 0 0 46px;
+  width: 46px;
+  height: 46px;
+  border: 1px solid rgba(15, 23, 42, 0.1);
+  border-radius: 8px;
+  background: #ffffff;
+  box-shadow: 0 12px 24px rgba(15, 23, 42, 0.08);
+}
+
+.contact-link-icon img {
+  display: block;
+  width: 25px;
+  height: 25px;
+  object-fit: contain;
+}
+
+.gmail-logo img {
+  filter: invert(24%) sepia(84%) saturate(2484%) hue-rotate(344deg) brightness(91%) contrast(92%);
+}
+
+.contact-link-card span:last-child {
+  display: grid;
+  gap: 3px;
+  min-width: 0;
+}
+
+.contact-link-card strong {
+  color: var(--text);
+  font-size: 0.95rem;
+  line-height: 1.1;
+}
+
+.contact-link-card small {
+  color: var(--muted);
+  font-weight: 800;
+  line-height: 1.35;
   overflow-wrap: anywhere;
 }
 
