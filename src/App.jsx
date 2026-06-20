@@ -109,6 +109,116 @@ const skillGroups = [
 
 const projects = [
   {
+    title: "Modern Animated MERN E-Commerce Store",
+    type: "Premium MERN e-commerce",
+    description:
+      "A premium men's fashion e-commerce store with an animated storefront, responsive catalog, cart, checkout flow, user dashboard, and separate admin dashboard for store operations.",
+    role: "Complete project from scratch",
+    impact: "Shows business-ready MERN delivery across storefront UX, admin operations, analytics, inventory, and deployment preparation.",
+    features: [
+      "Animated storefront with catalog, search, filters, sorting, product details, wishlist, cart, and checkout",
+      "Separate admin dashboard for products, categories, orders, banners, coupons, stock, returns, and notifications",
+      "Sales analytics, 7-day, 15-day, and monthly views, plus profit/loss tracking",
+      "Backend API structure with MongoDB models, JWT flow, Cloudinary-ready uploads, and Stripe-ready checkout",
+    ],
+    stack: [
+      "React.js",
+      "Vite",
+      "Tailwind CSS",
+      "Framer Motion",
+      "Node.js",
+      "Express.js",
+      "MongoDB",
+      "Mongoose",
+      "JWT",
+      "Context API",
+      "React Router",
+      "Axios",
+      "Vercel",
+    ],
+    live: "https://modern-store-e-commerce-client.vercel.app",
+    credentials: {
+      title: "Demo Admin Login",
+      items: [
+        ["Email", "admin@modernstore.dev"],
+        ["Password", "Admin1234!"],
+      ],
+    },
+    screenshots: [
+      {
+        image: "images/modern-store/01-home.png",
+        alt: "Modern Store homepage with menswear hero, search, categories, wishlist, cart, and sale banner",
+        label: "Storefront",
+      },
+      {
+        image: "images/modern-store/02-shop.png",
+        alt: "Modern Store shop catalog with categories, filters, and product result controls",
+        label: "Shop catalog",
+      },
+      {
+        image: "images/modern-store/03-product-details.png",
+        alt: "Modern Store product details page with product image, rating, variants, price, and stock",
+        label: "Product details",
+      },
+      {
+        image: "images/modern-store/04-cart.png",
+        alt: "Modern Store cart page with item quantity controls, coupon code, and order summary",
+        label: "Cart",
+      },
+      {
+        image: "images/modern-store/05-checkout.png",
+        alt: "Modern Store checkout flow loading screen",
+        label: "Checkout",
+      },
+      {
+        image: "images/modern-store/06-admin-dashboard.png",
+        alt: "Modern Store admin dashboard showing sales revenue, orders, products, users, and chart",
+        label: "Admin dashboard",
+      },
+      {
+        image: "images/modern-store/07-admin-products.png",
+        alt: "Modern Store admin product inventory with buying cost, selling price, profit, stock, and status",
+        label: "Products",
+      },
+      {
+        image: "images/modern-store/08-admin-orders.png",
+        alt: "Modern Store admin orders page with order IDs, customers, payment status, order status, and totals",
+        label: "Orders",
+      },
+      {
+        image: "images/modern-store/09-admin-sales.png",
+        alt: "Modern Store admin sales analytics with revenue, orders, products, users, and monthly bar chart",
+        label: "Sales",
+      },
+      {
+        image: "images/modern-store/10-admin-profit.png",
+        alt: "Modern Store admin profit and loss management with buying cost, selling value, projected profit, and margin",
+        label: "Profit",
+      },
+      {
+        image: "images/modern-store/11-admin-banners.png",
+        alt: "Modern Store admin banner management with event fields and sale banner preview",
+        label: "Banners",
+      },
+      {
+        image: "images/modern-store/12-admin-categories.png",
+        alt: "Modern Store admin categories page with category form and saved category chips",
+        label: "Categories",
+      },
+      {
+        image: "images/modern-store/13-mobile-home.png",
+        alt: "Modern Store mobile homepage showing compact navigation, sale banner, and hero content",
+        label: "Mobile home",
+      },
+      {
+        image: "images/modern-store/14-mobile-shop.png",
+        alt: "Modern Store mobile shop page with sale banner, catalog hero, and category filters",
+        label: "Mobile shop",
+      },
+    ],
+    mediaClass: "project-media-ecommerce",
+  },
+  {
     title: "Auto Tech Management System",
     type: "Service management portal",
     description:
@@ -732,6 +842,16 @@ function ProjectsSection({ showToast }) {
                     <Chip label={item} key={item} />
                   ))}
                 </div>
+                {project.credentials ? (
+                  <div className="project-credentials" aria-label={`${project.title} demo credentials`}>
+                    <strong>{project.credentials.title}</strong>
+                    {project.credentials.items.map(([label, value]) => (
+                      <span key={label}>
+                        <b>{label}:</b> {value}
+                      </span>
+                    ))}
+                  </div>
+                ) : null}
                 <div className="project-links">
                   {project.live ? (
                     <a href={project.live} target="_blank" rel="noreferrer">
@@ -748,9 +868,11 @@ function ProjectsSection({ showToast }) {
                       Live Demo
                     </a>
                   )}
-                  <a href={project.source} target="_blank" rel="noreferrer">
-                    Source Code
-                  </a>
+                  {project.source ? (
+                    <a href={project.source} target="_blank" rel="noreferrer">
+                      Source Code
+                    </a>
+                  ) : null}
                 </div>
               </div>
             </article>
@@ -811,7 +933,8 @@ function AboutPage() {
             <p>
               Junaid works across the full stack, with growing strength in React, JavaScript, Tailwind CSS, Bootstrap,
               Node.js, Express.js, PHP, MongoDB, MySQL, and responsive frontend development. His portfolio is centered on
-              real project delivery: Auto Tech Management System, HireHub Job Portal, and a Professional Portfolio Website.
+              real project delivery: Modern Animated MERN E-Commerce Store, Auto Tech Management System, HireHub Job
+              Portal, and a Professional Portfolio Website.
             </p>
             <p>He is positioning the portfolio for internship, junior developer, Upwork, and Fiverr web work with clear project stories, live links, and a downloadable resume.</p>
           </div>
@@ -945,6 +1068,17 @@ function ResumePage() {
 
         <section>
           <h2>Projects</h2>
+          <ResumeProject
+            title="Modern Animated MERN E-Commerce Store"
+            stack="React.js, Vite, Tailwind CSS, Framer Motion, Node.js, Express.js, MongoDB, JWT, Vercel"
+            bullets={[
+              "Built a premium men's fashion e-commerce store with animated storefront, product catalog, cart, checkout, user dashboard, and admin dashboard.",
+              "Created admin workflows for products, categories, orders, banners, coupons, stock, returns, notifications, sales analytics, and profit/loss tracking.",
+            ]}
+            links={[
+              ["Live Demo", "https://modern-store-e-commerce-client.vercel.app"],
+            ]}
+          />
           <ResumeProject
             title="Auto Tech Management System"
             stack="React.js, vehicle service management, role-based dashboards, Vercel"
