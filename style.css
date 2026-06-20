@@ -1212,6 +1212,52 @@ textarea {
   box-shadow: 0 0 0 4px rgba(52, 211, 153, 0.1);
 }
 
+.experience-projects {
+  display: grid;
+  gap: 12px;
+  margin-top: 22px;
+  padding: 16px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--control-bg);
+}
+
+.experience-projects > strong {
+  color: var(--accent);
+  font-size: 0.82rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0;
+}
+
+.experience-projects > div {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.experience-projects article {
+  min-width: 0;
+  padding: 13px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--surface-raised);
+}
+
+.experience-projects h4 {
+  margin: 0;
+  color: var(--text);
+  font-size: 0.96rem;
+  line-height: 1.25;
+}
+
+.experience-projects p {
+  margin: 7px 0 0;
+  color: var(--muted);
+  font-size: 0.9rem;
+  line-height: 1.45;
+}
+
 .experience-content .chip-list {
   margin-top: 20px;
 }
@@ -2172,7 +2218,8 @@ textarea {
 
 @media (max-width: 680px) {
   .focus-grid,
-  .freelance-grid {
+  .freelance-grid,
+  .experience-projects > div {
     grid-template-columns: 1fr;
   }
 

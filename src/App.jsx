@@ -295,13 +295,31 @@ const experienceItems = [
     organization: "Project-based practical delivery",
     period: "Current",
     summary:
-      "Worked on 30+ practice, academic, and client-style projects while building selected portfolio work that demonstrates frontend, backend, database, dashboard, and deployment workflows.",
+      "Worked on 30+ practice, academic, and client-style projects, with selected working projects prepared as live demos for recruiters, LinkedIn, Upwork, Fiverr, and internship applications.",
     bullets: [
-      "Built React interfaces, dashboard layouts, reusable sections, and project case studies across 30+ web development projects.",
-      "Practiced API thinking with Node.js, Express.js, REST workflows, authentication concepts, and database-backed features.",
-      "Deployed projects on Vercel and GitHub Pages with live demos, source links, and marketplace-ready presentation.",
+      "Designed and developed responsive React interfaces, dashboard layouts, project galleries, forms, and client-facing workflows.",
+      "Built MERN-style project structures with Node.js, Express.js, REST API planning, authentication concepts, MongoDB/MySQL workflows, and deployment setup.",
+      "Prepared working demos with screenshots, live URLs, resume links, and clear project stories for professional portfolio presentation.",
     ],
-    stack: ["React", "Node.js", "Express.js", "MongoDB", "GitHub", "Vercel"],
+    projects: [
+      {
+        title: "Modern Animated MERN E-Commerce Store",
+        copy: "Premium menswear storefront with catalog, cart, checkout, user dashboard, admin dashboard, sales analytics, stock, banners, coupons, and profit/loss tracking.",
+      },
+      {
+        title: "Auto Tech Management System",
+        copy: "Vehicle service portal with role-based dashboards, service booking, mechanic assignment, invoices, PKR payments, feedback, and reports.",
+      },
+      {
+        title: "HireHub Job Portal",
+        copy: "MERN job portal concept with job discovery, employer pipeline flows, candidate applications, authentication, and protected dashboards.",
+      },
+      {
+        title: "Professional Portfolio Website",
+        copy: "Modern React portfolio with animated layout, project case studies, skills banner, resume download, contact form, GitHub Pages, and Vercel deployment.",
+      },
+    ],
+    stack: ["React", "Vite", "Tailwind CSS", "Node.js", "Express.js", "MongoDB", "JWT", "GitHub", "Vercel"],
   },
 ];
 
@@ -675,6 +693,19 @@ function ExperienceSection() {
                     <li key={bullet}>{bullet}</li>
                   ))}
                 </ul>
+                {item.projects ? (
+                  <div className="experience-projects" aria-label={`${item.role} working projects`}>
+                    <strong>Working projects</strong>
+                    <div>
+                      {item.projects.map((project) => (
+                        <article key={project.title}>
+                          <h4>{project.title}</h4>
+                          <p>{project.copy}</p>
+                        </article>
+                      ))}
+                    </div>
+                  </div>
+                ) : null}
                 <div className="chip-list compact">
                   {item.stack.map((skill) => (
                     <Chip label={skill} key={skill} />
@@ -1059,9 +1090,9 @@ function ResumePage() {
             <h3>Full Stack Developer - Portfolio & Freelance Project Work</h3>
             <p>Current</p>
             <ul>
-              <li>Worked on 30+ projects and built selected React portfolio, dashboard, job portal, and service management projects.</li>
-              <li>Designed responsive UI sections, reusable cards, project galleries, contact forms, and recruiter/client-facing flows.</li>
-              <li>Practiced full stack and AI-assisted workflows across React, Node.js, Express.js, REST APIs, MongoDB/MySQL, GitHub, and Vercel.</li>
+              <li>Worked on 30+ projects and prepared selected working demos for recruiter review, LinkedIn, Upwork, Fiverr, and internship applications.</li>
+              <li>Built Modern Animated MERN E-Commerce Store, Auto Tech Management System, HireHub Job Portal, and Professional Portfolio Website as portfolio-ready projects.</li>
+              <li>Designed responsive UI, dashboards, project galleries, forms, REST API planning, database workflows, authentication concepts, and deployment setup.</li>
             </ul>
           </div>
         </section>
