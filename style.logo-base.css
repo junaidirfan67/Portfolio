@@ -1,0 +1,245 @@
+@import "./style.polish.css";
+
+.hero-copy-block,
+.section-heading,
+.services-layout > div:first-child,
+.contact-grid > div:first-child {
+  text-wrap: pretty;
+}
+
+.button,
+.project-links a,
+.resume-link {
+  box-shadow: none;
+}
+
+.button-primary {
+  box-shadow: 0 14px 34px rgba(56, 189, 248, 0.2);
+}
+
+.hero-actions {
+  display: grid;
+  grid-template-columns: repeat(3, max-content);
+  width: fit-content;
+}
+
+.project-links {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(116px, max-content));
+  width: fit-content;
+}
+
+.service-actions,
+.contact-actions {
+  display: grid;
+  grid-template-columns: repeat(2, max-content);
+  width: fit-content;
+}
+
+.contact-actions {
+  justify-self: end;
+}
+
+.project-card.is-featured .project-links {
+  grid-template-columns: repeat(2, minmax(128px, max-content));
+}
+
+.project-card:not(.is-featured) .project-links {
+  grid-template-columns: 1fr;
+}
+
+.project-card:not(.is-featured) .project-links a {
+  width: 100%;
+}
+
+.project-card:not(.is-featured):has(.project-links a:nth-child(2)) .project-links {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  width: 100%;
+}
+
+.hero-profile {
+  max-width: 330px;
+}
+
+@media (max-width: 1080px) {
+  .hero-actions,
+  .service-actions,
+  .contact-actions,
+  .project-links,
+  .project-card.is-featured .project-links {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    width: 100%;
+    max-width: 520px;
+  }
+
+  .hero-actions .button:first-child {
+    grid-column: 1 / -1;
+  }
+
+  .contact-actions {
+    justify-self: start;
+  }
+}
+
+@media (max-width: 760px) {
+  .site-header {
+    grid-template-columns: auto 1fr auto auto;
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+
+  .brand-mark {
+    width: 42px;
+    height: 42px;
+  }
+
+  .icon-button {
+    min-width: 40px;
+    min-height: 40px;
+  }
+
+  .hero {
+    min-height: auto;
+    padding-top: 104px;
+    padding-bottom: 28px;
+  }
+
+  .hero::before {
+    background:
+      linear-gradient(180deg, rgba(7, 17, 32, 0.86), rgba(7, 17, 32, 0.6) 44%, var(--bg) 100%),
+      linear-gradient(90deg, var(--bg), rgba(7, 17, 32, 0.42));
+  }
+
+  :root[data-theme="light"] .hero::before {
+    background:
+      linear-gradient(180deg, rgba(238, 247, 255, 0.92), rgba(238, 247, 255, 0.72) 48%, var(--bg) 100%),
+      linear-gradient(90deg, rgba(238, 247, 255, 0.96), rgba(238, 247, 255, 0.4));
+  }
+
+  .hero-3d {
+    opacity: 0.72;
+    transform: scale(1.12);
+    transform-origin: 62% 28%;
+  }
+
+  .hero-copy-block {
+    max-width: 100%;
+  }
+
+  .hero h1 {
+    font-size: clamp(2.35rem, 11vw, 3.45rem);
+    line-height: 1.03;
+  }
+
+  .hero p {
+    margin-top: 18px;
+    font-size: 1rem;
+  }
+
+  .hero-profile {
+    width: 166px;
+  }
+
+  .hero-actions,
+  .service-actions,
+  .contact-actions,
+  .project-links,
+  .project-card.is-featured .project-links,
+  .project-card:not(.is-featured):has(.project-links a:nth-child(2)) .project-links {
+    grid-template-columns: 1fr;
+    width: 100%;
+    max-width: none;
+  }
+
+  .hero-actions .button:first-child {
+    grid-column: auto;
+  }
+
+  .button,
+  .project-links a {
+    justify-content: center;
+    min-height: 48px;
+  }
+
+  .stat-grid {
+    gap: 10px;
+  }
+
+  .stat-card {
+    padding: 18px;
+  }
+
+  .section-heading {
+    margin-bottom: 24px;
+  }
+
+  .project-media {
+    padding: 10px;
+  }
+
+  .screen-strip {
+    gap: 7px;
+  }
+
+  .screen-strip figcaption {
+    font-size: 0.64rem;
+  }
+
+  .contact-link-card {
+    grid-template-columns: 44px 1fr;
+    align-items: center;
+  }
+
+  .contact-link-card span {
+    width: 44px;
+    height: 44px;
+  }
+}
+
+@media (max-width: 520px) {
+  .container,
+  .resume-shell {
+    width: min(100% - 24px, var(--max));
+  }
+
+  .hero-grid {
+    gap: 24px;
+  }
+
+  .hero-profile {
+    width: 148px;
+  }
+
+  .hero h1 {
+    font-size: clamp(2.15rem, 12vw, 2.95rem);
+  }
+
+  .eyebrow,
+  .project-tag {
+    font-size: 0.76rem;
+  }
+
+  .project-card.is-featured .project-cover,
+  .project-cover {
+    min-height: 184px;
+  }
+
+  .screen-strip {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .project-content,
+  .project-card.is-featured .project-content,
+  .service-card,
+  .skill-group,
+  .education-card,
+  .contact-preview-card,
+  .contact-form,
+  .timeline-item {
+    padding: 18px;
+  }
+
+  .resume-document {
+    padding: 22px;
+  }
+}
