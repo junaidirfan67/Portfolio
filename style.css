@@ -1,145 +1,92 @@
-@import "./style.logo-base.css";
+@import "./style.audit-base.css";
 
-.chip-list a.has-tech-logo {
-  gap: 7px;
-  padding-left: 7px;
-}
-
-.inline-tech-logo {
-  display: inline-grid;
-  place-items: center;
-  flex: 0 0 auto;
-  width: 22px;
-  height: 22px;
-  border: 1px solid rgba(15, 23, 42, 0.08);
-  border-radius: 6px;
-  background: #ffffff;
-  box-shadow: 0 8px 16px rgba(2, 6, 23, 0.12);
-}
-
-.inline-tech-logo img {
-  width: 15px;
-  height: 15px;
-  object-fit: contain;
-}
-
-.contact-link-grid {
-  grid-template-columns: repeat(3, minmax(72px, 88px));
-  justify-content: start;
-  align-items: center;
-}
-
-.contact-link-card.contact-icon-only {
-  display: grid;
-  grid-template-columns: 1fr;
-  place-items: center;
-  width: 78px;
-  height: 78px;
-  min-width: 0;
-  padding: 0;
-}
-
-.contact-link-card.contact-icon-only > span:first-child,
-.footer-grid a.contact-icon-only .inline-tech-logo {
-  grid-row: auto;
-  width: 52px;
-  height: 52px;
-  border-radius: 14px;
-  background: #ffffff;
-  box-shadow: 0 14px 28px rgba(2, 6, 23, 0.18);
-}
-
-.contact-link-card.contact-icon-only > span:first-child img {
-  width: 28px;
-  height: 28px;
-}
-
-.contact-link-card.contact-icon-only strong,
-.contact-link-card.contact-icon-only small {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  margin: -1px;
-  padding: 0;
+.hero {
   overflow: hidden;
-  clip: rect(0 0 0 0);
-  white-space: nowrap;
-  border: 0;
 }
 
-.contact-link-card.contact-icon-only:hover,
-.footer-grid a.contact-icon-only:hover {
-  transform: translateY(-4px);
+.hero-3d {
+  overflow: hidden;
+  transform: none !important;
+  transform-origin: center;
 }
 
-.footer-grid div {
-  align-items: center;
+.hero-noise {
+  transform: none !important;
+  animation: none !important;
+  opacity: 0.22;
+  background:
+    linear-gradient(120deg, transparent 18%, rgba(56, 189, 248, 0.1) 50%, transparent 82%),
+    radial-gradient(circle at 70% 34%, rgba(45, 212, 191, 0.12), transparent 20rem);
 }
 
-.footer-grid a.contact-icon-only {
-  display: inline-grid;
-  place-items: center;
-  width: 46px;
-  height: 46px;
-  border: 1px solid var(--line);
-  border-radius: 999px;
-  background: var(--surface-soft);
-}
-
-.footer-grid a.contact-icon-only .inline-tech-logo {
-  width: 34px;
-  height: 34px;
-  border-radius: 999px;
-  box-shadow: none;
-}
-
-.footer-grid a.contact-icon-only .inline-tech-logo img {
-  width: 19px;
-  height: 19px;
-}
-
-.contact-icon-only.gmail img {
-  filter: invert(24%) sepia(84%) saturate(2484%) hue-rotate(344deg) brightness(91%) contrast(92%);
-}
-
-.contact-icon-only.github .inline-tech-logo img,
-.contact-link-card.github > span:first-child img {
-  filter: none;
+.hero-tech-stage {
+  max-width: 100%;
 }
 
 @media (max-width: 760px) {
-  .contact-link-grid {
-    grid-template-columns: repeat(3, 1fr);
-    max-width: 310px;
+  .hero {
+    padding-bottom: 1.5rem;
   }
 
-  .contact-link-card.contact-icon-only {
-    width: 72px;
-    height: 72px;
+  .hero-3d,
+  .hero-3d canvas {
+    width: 100% !important;
   }
 
-  .contact-link-card.contact-icon-only > span:first-child {
-    width: 48px;
-    height: 48px;
+  .hero-tech-stage {
+    margin-block: 1.1rem 0.95rem;
   }
 }
 
-@media (max-width: 420px) {
-  .contact-link-grid {
-    max-width: 260px;
+@media (max-width: 560px) {
+  .hero-tech-stage {
+    width: 100%;
   }
 
-  .contact-link-card.contact-icon-only {
-    width: 64px;
-    height: 64px;
+  .tech-orbit {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 0.48rem;
   }
 
-  .contact-link-card.contact-icon-only > span:first-child {
-    width: 44px;
-    height: 44px;
+  .tech-orbit-core {
+    height: 3.65rem;
   }
 
-  .chip-list a.has-tech-logo {
-    min-height: 34px;
+  .tech-orbit-core strong {
+    font-size: 1.08rem;
+  }
+
+  .tech-orbit-core span {
+    font-size: 0.68rem;
+  }
+
+  .tech-orbit-node {
+    min-width: 0;
+    height: 3.6rem;
+    padding: 0.3rem;
+    border-radius: 0.78rem;
+    font-size: 0.52rem;
+    line-height: 1.1;
+  }
+
+  .tech-orbit-node img {
+    width: 1.35rem;
+    height: 1.35rem;
+  }
+}
+
+@media (max-width: 380px) {
+  .tech-orbit {
+    gap: 0.4rem;
+  }
+
+  .tech-orbit-node {
+    height: 3.35rem;
+    font-size: 0.5rem;
+  }
+
+  .tech-orbit-node img {
+    width: 1.2rem;
+    height: 1.2rem;
   }
 }
