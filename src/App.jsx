@@ -1,35 +1,48 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
+import * as THREE from "three";
 
-const basePath = import.meta.env.BASE_URL;
-const asset = (path) => `${basePath}${path}`;
+const basePath = import.meta.env.BASE_URL || "/";
+const asset = (path) => `${basePath}${path.replace(/^\/+/, "")}`;
 const contactEndpoint = "https://formsubmit.co/ajax/junaidirfan810@gmail.com";
 
+const contactLinks = [
+  {
+    label: "Gmail",
+    value: "junaidirfan810@gmail.com",
+    href: "mailto:junaidirfan810@gmail.com",
+    icon: "https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/gmail.svg",
+    tone: "gmail",
+  },
+  {
+    label: "LinkedIn",
+    value: "linkedin.com/in/junaid-irfan-ba1027241",
+    href: "https://www.linkedin.com/in/junaid-irfan-ba1027241",
+    icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/linkedin/linkedin-original.svg",
+    tone: "linkedin",
+  },
+  {
+    label: "GitHub",
+    value: "github.com/Ali-Jun",
+    href: "https://github.com/Ali-Jun",
+    icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/github/github-original.svg",
+    tone: "github",
+  },
+];
+
 const skillLinks = new Map([
-  ["MongoDB", "https://www.mongodb.com/"],
-  ["Express", "https://expressjs.com/"],
-  ["Express.js", "https://expressjs.com/"],
   ["React", "https://react.dev/"],
-  ["React.js", "https://react.dev/"],
-  ["Node", "https://nodejs.org/"],
-  ["Node.js", "https://nodejs.org/"],
-  ["HTML", "https://developer.mozilla.org/en-US/docs/Web/HTML"],
-  ["HTML5", "https://developer.mozilla.org/en-US/docs/Web/HTML"],
-  ["CSS", "https://developer.mozilla.org/en-US/docs/Web/CSS"],
-  ["CSS3", "https://developer.mozilla.org/en-US/docs/Web/CSS"],
+  ["Vite", "https://vite.dev/"],
+  ["Three.js", "https://threejs.org/"],
   ["JavaScript", "https://developer.mozilla.org/en-US/docs/Web/JavaScript"],
   ["Tailwind CSS", "https://tailwindcss.com/"],
   ["Bootstrap", "https://getbootstrap.com/"],
-  ["PHP", "https://www.php.net/"],
+  ["Node.js", "https://nodejs.org/"],
+  ["Express.js", "https://expressjs.com/"],
+  ["MongoDB", "https://www.mongodb.com/"],
   ["MySQL", "https://www.mysql.com/"],
   ["JWT", "https://jwt.io/"],
-  ["bcrypt.js", "https://github.com/dcodeIO/bcrypt.js"],
   ["REST APIs", "https://developer.mozilla.org/en-US/docs/Glossary/REST"],
-  ["Local Storage", "https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage"],
-  ["Microservices", "https://microservices.io/"],
-  ["Git", "https://git-scm.com/"],
   ["GitHub", "https://github.com/"],
-  ["Figma", "https://www.figma.com/"],
-  ["VS Code", "https://code.visualstudio.com/"],
   ["Vercel", "https://vercel.com/"],
   ["Claude", "https://claude.ai/"],
   ["ChatGPT", "https://chatgpt.com/"],
@@ -38,342 +51,175 @@ const skillLinks = new Map([
 ]);
 
 const skillLogos = [
-  ["MongoDB", "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mongodb/mongodb-original.svg", "mongo-logo"],
-  ["Express", "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/express/express-original.svg", "express-logo"],
-  ["React", "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/react/react-original.svg", "react-logo"],
-  ["Node.js", "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nodejs/nodejs-original.svg", "node-logo"],
-  ["HTML5", "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/html5/html5-original.svg", "html-logo"],
-  ["CSS3", "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/css3/css3-original.svg", "css-logo"],
-  ["JavaScript", "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/javascript/javascript-original.svg", "js-logo"],
-  ["Tailwind CSS", "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/tailwindcss/tailwindcss-original.svg", "tailwind-logo"],
-  ["Bootstrap", "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/bootstrap/bootstrap-original.svg", "bootstrap-logo"],
-  ["PHP", "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/php/php-original.svg", "php-logo"],
-  ["MySQL", "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mysql/mysql-original.svg", "mysql-logo"],
-  ["Git", "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/git/git-original.svg", "git-logo"],
-  ["GitHub", "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/github/github-original.svg", "github-logo"],
-  ["Figma", "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/figma/figma-original.svg", "figma-logo"],
-  ["VS Code", "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/vscode/vscode-original.svg", "vscode-logo"],
-  ["Vercel", "https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/vercel.svg", "ai-logo"],
-  ["Claude", "https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/anthropic.svg", "ai-logo"],
-  ["ChatGPT", "https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/openai.svg", "ai-logo"],
-  ["Codex", "https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/openai.svg", "ai-logo"],
-  ["DeepSeek", "https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/deepseek.svg", "ai-logo"],
+  ["React", "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/react/react-original.svg"],
+  ["Vite", "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/vitejs/vitejs-original.svg"],
+  ["Three.js", "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/threejs/threejs-original.svg"],
+  ["JavaScript", "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/javascript/javascript-original.svg"],
+  ["Tailwind CSS", "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/tailwindcss/tailwindcss-original.svg"],
+  ["Bootstrap", "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/bootstrap/bootstrap-original.svg"],
+  ["Node.js", "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nodejs/nodejs-original.svg"],
+  ["Express.js", "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/express/express-original.svg"],
+  ["MongoDB", "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mongodb/mongodb-original.svg"],
+  ["MySQL", "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mysql/mysql-original.svg"],
+  ["GitHub", "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/github/github-original.svg"],
+  ["Vercel", "https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/vercel.svg"],
+  ["ChatGPT", "https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/openai.svg"],
+  ["Claude", "https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/anthropic.svg"],
+  ["DeepSeek", "https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/deepseek.svg"],
 ];
 
-const contactLinks = [
-  {
-    label: "Gmail",
-    value: "junaidirfan810@gmail.com",
-    href: "mailto:junaidirfan810@gmail.com",
-    icon: "https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/gmail.svg",
-    iconClass: "gmail-logo",
-  },
-  {
-    label: "GitHub",
-    value: "github.com/Ali-Jun",
-    href: "https://github.com/Ali-Jun",
-    icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/github/github-original.svg",
-    iconClass: "github-contact-logo",
-  },
-  {
-    label: "LinkedIn",
-    value: "linkedin.com/in/junaid-irfan-ba1027241",
-    href: "https://www.linkedin.com/in/junaid-irfan-ba1027241",
-    icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/linkedin/linkedin-original.svg",
-    iconClass: "linkedin-logo",
-  },
-];
-
-const skillGroups = [
-  {
-    title: "Frontend",
-    copy: "Responsive pages, accessible UI structure, reusable layout patterns, and browser-friendly interactions.",
-    skills: ["React", "JavaScript", "Tailwind CSS", "HTML", "CSS", "Bootstrap"],
-  },
-  {
-    title: "Backend & APIs",
-    copy: "Server-side logic, database-driven features, authentication concepts, and service-oriented workflows.",
-    skills: ["Node.js", "Express.js", "PHP", "REST APIs", "JWT", "bcrypt.js"],
-  },
-  {
-    title: "Database",
-    copy: "Schema design, persistence, and database-backed features for full stack applications.",
-    skills: ["MongoDB", "MySQL"],
-  },
-  {
-    title: "Tools & AI Workflow",
-    copy: "Version control, design handoff, editor productivity, deployment, and AI-assisted development workflows.",
-    skills: ["Git", "GitHub", "Figma", "VS Code", "Vercel", "Claude", "ChatGPT", "Codex", "DeepSeek"],
-  },
+const stats = [
+  ["30+", "Projects worked on"],
+  ["4", "Live flagship demos"],
+  ["MERN", "Primary stack"],
+  ["AI", "Assisted delivery"],
 ];
 
 const projects = [
   {
     title: "Modern Animated MERN E-Commerce Store",
-    type: "Premium MERN e-commerce",
-    description:
-      "A premium men's fashion e-commerce store with an animated storefront, responsive catalog, cart, checkout flow, user dashboard, and separate admin dashboard for store operations.",
-    role: "Complete project from scratch",
-    impact: "Shows business-ready MERN delivery across storefront UX, admin operations, analytics, inventory, and deployment preparation.",
+    tag: "Premium marketplace build",
+    summary:
+      "A men’s fashion e-commerce platform with animated storefront, catalog, cart, checkout, user dashboard, and a full admin control center.",
+    role:
+      "Designed and developed the frontend, responsive flows, admin screens, backend API structure, authentication plan, demo data, screenshots, and Vercel deployment.",
+    stack: ["React", "Vite", "Tailwind CSS", "Node.js", "Express.js", "MongoDB", "JWT", "Vercel"],
     features: [
-      "Animated storefront with catalog, search, filters, sorting, product details, wishlist, cart, and checkout",
-      "Separate admin dashboard for products, categories, orders, banners, coupons, stock, returns, and notifications",
-      "Sales analytics, 7-day, 15-day, and monthly views, plus profit/loss tracking",
-      "Backend API structure with MongoDB models, JWT flow, Cloudinary-ready uploads, and Stripe-ready checkout",
-    ],
-    stack: [
-      "React.js",
-      "Vite",
-      "Tailwind CSS",
-      "Framer Motion",
-      "Node.js",
-      "Express.js",
-      "MongoDB",
-      "Mongoose",
-      "JWT",
-      "Context API",
-      "React Router",
-      "Axios",
-      "Vercel",
+      "Product catalog with search, filters, variants, wishlist, cart, and checkout",
+      "Admin tools for products, categories, banners, orders, coupons, returns, payments, and stock",
+      "Sales analytics, profit/loss tracking, activity logs, and responsive mobile views",
     ],
     live: "https://modern-store-e-commerce-client.vercel.app",
-    credentials: {
-      title: "Demo Admin Login",
-      items: [
-        ["Email", "admin@modernstore.dev"],
-        ["Password", "Admin1234!"],
-      ],
-    },
-    screenshots: [
-      {
-        image: "images/modern-store/01-home.png",
-        alt: "Modern Store homepage with menswear hero, search, categories, wishlist, cart, and sale banner",
-        label: "Storefront",
-      },
-      {
-        image: "images/modern-store/02-shop.png",
-        alt: "Modern Store shop catalog with categories, filters, and product result controls",
-        label: "Shop catalog",
-      },
-      {
-        image: "images/modern-store/03-product-details.png",
-        alt: "Modern Store product details page with product image, rating, variants, price, and stock",
-        label: "Product details",
-      },
-      {
-        image: "images/modern-store/04-cart.png",
-        alt: "Modern Store cart page with item quantity controls, coupon code, and order summary",
-        label: "Cart",
-      },
-      {
-        image: "images/modern-store/05-checkout.png",
-        alt: "Modern Store checkout flow loading screen",
-        label: "Checkout",
-      },
-      {
-        image: "images/modern-store/06-admin-dashboard.png",
-        alt: "Modern Store admin dashboard showing sales revenue, orders, products, users, and chart",
-        label: "Admin dashboard",
-      },
-      {
-        image: "images/modern-store/07-admin-products.png",
-        alt: "Modern Store admin product inventory with buying cost, selling price, profit, stock, and status",
-        label: "Products",
-      },
-      {
-        image: "images/modern-store/08-admin-orders.png",
-        alt: "Modern Store admin orders page with order IDs, customers, payment status, order status, and totals",
-        label: "Orders",
-      },
-      {
-        image: "images/modern-store/09-admin-sales.png",
-        alt: "Modern Store admin sales analytics with revenue, orders, products, users, and monthly bar chart",
-        label: "Sales",
-      },
-      {
-        image: "images/modern-store/10-admin-profit.png",
-        alt: "Modern Store admin profit and loss management with buying cost, selling value, projected profit, and margin",
-        label: "Profit",
-      },
-      {
-        image: "images/modern-store/11-admin-banners.png",
-        alt: "Modern Store admin banner management with event fields and sale banner preview",
-        label: "Banners",
-      },
-      {
-        image: "images/modern-store/12-admin-categories.png",
-        alt: "Modern Store admin categories page with category form and saved category chips",
-        label: "Categories",
-      },
-      {
-        image: "images/modern-store/13-mobile-home.png",
-        alt: "Modern Store mobile homepage showing compact navigation, sale banner, and hero content",
-        label: "Mobile home",
-      },
-      {
-        image: "images/modern-store/14-mobile-shop.png",
-        alt: "Modern Store mobile shop page with sale banner, catalog hero, and category filters",
-        label: "Mobile shop",
-      },
+    credential: "Demo admin: admin@modernstore.dev / Admin1234!",
+    cover: "images/modern-store/01-home.png",
+    screens: [
+      ["Shop", "images/modern-store/02-shop.png"],
+      ["Admin", "images/modern-store/06-admin-dashboard.png"],
+      ["Products", "images/modern-store/07-admin-products.png"],
+      ["Mobile", "images/modern-store/13-mobile-home.png"],
     ],
-    mediaClass: "project-media-ecommerce",
   },
   {
     title: "Auto Tech Management System",
-    type: "Service management portal",
-    description:
-      "React.js vehicle service management portal with role-based dashboards, service booking, mechanic assignment, invoices, PKR payments, feedback, reports, and Vercel deployment.",
-    role: "Frontend and deployment",
-    impact: "Shows production-style dashboard thinking with role-based workflows and service operations.",
-    features: ["Role-based dashboards", "Service booking flow", "Invoices and PKR payment workflow"],
-    stack: ["React.js", "JavaScript", "Vercel", "Role-based dashboards"],
+    tag: "Service booking dashboard",
+    summary:
+      "Vehicle workshop management portal with role-based dashboards, booking, mechanic assignment, invoices, PKR payments, feedback, and reports.",
+    role:
+      "Built the React UI, dashboard workflows, customer booking screens, admin operations, payment screens, and deployment-ready presentation.",
+    stack: ["React", "JavaScript", "Role Dashboards", "PKR Payments", "Vercel"],
+    features: [
+      "Customer service booking with priority, vehicle, date, mileage, and notes",
+      "Admin booking management, mechanic assignment, invoice status, and dashboard metrics",
+      "PKR payment recording, feedback, reports, and role-based workspace layout",
+    ],
     live: "https://autotechmanagementsystem.vercel.app",
     source: "https://github.com/Ali-Jun/AutoTechmanagementsystem",
-    screenshots: [
-      {
-        image: "images/autotech-admin-dashboard.png",
-        alt: "Auto Tech admin dashboard showing workshop control center, booking queue, revenue, ratings, and assignment needs",
-        label: "Admin dashboard",
-      },
-      {
-        image: "images/autotech-customer-booking.png",
-        alt: "Auto Tech customer booking screen for scheduling vehicle service and selecting service type, vehicle, date, and priority",
-        label: "Customer booking",
-      },
-      {
-        image: "images/autotech-bookings-management.png",
-        alt: "Auto Tech bookings management screen for assigning and tracking service jobs",
-        label: "Bookings",
-      },
-      {
-        image: "images/autotech-payments-pkr.png",
-        alt: "Auto Tech payments screen showing invoice payments recorded in PKR",
-        label: "PKR payments",
-      },
-      {
-        image: "images/autotech-login-screen.png",
-        alt: "Auto Tech login screen with Admin, Customer, and Mechanic role options",
-        label: "Login",
-      },
+    cover: "images/autotech-admin-dashboard.png",
+    screens: [
+      ["Booking", "images/autotech-customer-booking.png"],
+      ["Payments", "images/autotech-payments-pkr.png"],
+      ["Jobs", "images/autotech-bookings-management.png"],
+      ["Login", "images/autotech-login-screen.png"],
     ],
-    mediaClass: "project-media-autotech",
   },
   {
     title: "HireHub Job Portal",
-    type: "Featured full stack app",
-    description: "A hiring platform with job listings, search filters, employer posts, and candidate application flows.",
-    role: "Full stack app build",
-    impact: "Demonstrates job-market product logic, search UX, and candidate/employer workflows.",
-    features: ["Job discovery interface", "Employer pipeline cards", "Candidate application flow"],
-    stack: ["React", "Node.js", "Express.js", "MongoDB"],
+    tag: "Hiring product workflow",
+    summary:
+      "MERN job portal concept for role discovery, company listings, search experience, employer pipelines, and candidate application flows.",
+    role:
+      "Created the product-facing interface, job search layout, application flow direction, employer workspace concept, and live project presentation.",
+    stack: ["React", "Node.js", "Express.js", "MongoDB", "Authentication"],
+    features: [
+      "Role search, location search, featured jobs, and hiring team summaries",
+      "Candidate and employer product logic with dashboard-ready structure",
+      "Clean interface suitable for a startup-style job marketplace",
+    ],
     live: "https://lnkd.in/da95uY8H",
     source: "https://lnkd.in/dUQmbrYE",
-    image: "images/hirehub-project.png",
-    alt: "HireHub job portal homepage showing search, featured roles, and hiring pipeline cards",
-    mediaClass: "project-media-jobs",
+    cover: "images/hirehub-project.png",
+    screens: [],
   },
   {
-    title: "Professional Portfolio Website",
-    type: "Marketplace portfolio",
-    description:
-      "A modern React portfolio built for freelance marketplace trust, recruiter review, project proof, resume downloads, and direct client messages.",
-    role: "Design, frontend, content, deployment",
-    impact: "Positions services clearly for Upwork, Fiverr, LinkedIn, and junior developer applications.",
-    features: ["Animated responsive layout", "Freelance services and project case studies", "Resume download and working contact form"],
-    stack: ["React", "Vite", "JavaScript", "Responsive CSS", "Vercel"],
-    live: "https://junaid-portfolio-two-phi.vercel.app",
-    source: "https://github.com/Ali-Jun/Portfolio",
-    image: "images/portfolio-website.png",
-    alt: "Junaid Irfan professional portfolio homepage for freelance and full stack development services",
-    mediaClass: "project-media-portfolio",
+    title: "Task Manager",
+    tag: "Productivity dashboard",
+    summary:
+      "A clean task-management workspace with dashboard counters, task board, filters, priority mix, progress tracking, and task creation flow.",
+    role: "Built a focused dashboard UI and project workflow for everyday task planning and portfolio proof.",
+    stack: ["React", "JavaScript", "Dashboard UI", "Local Workflow"],
+    features: [
+      "Task board with status filters, search, priority sorting, and progress view",
+      "Dashboard cards for total, to do, in progress, and completed work",
+      "Simple SaaS-style layout with sidebar navigation and productivity metrics",
+    ],
+    live: "https://lnkd.in/dnVkPFCK",
+    source: "https://github.com/Ali-Jun/Task-Manager",
+    cover: "images/task-manager-project.png",
+    screens: [],
+  },
+];
+
+const services = [
+  {
+    title: "Full Stack Web Apps",
+    copy: "React frontends, Express APIs, MongoDB/MySQL workflows, authentication structure, dashboards, and deployment support.",
+  },
+  {
+    title: "Dashboards & Admin Panels",
+    copy: "Professional interfaces for booking, management, analytics, tables, forms, invoices, payments, and role-based screens.",
+  },
+  {
+    title: "Portfolio & Business Websites",
+    copy: "Modern responsive websites for personal brands, developers, small businesses, Upwork profiles, and Fiverr gigs.",
+  },
+  {
+    title: "AI-Assisted Delivery",
+    copy: "Fast development with Claude, ChatGPT, Codex, and DeepSeek for planning, coding, debugging, and UI refinement.",
   },
 ];
 
 const experienceItems = [
   {
-    role: "Full Stack Developer - Marketplace Portfolio Projects",
-    organization: "Project-based practical delivery",
-    period: "Current",
-    summary:
-      "Worked on 30+ practice, academic, and client-style projects, with selected working projects prepared as live demos for recruiters, LinkedIn, Upwork, Fiverr, and internship applications.",
+    title: "Full Stack Developer - Project-Based Experience",
+    organization: "Working portfolio projects",
     bullets: [
-      "Designed and developed responsive React interfaces, dashboard layouts, project galleries, forms, and client-facing workflows.",
-      "Built MERN-style project structures with Node.js, Express.js, REST API planning, authentication concepts, MongoDB/MySQL workflows, and deployment setup.",
-      "Prepared working demos with screenshots, live URLs, resume links, and clear project stories for professional portfolio presentation.",
+      "Worked on 30+ academic, practice, and client-style projects with selected apps prepared as live demos for jobs, internships, Upwork, and Fiverr.",
+      "Built modern React interfaces, dashboard layouts, forms, project galleries, authentication-ready flows, and deployment-ready web apps.",
+      "Delivered working projects including Modern Store E-Commerce, Auto Tech Management System, HireHub Job Portal, Task Manager, and microservices practice work.",
     ],
-    projects: [
-      {
-        title: "Modern Animated MERN E-Commerce Store",
-        copy: "Premium menswear storefront with catalog, cart, checkout, user dashboard, admin dashboard, sales analytics, stock, banners, coupons, and profit/loss tracking.",
-      },
-      {
-        title: "Auto Tech Management System",
-        copy: "Vehicle service portal with role-based dashboards, service booking, mechanic assignment, invoices, PKR payments, feedback, and reports.",
-      },
-      {
-        title: "HireHub Job Portal",
-        copy: "MERN job portal concept with job discovery, employer pipeline flows, candidate applications, authentication, and protected dashboards.",
-      },
-      {
-        title: "Professional Portfolio Website",
-        copy: "Modern React portfolio with animated layout, project case studies, skills banner, resume download, contact form, GitHub Pages, and Vercel deployment.",
-      },
+  },
+  {
+    title: "Internship-Ready Software Engineering Practice",
+    organization: "BS Software Engineering foundation",
+    bullets: [
+      "Applied software engineering coursework across data structures, databases, UI/UX, web technologies, and full stack project planning.",
+      "Created recruiter-friendly project stories with screenshots, live links, source links, resume details, and clear feature breakdowns.",
     ],
-    stack: ["React", "Vite", "Tailwind CSS", "Node.js", "Express.js", "MongoDB", "JWT", "GitHub", "Vercel"],
   },
 ];
 
-const freelanceServices = [
-  {
-    title: "Portfolio & Personal Brand Websites",
-    copy: "Responsive React/Vite websites for developers, students, small businesses, personal brands, and Fiverr gigs.",
-    deliverables: ["Modern homepage and section layout", "Contact form setup", "Vercel or GitHub Pages deployment"],
-    meta: "Best for profile launch",
-  },
-  {
-    title: "Business Dashboards & Admin Panels",
-    copy: "Clean dashboard interfaces for booking, service management, admin workflows, and business operations.",
-    deliverables: ["Responsive dashboard UI", "CRUD-friendly page structure", "Reusable cards, tables, and forms"],
-    meta: "Best for web apps",
-  },
-  {
-    title: "MERN App Fixes & Feature Builds",
-    copy: "Focused help with React features, Node/Express API flows, MongoDB data handling, and Upwork bug-fix tasks.",
-    deliverables: ["Feature implementation", "Frontend and API integration", "Code cleanup and deployment support"],
-    meta: "Best for ongoing work",
-  },
-  {
-    title: "Landing Pages & UI Conversion",
-    copy: "High-quality landing pages and Figma-style UI conversions with polished responsive behavior for client campaigns.",
-    deliverables: ["Pixel-conscious React UI", "Mobile and desktop layout polish", "Performance-friendly styling"],
-    meta: "Best for fast delivery",
-  },
-];
+const resumeProjects = projects.map((project) => ({
+  title: project.title,
+  stack: project.stack.join(", "),
+  bullets: [project.summary, project.features[0]],
+  links: [
+    ["Live Demo", project.live],
+    ...(project.source ? [["Source Code", project.source]] : []),
+  ],
+}));
 
-const focusAreas = [
-  {
-    title: "Application Frontends",
-    copy: "Modern React interfaces with responsive layouts, reusable components, and smooth user flows.",
-  },
-  {
-    title: "Backend Workflows",
-    copy: "REST APIs, authentication concepts, dashboard logic, and database-backed product features.",
-  },
-  {
-    title: "Deployment Ready",
-    copy: "Portfolio and project builds prepared for GitHub, Vercel, client review, recruiters, and live demos.",
-  },
-];
+function externalAttrs(href) {
+  return href.startsWith("mailto:") || href.startsWith("tel:")
+    ? {}
+    : { target: "_blank", rel: "noreferrer" };
+}
 
 function useHashRoute() {
-  const getRoute = () => {
-    const value = window.location.hash.replace(/^#\/?/, "") || "home";
-    return value;
-  };
-  const [route, setRoute] = useState(getRoute);
+  const readRoute = () => window.location.hash.replace(/^#\/?/, "") || "home";
+  const [route, setRoute] = useState(readRoute);
 
   useEffect(() => {
-    const onHashChange = () => setRoute(getRoute());
+    const onHashChange = () => setRoute(readRoute());
     window.addEventListener("hashchange", onHashChange);
     return () => window.removeEventListener("hashchange", onHashChange);
   }, []);
@@ -382,12 +228,12 @@ function useHashRoute() {
 }
 
 function useTheme() {
-  const getSavedTheme = () => {
-    const savedTheme = localStorage.getItem("portfolio-theme");
-    if (savedTheme === "light" || savedTheme === "dark") return savedTheme;
+  const readTheme = () => {
+    const saved = localStorage.getItem("portfolio-theme");
+    if (saved === "dark" || saved === "light") return saved;
     return window.matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark";
   };
-  const [theme, setTheme] = useState(getSavedTheme);
+  const [theme, setTheme] = useState(readTheme);
 
   useEffect(() => {
     document.documentElement.dataset.theme = theme;
@@ -416,7 +262,7 @@ function useReveal(route) {
           }
         });
       },
-      { threshold: 0.16 }
+      { threshold: 0.12 }
     );
 
     targets.forEach((target) => observer.observe(target));
@@ -424,241 +270,313 @@ function useReveal(route) {
   }, [route]);
 }
 
-function Chip({ label }) {
-  const url = skillLinks.get(label);
-  if (!url) return <span>{label}</span>;
+function ThreeHeroScene({ theme }) {
+  const hostRef = useRef(null);
+
+  useEffect(() => {
+    const host = hostRef.current;
+    if (!host) return undefined;
+
+    let renderer;
+    let frameId = 0;
+    const cleanups = [];
+
+    try {
+      const scene = new THREE.Scene();
+      const camera = new THREE.PerspectiveCamera(42, 1, 0.1, 100);
+      camera.position.set(0, 0.35, 7.5);
+
+      renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true, powerPreference: "high-performance" });
+      renderer.setClearColor(0x000000, 0);
+      renderer.outputColorSpace = THREE.SRGBColorSpace;
+      renderer.domElement.setAttribute("data-three-scene", "portfolio-hero");
+      host.replaceChildren(renderer.domElement);
+
+      const palette =
+        theme === "light"
+          ? { primary: 0x0ea5e9, secondary: 0x14b8a6, warm: 0xf59e0b, wire: 0x1d4ed8 }
+          : { primary: 0x38bdf8, secondary: 0x2dd4bf, warm: 0xfbbf24, wire: 0x93c5fd };
+
+      scene.add(new THREE.AmbientLight(0xffffff, theme === "light" ? 1.6 : 0.7));
+
+      const keyLight = new THREE.PointLight(palette.primary, 5.2, 20);
+      keyLight.position.set(-4, 4, 5);
+      scene.add(keyLight);
+
+      const fillLight = new THREE.PointLight(palette.secondary, 3.4, 18);
+      fillLight.position.set(4, -2, 4);
+      scene.add(fillLight);
+
+      const core = new THREE.Mesh(
+        new THREE.TorusKnotGeometry(1.12, 0.28, 170, 22),
+        new THREE.MeshStandardMaterial({
+          color: palette.primary,
+          metalness: 0.58,
+          roughness: 0.24,
+          emissive: palette.primary,
+          emissiveIntensity: theme === "light" ? 0.14 : 0.28,
+        })
+      );
+      core.position.set(1.2, 0.04, 0);
+      scene.add(core);
+
+      const wire = new THREE.Mesh(
+        new THREE.IcosahedronGeometry(2.2, 1),
+        new THREE.MeshBasicMaterial({
+          color: palette.wire,
+          wireframe: true,
+          transparent: true,
+          opacity: theme === "light" ? 0.24 : 0.36,
+        })
+      );
+      wire.position.copy(core.position);
+      scene.add(wire);
+
+      const orbit = new THREE.Group();
+      const panelGeometry = new THREE.PlaneGeometry(0.94, 0.46);
+      for (let index = 0; index < 9; index += 1) {
+        const material = new THREE.MeshBasicMaterial({
+          color: index % 3 === 0 ? palette.warm : index % 2 === 0 ? palette.secondary : palette.primary,
+          transparent: true,
+          opacity: theme === "light" ? 0.24 : 0.34,
+          side: THREE.DoubleSide,
+        });
+        const panel = new THREE.Mesh(panelGeometry, material);
+        const angle = (index / 9) * Math.PI * 2;
+        panel.position.set(Math.cos(angle) * 3.25, Math.sin(angle * 1.7) * 1.05, Math.sin(angle) * 1.4);
+        panel.rotation.set(Math.sin(angle) * 0.45, angle, Math.cos(angle) * 0.18);
+        orbit.add(panel);
+      }
+      scene.add(orbit);
+
+      const particleCount = 320;
+      const particlePositions = new Float32Array(particleCount * 3);
+      for (let index = 0; index < particleCount; index += 1) {
+        particlePositions[index * 3] = (Math.random() - 0.5) * 12;
+        particlePositions[index * 3 + 1] = (Math.random() - 0.5) * 6.8;
+        particlePositions[index * 3 + 2] = (Math.random() - 0.5) * 6.2;
+      }
+      const particleGeometry = new THREE.BufferGeometry();
+      particleGeometry.setAttribute("position", new THREE.BufferAttribute(particlePositions, 3));
+      const particles = new THREE.Points(
+        particleGeometry,
+        new THREE.PointsMaterial({
+          color: palette.secondary,
+          size: 0.026,
+          transparent: true,
+          opacity: theme === "light" ? 0.38 : 0.58,
+        })
+      );
+      scene.add(particles);
+
+      const grid = new THREE.GridHelper(9, 28, palette.secondary, palette.primary);
+      grid.position.set(0, -2.35, 0);
+      grid.material.transparent = true;
+      grid.material.opacity = theme === "light" ? 0.16 : 0.2;
+      scene.add(grid);
+
+      const disposeObject = (object) => {
+        object.traverse((child) => {
+          if (child.geometry) child.geometry.dispose();
+          if (child.material) {
+            const materials = Array.isArray(child.material) ? child.material : [child.material];
+            materials.forEach((material) => material.dispose());
+          }
+        });
+      };
+      cleanups.push(() => {
+        disposeObject(scene);
+        renderer.dispose();
+      });
+
+      const resize = () => {
+        const { clientWidth, clientHeight } = host;
+        const width = Math.max(1, clientWidth);
+        const height = Math.max(1, clientHeight);
+        camera.aspect = width / height;
+        camera.updateProjectionMatrix();
+        renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 1.8));
+        renderer.setSize(width, height, false);
+      };
+
+      const resizeObserver = new ResizeObserver(resize);
+      resizeObserver.observe(host);
+      window.addEventListener("resize", resize, { passive: true });
+      cleanups.push(() => {
+        resizeObserver.disconnect();
+        window.removeEventListener("resize", resize);
+      });
+      resize();
+
+      const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      const clock = new THREE.Clock();
+
+      const animate = () => {
+        const time = clock.getElapsedTime();
+        core.rotation.x = time * 0.28;
+        core.rotation.y = time * 0.44;
+        wire.rotation.y = -time * 0.18;
+        wire.rotation.z = time * 0.08;
+        orbit.rotation.y = time * 0.2;
+        orbit.rotation.x = Math.sin(time * 0.35) * 0.08;
+        particles.rotation.y = time * 0.035;
+        particles.rotation.x = Math.sin(time * 0.22) * 0.025;
+        camera.position.x = Math.sin(time * 0.18) * 0.24;
+        camera.position.y = 0.35 + Math.cos(time * 0.2) * 0.11;
+        camera.lookAt(0.65, 0, 0);
+        renderer.render(scene, camera);
+        frameId = window.requestAnimationFrame(animate);
+      };
+
+      if (reducedMotion) {
+        renderer.render(scene, camera);
+      } else {
+        animate();
+      }
+    } catch (error) {
+      host.classList.add("is-webgl-fallback");
+      host.replaceChildren();
+    }
+
+    return () => {
+      if (frameId) window.cancelAnimationFrame(frameId);
+      cleanups.forEach((cleanup) => cleanup());
+      if (renderer?.domElement?.parentElement) renderer.domElement.parentElement.removeChild(renderer.domElement);
+    };
+  }, [theme]);
+
   return (
-    <a href={url} target="_blank" rel="noreferrer" aria-label={`Open ${label} website`}>
-      {label}
-    </a>
+    <div className="hero-3d" ref={hostRef} aria-hidden="true">
+      <div className="hero-3d-fallback" />
+    </div>
   );
 }
 
 function Header({ route, theme, setTheme }) {
-  const [isOpen, setIsOpen] = useState(false);
-  const isPage = (page) => route === page || (page === "home" && ["home", "freelance", "experience", "education", "skills", "projects"].includes(route));
-
-  const closeNav = () => setIsOpen(false);
-  const toggleTheme = () => setTheme(theme === "dark" ? "light" : "dark");
+  const [open, setOpen] = useState(false);
+  const sectionRoutes = ["home", "experience", "projects", "services", "skills"];
+  const homeActive = sectionRoutes.includes(route);
+  const navItems = [
+    ["Home", "#/home", homeActive && route === "home"],
+    ["Experience", "#/experience", route === "experience"],
+    ["Projects", "#/projects", route === "projects"],
+    ["Services", "#/services", route === "services"],
+    ["Skills", "#/skills", route === "skills"],
+    ["Contact", "#/contact", route === "contact"],
+  ];
 
   useEffect(() => {
-    document.body.classList.toggle("nav-open", isOpen);
+    document.body.classList.toggle("nav-open", open);
     return () => document.body.classList.remove("nav-open");
-  }, [isOpen]);
+  }, [open]);
 
   return (
     <header className="site-header" data-header>
-      <a className="brand" href="#/home" aria-label="Junaid Irfan home" onClick={closeNav}>
+      <a className="brand" href="#/home" onClick={() => setOpen(false)} aria-label="Junaid Irfan home">
         <span className="brand-mark" aria-hidden="true">
           <img src={asset("images/junaid-profile.png")} alt="" />
         </span>
         <span className="brand-copy">
-          <span className="brand-text">Junaid Irfan</span>
-          <span className="brand-role">Software Engineer</span>
+          <strong>Junaid Irfan</strong>
+          <small>Software Engineer</small>
         </span>
       </a>
 
-      <nav className="site-nav" aria-label="Primary navigation" data-nav>
-        <a href="#/home" className={isPage("home") ? "is-active" : ""} onClick={closeNav}>
-          Home
-        </a>
-        <a href="#/about" className={isPage("about") ? "is-active" : ""} onClick={closeNav}>
-          About
-        </a>
-        <a href="#/education" className={route === "education" ? "is-active" : ""} onClick={closeNav}>
-          Education
-        </a>
-        <a href="#/experience" className={route === "experience" ? "is-active" : ""} onClick={closeNav}>
-          Experience
-        </a>
-        <a href="#/freelance" className={route === "freelance" ? "is-active" : ""} onClick={closeNav}>
-          Freelance
-        </a>
-        <a href="#/skills" className={route === "skills" ? "is-active" : ""} onClick={closeNav}>
-          Skills
-        </a>
-        <a href="#/projects" className={route === "projects" ? "is-active" : ""} onClick={closeNav}>
-          Projects
-        </a>
-        <a href="#/resume" className={isPage("resume") ? "is-active" : ""} onClick={closeNav}>
-          Resume
-        </a>
-        <a href="#/contact" className={isPage("contact") ? "is-active" : ""} onClick={closeNav}>
-          Contact
-        </a>
+      <nav className="site-nav" aria-label="Main navigation">
+        {navItems.map(([label, href, isActive]) => (
+          <a className={isActive ? "is-active" : ""} href={href} key={label} onClick={() => setOpen(false)}>
+            {label}
+          </a>
+        ))}
       </nav>
 
-      <a className="header-resume" href={asset("assets/Junaid-Irfan-Resume.pdf")} download onClick={closeNav}>
-        Download Resume
-      </a>
-
       <button
-        className="theme-toggle"
+        className="icon-button theme-toggle"
         type="button"
-        aria-label={theme === "dark" ? "Switch to light mode" : "Switch to dark mode"}
-        onClick={toggleTheme}
+        aria-label={`Switch to ${theme === "dark" ? "light" : "dark"} theme`}
+        onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
       >
-        <span className="theme-toggle-icon" aria-hidden="true"></span>
+        <span aria-hidden="true" />
       </button>
 
-      <button
-        className="nav-toggle"
-        type="button"
-        aria-label={isOpen ? "Close navigation" : "Open navigation"}
-        aria-expanded={isOpen}
-        onClick={() => setIsOpen((open) => !open)}
-      >
-        <span></span>
-        <span></span>
-        <span></span>
+      <a className="resume-link" href={asset("assets/Junaid-Irfan-Resume.pdf")} download>
+        Resume
+      </a>
+
+      <button className="icon-button nav-toggle" type="button" aria-label="Toggle menu" onClick={() => setOpen((value) => !value)}>
+        <span />
+        <span />
+        <span />
       </button>
     </header>
   );
 }
 
-function HomePage({ showToast }) {
+function Hero() {
   return (
-    <main>
-      <section className="hero" id="home">
-        <img
-          className="hero-image"
-          src={asset("images/developer-workspace.png")}
-          alt="Modern developer workspace with laptop, code editor, and web interface screens"
-        />
-        <div className="hero-shade" aria-hidden="true"></div>
-        <div className="container hero-content">
-          <div className="hero-layout" data-reveal>
-            <div className="hero-text">
-              <div className="hero-meta-row">
-                <p className="eyebrow">Junaid Irfan | Full Stack Developer for Freelance Marketplaces</p>
-                <span className="availability-pill">Available for Upwork & Fiverr projects</span>
-              </div>
-              <h1>Building Modern & AI-Driven Applications</h1>
-              <p className="hero-copy">
-                I have worked on 30+ projects and help clients turn ideas into client-ready React websites, business
-                dashboards, landing pages, MERN features, and AI-assisted workflows with clean UI and deployment-ready code.
-              </p>
-              <div className="hero-stack chip-list compact" aria-label="Primary stack">
-                {["AI-Driven Apps", "Upwork & Fiverr", "React", "Node.js", "Express.js", "MongoDB", "Vercel"].map((skill) => (
-                  <Chip label={skill} key={skill} />
-                ))}
-              </div>
-              <div className="hero-actions" aria-label="Portfolio actions">
-                <a className="button button-primary" href={asset("assets/Junaid-Irfan-Resume.pdf")} download>
-                  Download Resume
-                </a>
-                <a className="button button-ghost" href="#/projects">
-                  View Projects
-                </a>
-                <a className="button button-secondary" href="#/contact">
-                  Hire Me
-                </a>
-              </div>
-            </div>
-            <figure className="hero-profile" aria-label="Junaid Irfan profile photo">
-              <span className="profile-status">Software Engineer</span>
-              <img src={asset("images/junaid-profile.png")} alt="Portrait of Junaid Irfan" />
-              <figcaption>
-                <strong>Building modern & AI-driven applications</strong>
-                <span>Frontend, backend, database, deployment, and AI-assisted development workflows for real projects.</span>
-              </figcaption>
-            </figure>
+    <section className="hero" id="home">
+      <ThreeHeroScene theme={document.documentElement.dataset.theme || "dark"} />
+      <div className="hero-noise" aria-hidden="true" />
+      <div className="container hero-grid">
+        <div className="hero-copy-block" data-reveal>
+          <p className="eyebrow">Building Modern & AI-Driven Applications</p>
+          <h1>Full Stack Developer for business-ready web apps, dashboards, and freelance delivery.</h1>
+          <p>
+            I build React and MERN applications with clean UI, responsive layouts, dashboard workflows, API-ready
+            structure, and deployment polish for jobs, internships, Upwork, and Fiverr clients.
+          </p>
+          <div className="hero-actions">
+            <a className="button button-primary" href="#/projects">
+              View Projects
+            </a>
+            <a className="button button-ghost" href="#/contact">
+              Hire Me
+            </a>
+            <a className="button button-soft" href={asset("assets/Junaid-Irfan-Resume.pdf")} download>
+              Download Resume
+            </a>
           </div>
         </div>
-        <div className="container hero-summary" aria-label="Portfolio highlights">
-          <div>
-            <strong>30+</strong>
-            <span>projects worked on</span>
-          </div>
-          <div>
-            <strong>Modern + AI-driven</strong>
-            <span>React apps, dashboards, UI fixes, AI-assisted workflows</span>
-          </div>
-          <div>
-            <strong>Upwork & Fiverr ready</strong>
-            <span>portfolio proof, resume, links, and contact flow</span>
-          </div>
-        </div>
-      </section>
 
-      <SkillsBanner />
-      <FocusSection />
-      <ProjectsSection showToast={showToast} />
-      <FreelanceSection />
-      <ExperienceSection />
-      <SkillsSection />
-      <EducationSection />
-      <ResumePanel />
-    </main>
-  );
-}
+        <aside className="hero-profile" data-reveal>
+          <img src={asset("images/junaid-profile.png")} alt="Junaid Irfan" />
+          <div>
+            <span>Available for junior roles and freelance work</span>
+            <strong>MERN Stack Developer</strong>
+          </div>
+        </aside>
+      </div>
 
-function FocusSection() {
-  return (
-    <section className="section focus-section" data-reveal>
-      <div className="container focus-layout">
-        <div className="section-heading">
-          <p className="section-kicker">Marketplace Portfolio</p>
-          <h2>Clean project proof, clear services, and fast client contact.</h2>
-        </div>
-        <div className="focus-grid">
-          {focusAreas.map((item, index) => (
-            <article className="focus-card" key={item.title}>
-              <span>{String(index + 1).padStart(2, "0")}</span>
-              <h3>{item.title}</h3>
-              <p>{item.copy}</p>
-            </article>
-          ))}
-        </div>
+      <div className="container stat-grid" data-reveal>
+        {stats.map(([value, label]) => (
+          <div className="stat-card" key={label}>
+            <strong>{value}</strong>
+            <span>{label}</span>
+          </div>
+        ))}
       </div>
     </section>
   );
 }
 
-function FreelanceSection() {
+function SkillLogo({ label, src }) {
+  const href = skillLinks.get(label);
   return (
-    <section className="section freelance-section" id="freelance" data-reveal>
-      <div className="container">
-        <div className="freelance-layout">
-          <div className="freelance-intro">
-            <p className="section-kicker">Freelance Web Development</p>
-            <h2>Upwork and Fiverr-ready services for clients who need clean, working web apps.</h2>
-            <p>
-              I can help with small business websites, portfolio builds, admin dashboards, MERN feature work, and
-              deployed React interfaces. The focus is simple: clear scope, responsive UI, working links, and clean handoff
-              for fixed-scope marketplace projects.
-            </p>
-            <div className="freelance-actions">
-              <a className="button button-primary" href="#/contact">
-                Hire Me for a Project
-              </a>
-              <a className="button button-ghost" href="#/projects">
-                View Work Samples
-              </a>
-            </div>
-          </div>
-          <div className="freelance-highlight">
-            <span>Client-ready focus</span>
-            <strong>Fast communication, practical builds, and portfolio-backed proof.</strong>
-            <p>Available for fixed-scope frontend work, MERN improvements, dashboard UI, Fiverr gigs, and Upwork contracts.</p>
-          </div>
-        </div>
+    <a className="skill-logo-card" href={href} target="_blank" rel="noreferrer" aria-label={`Open ${label} website`}>
+      <img src={src} alt="" loading="lazy" />
+      <span>{label}</span>
+    </a>
+  );
+}
 
-        <div className="freelance-grid" aria-label="Freelance services">
-          {freelanceServices.map((service, index) => (
-            <article className="freelance-card" key={service.title}>
-              <header>
-                <span className="freelance-number">{String(index + 1).padStart(2, "0")}</span>
-                <span className="service-meta">{service.meta}</span>
-              </header>
-              <h3>{service.title}</h3>
-              <p>{service.copy}</p>
-              <ul>
-                {service.deliverables.map((item) => (
-                  <li key={item}>{item}</li>
-                ))}
-              </ul>
-            </article>
+function SkillsBanner() {
+  const logos = [...skillLogos, ...skillLogos];
+  return (
+    <section className="skills-banner" aria-label="Technology logos">
+      <div className="skill-marquee">
+        <div className="skill-track">
+          {logos.map(([label, src], index) => (
+            <SkillLogo label={label} src={src} key={`${label}-${index}`} />
           ))}
         </div>
       </div>
@@ -668,81 +586,144 @@ function FreelanceSection() {
 
 function ExperienceSection() {
   return (
-    <section className="section experience-section" id="experience" data-reveal>
-      <div className="container">
-        <div className="section-heading section-heading-wide">
-          <div>
-            <p className="section-kicker">Project Experience</p>
-            <h2>Practical delivery experience for client-ready web work.</h2>
-          </div>
-          <p>Focused on responsive UI, dashboard workflows, deployment, communication, and handoff for real portfolio projects.</p>
-        </div>
+    <section className="section" id="experience" data-reveal>
+      <div className="container section-heading">
+        <p className="eyebrow">Experience</p>
+        <h2>Working projects presented like real client work.</h2>
+        <p>
+          The portfolio focuses on proof: live demos, product screenshots, clean descriptions, and practical full stack
+          workflows that matter for hiring managers and freelance clients.
+        </p>
+      </div>
 
-        <div className="experience-list">
-          {experienceItems.map((item) => (
-            <article className="experience-card" key={item.role}>
-              <div className="experience-meta">
-                <span>{item.period}</span>
-                <strong>{item.organization}</strong>
-              </div>
-              <div className="experience-content">
-                <h3>{item.role}</h3>
-                <p>{item.summary}</p>
-                <ul>
-                  {item.bullets.map((bullet) => (
-                    <li key={bullet}>{bullet}</li>
-                  ))}
-                </ul>
-                {item.projects ? (
-                  <div className="experience-projects" aria-label={`${item.role} working projects`}>
-                    <strong>Working projects</strong>
-                    <div>
-                      {item.projects.map((project) => (
-                        <article key={project.title}>
-                          <h4>{project.title}</h4>
-                          <p>{project.copy}</p>
-                        </article>
-                      ))}
-                    </div>
-                  </div>
-                ) : null}
-                <div className="chip-list compact">
-                  {item.stack.map((skill) => (
-                    <Chip label={skill} key={skill} />
-                  ))}
-                </div>
-              </div>
-            </article>
-          ))}
-        </div>
+      <div className="container timeline">
+        {experienceItems.map((item) => (
+          <article className="timeline-item" key={item.title}>
+            <div className="timeline-dot" aria-hidden="true" />
+            <div>
+              <p>{item.organization}</p>
+              <h3>{item.title}</h3>
+              <ul>
+                {item.bullets.map((bullet) => (
+                  <li key={bullet}>{bullet}</li>
+                ))}
+              </ul>
+            </div>
+          </article>
+        ))}
       </div>
     </section>
   );
 }
 
-function SkillsBanner() {
-  const logoSet = (hidden = false) => (
-    <div className="skill-logo-set" aria-hidden={hidden ? "true" : undefined}>
-      {skillLogos.map(([label, src, className]) => (
-        <div className="skill-logo-card" aria-label={label} title={label} key={`${label}-${hidden}`}>
-          <a className="skill-logo-link" href={skillLinks.get(label)} target="_blank" rel="noreferrer" aria-label={`Open ${label} website`}>
-            <span className={`skill-logo ${className}`} aria-hidden="true">
-              <img src={src} alt="" decoding="async" />
-            </span>
-          </a>
+function ProjectMedia({ project }) {
+  return (
+    <div className="project-media">
+      <figure className="project-cover">
+        <img src={asset(project.cover)} alt={`${project.title} screenshot`} loading="lazy" />
+      </figure>
+      {project.screens.length ? (
+        <div className="screen-strip" aria-label={`${project.title} screenshots`}>
+          {project.screens.map(([label, image]) => (
+            <figure key={label}>
+              <img src={asset(image)} alt={`${project.title} ${label} screen`} loading="lazy" />
+              <figcaption>{label}</figcaption>
+            </figure>
+          ))}
         </div>
-      ))}
+      ) : null}
     </div>
   );
+}
 
+function ProjectCard({ project, featured }) {
   return (
-    <section className="skills-banner" aria-label="Skills icon banner" data-reveal>
-      <div className="container skills-strip">
-        <div className="skill-logo-marquee">
-          <div className="skill-logo-row" data-skill-row>
-            {logoSet()}
-            {logoSet(true)}
+    <article className={`project-card ${featured ? "is-featured" : ""}`} data-reveal>
+      <ProjectMedia project={project} />
+      <div className="project-content">
+        <p className="project-tag">{project.tag}</p>
+        <h3>{project.title}</h3>
+        <p>{project.summary}</p>
+        <div className="project-role">
+          <span>My Role</span>
+          <strong>{project.role}</strong>
+        </div>
+        <ul className="feature-list">
+          {project.features.map((feature) => (
+            <li key={feature}>{feature}</li>
+          ))}
+        </ul>
+        {project.credential ? <p className="credential">{project.credential}</p> : null}
+        <div className="chip-list">
+          {project.stack.map((skill) => (
+            <a href={skillLinks.get(skill) || "#/skills"} target={skillLinks.has(skill) ? "_blank" : undefined} rel={skillLinks.has(skill) ? "noreferrer" : undefined} key={skill}>
+              {skill}
+            </a>
+          ))}
+        </div>
+        <div className="project-links">
+          <a href={project.live} target="_blank" rel="noreferrer">
+            Live Demo
+          </a>
+          {project.source ? (
+            <a href={project.source} target="_blank" rel="noreferrer">
+              Source Code
+            </a>
+          ) : null}
+        </div>
+      </div>
+    </article>
+  );
+}
+
+function ProjectsSection() {
+  return (
+    <section className="section band" id="projects">
+      <div className="container section-heading" data-reveal>
+        <p className="eyebrow">Projects</p>
+        <h2>Project presentation for jobs, Upwork, and Fiverr.</h2>
+        <p>
+          Each case study shows what was built, the business problem it solves, screenshots, links, and the stack used.
+        </p>
+      </div>
+
+      <div className="container projects-grid">
+        {projects.map((project, index) => (
+          <ProjectCard project={project} featured={index === 0} key={project.title} />
+        ))}
+      </div>
+    </section>
+  );
+}
+
+function ServicesSection() {
+  return (
+    <section className="section" id="services" data-reveal>
+      <div className="container services-layout">
+        <div>
+          <p className="eyebrow">Services</p>
+          <h2>Clear freelance offers without extra noise.</h2>
+          <p>
+            I can help with focused web projects, dashboard screens, bug fixes, MERN features, portfolio sites, and
+            deployment-ready React work.
+          </p>
+          <div className="service-actions">
+            <a className="button button-primary" href="#/contact">
+              Start a Project
+            </a>
+            <a className="button button-ghost" href="#/projects">
+              See Proof
+            </a>
           </div>
+        </div>
+        <div className="services-grid">
+          {services.map((service) => (
+            <article className="service-card" key={service.title}>
+              <span aria-hidden="true" />
+              <h3>{service.title}</h3>
+              <p>{service.copy}</p>
+            </article>
+          ))}
         </div>
       </div>
     </section>
@@ -750,26 +731,33 @@ function SkillsBanner() {
 }
 
 function SkillsSection() {
+  const groups = [
+    ["Frontend", ["React", "Vite", "Three.js", "JavaScript", "Tailwind CSS", "Bootstrap"]],
+    ["Backend", ["Node.js", "Express.js", "REST APIs", "JWT"]],
+    ["Database", ["MongoDB", "MySQL"]],
+    ["Tools & AI", ["GitHub", "Vercel", "Claude", "ChatGPT", "Codex", "DeepSeek"]],
+  ];
+
   return (
     <section className="section band" id="skills" data-reveal>
-      <div className="container">
-        <div className="section-heading">
-          <p className="section-kicker">Skills</p>
-          <h2>MERN stack and full stack skills</h2>
-        </div>
-        <div className="skills-grid">
-          {skillGroups.map((group) => (
-            <article className="skill-card" key={group.title}>
-              <h3>{group.title}</h3>
-              <p>{group.copy}</p>
-              <div className="chip-list" aria-label={`${group.title} skills`}>
-                {group.skills.map((skill) => (
-                  <Chip label={skill} key={skill} />
-                ))}
-              </div>
-            </article>
-          ))}
-        </div>
+      <div className="container section-heading">
+        <p className="eyebrow">Skills</p>
+        <h2>MERN stack, modern UI, and AI-assisted workflow.</h2>
+        <p>Every skill chip links to its official website so clients and recruiters can quickly understand the tools.</p>
+      </div>
+      <div className="container skills-grid">
+        {groups.map(([title, skills]) => (
+          <article className="skill-group" key={title}>
+            <h3>{title}</h3>
+            <div className="chip-list">
+              {skills.map((skill) => (
+                <a href={skillLinks.get(skill)} target="_blank" rel="noreferrer" key={skill}>
+                  {skill}
+                </a>
+              ))}
+            </div>
+          </article>
+        ))}
       </div>
     </section>
   );
@@ -777,158 +765,38 @@ function SkillsSection() {
 
 function EducationSection() {
   return (
-    <section className="section" id="education" data-reveal>
-      <div className="container split-grid">
+    <section className="section compact-section" data-reveal>
+      <div className="container education-card">
         <div>
-          <p className="section-kicker">Education</p>
-          <h2>Academic foundation in software engineering.</h2>
+          <p className="eyebrow">Education</p>
+          <h2>BS Software Engineering</h2>
         </div>
-        <article className="education-card">
-          <p className="education-degree">Bachelor of Science</p>
-          <h3>BS Software Engineering</h3>
-          <p>Lahore Leads University</p>
+        <p>
+          Lahore Leads University. Coursework included Data Structures & Algorithms, Database Systems, Software
+          Engineering Principles, Web Technologies, and UI/UX Design.
+        </p>
+      </div>
+    </section>
+  );
+}
+
+function ContactPreview() {
+  return (
+    <section className="section contact-preview" data-reveal>
+      <div className="container contact-preview-card">
+        <div>
+          <p className="eyebrow">Contact</p>
+          <h2>Need a React, MERN, dashboard, or portfolio project?</h2>
           <p>
-            Relevant coursework includes Data Structures & Algorithms, Database Systems, Software Engineering Principles,
-            Web Technologies, and UI/UX Design.
+            Send a short message with the project type, pages, features, deadline, and links. I will reply by email.
           </p>
-          <div className="chip-list" aria-label="Education focus areas">
-            {["Software Engineering", "Full Stack Development", "Databases", "Web Applications"].map((chip) => (
-              <span key={chip}>{chip}</span>
-            ))}
-          </div>
-        </article>
-      </div>
-    </section>
-  );
-}
-
-function ProjectMedia({ project }) {
-  const className = `project-media ${project.mediaClass || ""} ${project.image ? "project-media-screenshot" : ""}`.trim();
-  if (project.screenshots?.length) {
-    const [mainShot, ...shots] = project.screenshots;
-    return (
-      <div className={`${className} project-media-gallery`}>
-        <figure className="gallery-main">
-          <img src={asset(mainShot.image)} alt={mainShot.alt} />
-          <figcaption>{mainShot.label}</figcaption>
-        </figure>
-        <div className="gallery-strip" aria-label={`${project.title} screenshots`}>
-          {shots.map((shot) => (
-            <figure className="gallery-thumb" key={shot.image}>
-              <img src={asset(shot.image)} alt={shot.alt} />
-              <figcaption>{shot.label}</figcaption>
-            </figure>
-          ))}
         </div>
-      </div>
-    );
-  }
-  if (project.image) {
-    return (
-      <div className={className}>
-        <img src={asset(project.image)} alt={project.alt} />
-      </div>
-    );
-  }
-  return (
-    <div className={className} aria-hidden="true">
-      <span></span>
-      <span></span>
-      <span></span>
-    </div>
-  );
-}
-
-function ProjectsSection({ showToast }) {
-  return (
-    <section className="section" id="projects" data-reveal>
-      <div className="container">
-        <div className="section-heading section-heading-wide">
-          <div>
-            <p className="section-kicker">Selected Work</p>
-            <h2>Professional project samples for clients and recruiters.</h2>
-          </div>
-          <p>Only the strongest client-facing work is shown here, with clear outcomes, visuals, live links, and source code.</p>
-        </div>
-
-        <div className="projects-grid">
-          {projects.map((project, index) => (
-            <article className={`project-card ${index === 0 ? "is-featured" : ""}`} key={project.title}>
-              <ProjectMedia project={project} />
-              <div className="project-content">
-                <p className="project-type">{project.type}</p>
-                <h3>{project.title}</h3>
-                <p>{project.description}</p>
-                <div className="project-proof">
-                  <span>{project.role}</span>
-                  <strong>{project.impact}</strong>
-                </div>
-                <ul className="project-feature-list">
-                  {project.features.map((feature) => (
-                    <li key={feature}>{feature}</li>
-                  ))}
-                </ul>
-                <div className="chip-list compact">
-                  {project.stack.map((item) => (
-                    <Chip label={item} key={item} />
-                  ))}
-                </div>
-                {project.credentials ? (
-                  <div className="project-credentials" aria-label={`${project.title} demo credentials`}>
-                    <strong>{project.credentials.title}</strong>
-                    {project.credentials.items.map(([label, value]) => (
-                      <span key={label}>
-                        <b>{label}:</b> {value}
-                      </span>
-                    ))}
-                  </div>
-                ) : null}
-                <div className="project-links">
-                  {project.live ? (
-                    <a href={project.live} target="_blank" rel="noreferrer">
-                      Live Demo
-                    </a>
-                  ) : (
-                    <a
-                      href="#/projects"
-                      onClick={(event) => {
-                        event.preventDefault();
-                        showToast(project.livePlaceholder || "Add the final project URL before publishing.");
-                      }}
-                    >
-                      Live Demo
-                    </a>
-                  )}
-                  {project.source ? (
-                    <a href={project.source} target="_blank" rel="noreferrer">
-                      Source Code
-                    </a>
-                  ) : null}
-                </div>
-              </div>
-            </article>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function ResumePanel() {
-  return (
-    <section className="section band" id="resume" data-reveal>
-      <div className="container resume-panel">
-        <div>
-          <p className="section-kicker">Resume</p>
-          <h2>Download the resume for internships, junior roles, and freelance proposals.</h2>
-          <p>Use the PDF for applications, recruiter messages, LinkedIn outreach, Upwork proposals, and Fiverr client conversations. The printable page stays available for quick review.</p>
-        </div>
-        <div className="resume-actions">
-          <a className="button button-primary" href={asset("assets/Junaid-Irfan-Resume.pdf")} download>
-            Download PDF
+        <div className="contact-actions">
+          <a className="button button-primary" href="#/contact">
+            Send Message
           </a>
-          <a className="button button-ghost" href="#/resume">
-            View Resume
+          <a className="button button-ghost" href="mailto:junaidirfan810@gmail.com">
+            Email Directly
           </a>
         </div>
       </div>
@@ -936,74 +804,17 @@ function ResumePanel() {
   );
 }
 
-function AboutPage() {
+function HomePage() {
   return (
     <main>
-      <section className="page-hero">
-        <div className="container page-hero-grid">
-          <div>
-            <p className="eyebrow">About Junaid</p>
-            <h1>Full Stack Developer building modern and AI-driven web experiences.</h1>
-            <p>
-              Junaid Irfan is a BS Software Engineering graduate building full-stack applications, marketplace-ready
-              portfolios, AI-assisted workflows, and dashboard interfaces for junior roles, Upwork work, and Fiverr gigs,
-              with 30+ projects completed across learning, practice, and client-style builds.
-            </p>
-          </div>
-          <img className="about-photo" src={asset("images/junaid-profile.png")} alt="Portrait of Junaid Irfan" />
-        </div>
-      </section>
-
-      <section className="section band" data-reveal>
-        <div className="container split-grid">
-          <div>
-            <p className="section-kicker">Profile</p>
-            <h2>From responsive UI to backend workflows.</h2>
-          </div>
-          <div className="section-copy">
-            <p>
-              Junaid works across the full stack, with growing strength in React, JavaScript, Tailwind CSS, Bootstrap,
-              Node.js, Express.js, PHP, MongoDB, MySQL, and responsive frontend development. His portfolio is centered on
-              real project delivery: Modern Animated MERN E-Commerce Store, Auto Tech Management System, HireHub Job
-              Portal, and a Professional Portfolio Website.
-            </p>
-            <p>He is positioning the portfolio for internship, junior developer, Upwork, and Fiverr web work with clear project stories, live links, and a downloadable resume.</p>
-          </div>
-        </div>
-      </section>
-
-      <section className="section" data-reveal>
-        <div className="container split-grid">
-          <div>
-            <p className="section-kicker">Education</p>
-            <h2>BS Software Engineering graduate.</h2>
-          </div>
-          <div className="section-copy">
-            <p>
-              Junaid completed BS Software Engineering at Lahore Leads University, with coursework in Data Structures &
-              Algorithms, Database Systems, Software Engineering Principles, Web Technologies, and UI/UX Design.
-            </p>
-            <p>That foundation now carries into portfolio projects built for real hiring, service, marketplace, and operations workflows.</p>
-          </div>
-        </div>
-      </section>
-
-      <section className="section" data-reveal>
-        <div className="container value-grid">
-          <article className="skill-card">
-            <h3>Frontend</h3>
-            <p>Responsive layouts, accessible structure, polished interactions, and user-friendly interface details.</p>
-          </article>
-          <article className="skill-card">
-            <h3>Backend</h3>
-            <p>APIs, server-side logic, CRUD workflows, authentication concepts, and database-backed features.</p>
-          </article>
-          <article className="skill-card">
-            <h3>MERN Direction</h3>
-            <p>MongoDB, Express.js, React, and Node.js for modern JavaScript applications and service-based products.</p>
-          </article>
-        </div>
-      </section>
+      <Hero />
+      <SkillsBanner />
+      <ExperienceSection />
+      <ProjectsSection />
+      <ServicesSection />
+      <SkillsSection />
+      <EducationSection />
+      <ContactPreview />
     </main>
   );
 }
@@ -1011,7 +822,7 @@ function AboutPage() {
 function ResumePage() {
   return (
     <main className="resume-shell">
-      <div className="resume-page-actions">
+      <div className="resume-actions-top">
         <a className="button button-ghost" href="#/home">
           Back to Site
         </a>
@@ -1022,7 +833,7 @@ function ResumePage() {
       <article className="resume-document">
         <header className="resume-title">
           <div>
-            <p className="eyebrow">Full Stack Developer | MERN Stack Developer | AI-Driven Applications</p>
+            <p>Full Stack Developer | MERN Stack Developer | AI-Driven Applications</p>
             <h1>Junaid Irfan</h1>
           </div>
           <address>
@@ -1034,20 +845,48 @@ function ResumePage() {
             <a href="https://www.linkedin.com/in/junaid-irfan-ba1027241" target="_blank" rel="noreferrer">
               linkedin.com/in/junaid-irfan-ba1027241
             </a>
-            <a href="https://ali-jun.github.io/Portfolio/" target="_blank" rel="noreferrer">
-              ali-jun.github.io/Portfolio
-            </a>
           </address>
         </header>
 
         <section>
           <h2>Professional Summary</h2>
           <p>
-            Full Stack Developer focused on modern and AI-driven applications, MERN web apps, responsive React
-            interfaces, admin dashboards, and deployment-ready freelance projects. Worked on 30+ projects with hands-on
-            experience building role-based dashboards, service booking workflows, job portal flows, marketplace portfolio
-            sections, REST API concepts, database-backed features, and clean Vercel/GitHub Pages deployments.
+            Full Stack Developer focused on modern and AI-driven applications, responsive React interfaces, MERN web
+            apps, dashboards, admin panels, and deployment-ready freelance work. Worked on 30+ projects with selected
+            live demos prepared for jobs, internships, LinkedIn, Upwork, and Fiverr.
           </p>
+        </section>
+
+        <section>
+          <h2>Technical Skills</h2>
+          <div className="resume-columns">
+            <p><strong>Frontend:</strong> React.js, Vite, Three.js, JavaScript, Tailwind CSS, Bootstrap, HTML5, CSS3</p>
+            <p><strong>Backend:</strong> Node.js, Express.js, REST APIs, JWT, bcrypt.js</p>
+            <p><strong>Database:</strong> MongoDB, MySQL</p>
+            <p><strong>Tools:</strong> GitHub, Vercel, Figma, VS Code, Claude, ChatGPT, Codex, DeepSeek</p>
+          </div>
+        </section>
+
+        <section>
+          <h2>Experience</h2>
+          {experienceItems.map((item) => (
+            <div className="resume-item" key={item.title}>
+              <h3>{item.title}</h3>
+              <p>{item.organization}</p>
+              <ul>
+                {item.bullets.map((bullet) => (
+                  <li key={bullet}>{bullet}</li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </section>
+
+        <section>
+          <h2>Projects</h2>
+          {resumeProjects.map((project) => (
+            <ResumeProject project={project} key={project.title} />
+          ))}
         </section>
 
         <section>
@@ -1056,121 +895,30 @@ function ResumePage() {
             <h3>BS Software Engineering</h3>
             <p>Lahore Leads University</p>
             <p>
-              <strong>Relevant Coursework:</strong> Data Structures & Algorithms, Database Systems, Software Engineering
-              Principles, Web Technologies, UI/UX Design.
+              Relevant coursework: Data Structures & Algorithms, Database Systems, Software Engineering Principles, Web
+              Technologies, UI/UX Design.
             </p>
           </div>
-        </section>
-
-        <section>
-          <h2>Technical Skills</h2>
-          <div className="resume-columns">
-            <p><strong>Frontend:</strong> HTML5, CSS3, JavaScript, React.js, Tailwind CSS, Bootstrap</p>
-            <p><strong>Backend:</strong> Node.js, Express.js, REST APIs</p>
-            <p><strong>Database:</strong> MongoDB, MySQL</p>
-            <p><strong>Authentication:</strong> JWT, bcrypt.js</p>
-            <p><strong>Tools:</strong> Git, GitHub, Figma, VS Code, Vercel</p>
-            <p><strong>AI Tools:</strong> Claude, ChatGPT, Codex, DeepSeek</p>
-          </div>
-        </section>
-
-        <section>
-          <h2>Freelance Services</h2>
-          <div className="resume-columns">
-            <p><strong>Websites:</strong> portfolio websites, personal brand sites, responsive landing pages</p>
-            <p><strong>Dashboards:</strong> admin panels, booking flows, tables, forms, and operational screens</p>
-            <p><strong>MERN Work:</strong> React features, API integration, CRUD workflows, bug fixes</p>
-            <p><strong>Delivery:</strong> clean UI, mobile polish, deployment support, and client-ready handoff</p>
-          </div>
-        </section>
-
-        <section>
-          <h2>Project-Based Experience</h2>
-          <div className="resume-item">
-            <h3>Full Stack Developer - Portfolio & Freelance Project Work</h3>
-            <p>Current</p>
-            <ul>
-              <li>Worked on 30+ projects and prepared selected working demos for recruiter review, LinkedIn, Upwork, Fiverr, and internship applications.</li>
-              <li>Built Modern Animated MERN E-Commerce Store, Auto Tech Management System, HireHub Job Portal, and Professional Portfolio Website as portfolio-ready projects.</li>
-              <li>Designed responsive UI, dashboards, project galleries, forms, REST API planning, database workflows, authentication concepts, and deployment setup.</li>
-            </ul>
-          </div>
-        </section>
-
-        <section>
-          <h2>Projects</h2>
-          <ResumeProject
-            title="Modern Animated MERN E-Commerce Store"
-            stack="React.js, Vite, Tailwind CSS, Framer Motion, Node.js, Express.js, MongoDB, JWT, Vercel"
-            bullets={[
-              "Built a premium men's fashion e-commerce store with animated storefront, product catalog, cart, checkout, user dashboard, and admin dashboard.",
-              "Created admin workflows for products, categories, orders, banners, coupons, stock, returns, notifications, sales analytics, and profit/loss tracking.",
-            ]}
-            links={[
-              ["Live Demo", "https://modern-store-e-commerce-client.vercel.app"],
-            ]}
-          />
-          <ResumeProject
-            title="Auto Tech Management System"
-            stack="React.js, vehicle service management, role-based dashboards, Vercel"
-            bullets={[
-              "Built a service management portal with role-based dashboards, booking, mechanic assignment, invoices, PKR payments, feedback, and reports.",
-              "Presented multiple real product screens and deployed the app on Vercel with source code available for review.",
-            ]}
-            links={[
-              ["Live Demo", "https://autotechmanagementsystem.vercel.app"],
-              ["GitHub", "https://github.com/Ali-Jun/AutoTechmanagementsystem"],
-            ]}
-          />
-          <ResumeProject
-            title="HireHub Job Portal"
-            stack="React, Node.js, Express, MongoDB, JWT"
-            bullets={[
-              "Developed a MERN job portal concept with candidate/employer authentication, role-based access, and job search flows.",
-              "Built job posting, application tracking, and protected dashboard workflows for a hiring product experience.",
-            ]}
-            links={[
-              ["Live Demo", "https://lnkd.in/da95uY8H"],
-              ["GitHub", "https://lnkd.in/dUQmbrYE"],
-            ]}
-          />
-          <ResumeProject
-            title="Portfolio Website"
-            stack="React, Vite, JavaScript, responsive CSS, Vercel, GitHub Pages"
-            bullets={[
-              "Designed and developed a modern animated portfolio with project case studies, resume download, skills banner, and working contact form.",
-              "Positioned the site for junior developer applications, LinkedIn outreach, Upwork proposals, and Fiverr client conversations.",
-            ]}
-            links={[
-              ["Live Portfolio", "https://ali-jun.github.io/Portfolio/"],
-              ["GitHub", "https://github.com/Ali-Jun/Portfolio"],
-            ]}
-          />
-        </section>
-
-        <section>
-          <h2>Core Strengths</h2>
-          <p>Client Communication, Fast Learning, Problem Solving, Team Collaboration, Scope Clarity, Adaptability, Attention to Detail.</p>
         </section>
       </article>
     </main>
   );
 }
 
-function ResumeProject({ title, stack, bullets, links }) {
+function ResumeProject({ project }) {
   return (
     <div className="resume-item">
-      <h3>{title}</h3>
+      <h3>{project.title}</h3>
       <p>
-        <strong>Stack:</strong> {stack}
+        <strong>Stack:</strong> {project.stack}
       </p>
       <ul>
-        {bullets.map((bullet) => (
+        {project.bullets.map((bullet) => (
           <li key={bullet}>{bullet}</li>
         ))}
       </ul>
       <p>
-        {links.map(([label, href], index) => (
+        {project.links.map(([label, href], index) => (
           <span key={href}>
             {index > 0 ? " | " : ""}
             <a href={href} target="_blank" rel="noreferrer">
@@ -1185,7 +933,7 @@ function ResumeProject({ title, stack, bullets, links }) {
 
 function ContactPage() {
   const [status, setStatus] = useState({ type: "", text: "" });
-  const [isSending, setIsSending] = useState(false);
+  const [sending, setSending] = useState(false);
 
   const submitForm = async (event) => {
     event.preventDefault();
@@ -1197,7 +945,7 @@ function ContactPage() {
     const honey = String(formData.get("_honey") || "").trim();
 
     if (!name || !email || !message) {
-      setStatus({ type: "error", text: "Please complete every field." });
+      setStatus({ type: "error", text: "Please complete name, email, and message." });
       return;
     }
 
@@ -1207,7 +955,7 @@ function ContactPage() {
       return;
     }
 
-    setIsSending(true);
+    setSending(true);
     setStatus({ type: "", text: "" });
 
     try {
@@ -1230,63 +978,58 @@ function ContactPage() {
 
       const result = await response.json().catch(() => ({}));
       if (!response.ok || result.success === "false") {
-        throw new Error(result.message || "Message could not be sent.");
+        throw new Error(result.message || "Message failed");
       }
 
-      setStatus({
-        type: "success",
-        text: "Thanks, your message has been sent. Junaid will receive it by email.",
-      });
+      setStatus({ type: "success", text: "Thanks, your message has been sent to Junaid's email." });
       form.reset();
     } catch (error) {
       setStatus({
         type: "error",
-        text: "Message could not be sent right now. Please email Junaid directly at junaidirfan810@gmail.com.",
+        text: "Message could not be sent right now. Please email directly at junaidirfan810@gmail.com.",
       });
     } finally {
-      setIsSending(false);
+      setSending(false);
     }
   };
 
   return (
-    <main>
+    <main className="page-main">
       <section className="page-hero">
+        <ThreeHeroScene theme={document.documentElement.dataset.theme || "dark"} />
         <div className="container page-hero-grid">
-          <div>
+          <div data-reveal>
             <p className="eyebrow">Contact</p>
-            <h1>Start a freelance web project.</h1>
-            <p>Reach out for Upwork or Fiverr freelance work, full stack web development, portfolio websites, dashboards, internships, or project collaboration.</p>
+            <h1>Let’s build a clean web project.</h1>
+            <p>
+              Reach out for junior developer opportunities, internships, Upwork jobs, Fiverr work, dashboards, React
+              apps, MERN features, and portfolio websites.
+            </p>
           </div>
-          <div className="contact-panel" aria-label="Contact links">
+          <div className="contact-link-grid" data-reveal>
             {contactLinks.map((link) => (
-              <a
-                className="contact-link-card"
-                href={link.href}
-                target={link.href.startsWith("mailto:") ? undefined : "_blank"}
-                rel={link.href.startsWith("mailto:") ? undefined : "noreferrer"}
-                key={link.label}
-              >
-                <span className={`contact-link-icon ${link.iconClass}`} aria-hidden="true">
+              <a className={`contact-link-card ${link.tone}`} href={link.href} key={link.label} {...externalAttrs(link.href)}>
+                <span>
                   <img src={link.icon} alt="" loading="lazy" />
                 </span>
-                <span>
-                  <strong>{link.label}</strong>
-                  <small>{link.value}</small>
-                </span>
+                <strong>{link.label}</strong>
+                <small>{link.value}</small>
               </a>
             ))}
           </div>
         </div>
       </section>
 
-      <section className="section band" data-reveal>
+      <section className="section" data-reveal>
         <div className="container contact-grid">
           <div>
-            <p className="section-kicker">Message</p>
-            <h2>Send a focused note.</h2>
-            <p className="section-copy">Share the project type, pages or features needed, deadline, and links. The form sends your message directly to Junaid's email.</p>
+            <p className="eyebrow">Message</p>
+            <h2>Send project details.</h2>
+            <p>
+              Write the project type, required pages or features, deadline, and any reference links. The form sends the
+              message directly to email.
+            </p>
           </div>
-
           <form className="contact-form" onSubmit={submitForm}>
             <input className="honeypot" type="text" name="_honey" tabIndex="-1" autoComplete="off" aria-hidden="true" />
             <label>
@@ -1299,10 +1042,10 @@ function ContactPage() {
             </label>
             <label>
               Message
-              <textarea name="message" rows="5" required></textarea>
+              <textarea name="message" rows="6" required />
             </label>
-            <button className="button button-primary" type="submit" disabled={isSending}>
-              {isSending ? "Sending..." : "Send Message"}
+            <button className="button button-primary" type="submit" disabled={sending}>
+              {sending ? "Sending..." : "Send Message"}
             </button>
             <p className={`form-status ${status.type ? `is-${status.type}` : ""}`} role="status" aria-live="polite">
               {status.text}
@@ -1318,75 +1061,65 @@ function Footer({ page }) {
   if (page === "resume") return null;
   return (
     <footer className="site-footer">
-      <div className="container footer-inner">
-        <p>Copyright {new Date().getFullYear()} Junaid Irfan. All rights reserved.</p>
-        {page === "contact" ? <a href="#/home">Back to home</a> : <a href="#/home">Back to top</a>}
+      <div className="container footer-grid">
+        <p>Copyright {new Date().getFullYear()} Junaid Irfan. Full Stack Developer.</p>
+        <div>
+          {contactLinks.map((link) => (
+            <a href={link.href} key={link.label} {...externalAttrs(link.href)}>
+              {link.label}
+            </a>
+          ))}
+        </div>
       </div>
     </footer>
-  );
-}
-
-function Toast({ message }) {
-  return (
-    <div className={`toast ${message ? "is-visible" : ""}`} role="status" aria-live="polite">
-      {message}
-    </div>
   );
 }
 
 export default function App() {
   const route = useHashRoute();
   const [theme, setTheme] = useTheme();
-  const [toast, setToast] = useState("");
-  const normalizedRoute = ["about", "resume", "contact"].includes(route) ? route : "home";
-  const sectionTarget = ["freelance", "experience", "education", "skills", "projects"].includes(route) ? route : null;
+  const routeType = route === "contact" || route === "resume" ? route : "home";
+  const sectionTarget = ["experience", "projects", "services", "skills"].includes(route) ? route : null;
 
   useReveal(route);
 
   useEffect(() => {
-    const onScroll = () => document.querySelector("[data-header]")?.classList.toggle("is-scrolled", window.scrollY > 12);
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
+    const updateHeader = () => document.querySelector("[data-header]")?.classList.toggle("is-scrolled", window.scrollY > 8);
+    updateHeader();
+    window.addEventListener("scroll", updateHeader, { passive: true });
+    return () => window.removeEventListener("scroll", updateHeader);
   }, []);
 
   useEffect(() => {
-    document.body.classList.toggle("resume-page", normalizedRoute === "resume");
-    document.body.dataset.page = normalizedRoute;
+    document.body.dataset.page = routeType;
+    document.body.classList.toggle("resume-page", routeType === "resume");
     document.title =
-      normalizedRoute === "about"
-        ? "About | Junaid Irfan"
-        : normalizedRoute === "resume"
-          ? "Resume | Junaid Irfan"
-          : normalizedRoute === "contact"
-            ? "Contact | Junaid Irfan"
-            : "Junaid Irfan | Full Stack Developer";
-    if (sectionTarget) {
-      window.setTimeout(() => document.getElementById(sectionTarget)?.scrollIntoView({ behavior: "smooth", block: "start" }), 60);
-    } else {
-      window.scrollTo({ top: 0, behavior: "smooth" });
-    }
-  }, [normalizedRoute, sectionTarget]);
+      routeType === "resume"
+        ? "Resume | Junaid Irfan"
+        : routeType === "contact"
+          ? "Contact | Junaid Irfan"
+          : "Junaid Irfan | 3D Full Stack Developer Portfolio";
 
-  useEffect(() => {
-    if (!toast) return undefined;
-    const timer = window.setTimeout(() => setToast(""), 3600);
-    return () => window.clearTimeout(timer);
-  }, [toast]);
+    window.setTimeout(() => {
+      if (sectionTarget) {
+        document.getElementById(sectionTarget)?.scrollIntoView({ behavior: "smooth", block: "start" });
+      } else {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      }
+    }, 60);
+  }, [routeType, sectionTarget]);
 
   const page = useMemo(() => {
-    if (normalizedRoute === "about") return <AboutPage />;
-    if (normalizedRoute === "resume") return <ResumePage />;
-    if (normalizedRoute === "contact") return <ContactPage />;
-    return <HomePage showToast={setToast} />;
-  }, [normalizedRoute]);
+    if (routeType === "resume") return <ResumePage />;
+    if (routeType === "contact") return <ContactPage />;
+    return <HomePage />;
+  }, [routeType]);
 
   return (
     <>
       <Header route={route} theme={theme} setTheme={setTheme} />
       {page}
-      <Footer page={normalizedRoute} />
-      <Toast message={toast} />
+      <Footer page={routeType} />
     </>
   );
 }
