@@ -1,0 +1,92 @@
+@import "./style.audit-base.css";
+
+.hero {
+  overflow: hidden;
+}
+
+.hero-3d {
+  overflow: hidden;
+  transform: none !important;
+  transform-origin: center;
+}
+
+.hero-noise {
+  transform: none !important;
+  animation: none !important;
+  opacity: 0.22;
+  background:
+    linear-gradient(120deg, transparent 18%, rgba(56, 189, 248, 0.1) 50%, transparent 82%),
+    radial-gradient(circle at 70% 34%, rgba(45, 212, 191, 0.12), transparent 20rem);
+}
+
+.hero-tech-stage {
+  max-width: 100%;
+}
+
+@media (max-width: 760px) {
+  .hero {
+    padding-bottom: 1.5rem;
+  }
+
+  .hero-3d,
+  .hero-3d canvas {
+    width: 100% !important;
+  }
+
+  .hero-tech-stage {
+    margin-block: 1.1rem 0.95rem;
+  }
+}
+
+@media (max-width: 560px) {
+  .hero-tech-stage {
+    width: 100%;
+  }
+
+  .tech-orbit {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 0.48rem;
+  }
+
+  .tech-orbit-core {
+    height: 3.65rem;
+  }
+
+  .tech-orbit-core strong {
+    font-size: 1.08rem;
+  }
+
+  .tech-orbit-core span {
+    font-size: 0.68rem;
+  }
+
+  .tech-orbit-node {
+    min-width: 0;
+    height: 3.6rem;
+    padding: 0.3rem;
+    border-radius: 0.78rem;
+    font-size: 0.52rem;
+    line-height: 1.1;
+  }
+
+  .tech-orbit-node img {
+    width: 1.35rem;
+    height: 1.35rem;
+  }
+}
+
+@media (max-width: 380px) {
+  .tech-orbit {
+    gap: 0.4rem;
+  }
+
+  .tech-orbit-node {
+    height: 3.35rem;
+    font-size: 0.5rem;
+  }
+
+  .tech-orbit-node img {
+    width: 1.2rem;
+    height: 1.2rem;
+  }
+}

@@ -1,0 +1,372 @@
+@import "./style.recruiter-base.css";
+
+[data-reveal] {
+  transition: opacity 180ms ease, transform 180ms ease !important;
+  transform: translateY(8px);
+}
+
+.about-hook-section {
+  position: relative;
+  z-index: 3;
+  padding: 5.5rem 0 4.75rem;
+}
+
+.about-hook-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 0.88fr) minmax(18rem, 0.62fr);
+  gap: 1.5rem;
+  align-items: stretch;
+}
+
+.about-hook-copy,
+.about-proof-card,
+.skill-level-card,
+.freelance-proof-section .proof-card,
+.final-hire-card {
+  border: 1px solid var(--glass-line, var(--line));
+  border-radius: var(--radius);
+  background:
+    linear-gradient(145deg, rgba(255, 255, 255, 0.1), transparent 46%),
+    var(--surface);
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(16px);
+}
+
+.about-hook-copy {
+  padding: clamp(1.35rem, 4vw, 2.4rem);
+}
+
+.about-hook-copy h2,
+.final-hire-card h2 {
+  max-width: 48rem;
+  margin: 0;
+  font-size: clamp(2rem, 5vw, 3.7rem);
+  line-height: 1.04;
+  letter-spacing: 0;
+}
+
+.about-hook-copy p {
+  max-width: 56rem;
+  color: var(--soft-muted, var(--muted));
+  margin: 1rem 0 0;
+  font-size: 1rem;
+  line-height: 1.8;
+}
+
+.about-hook-copy .eyebrow,
+.final-hire-card .eyebrow {
+  margin-bottom: 0.9rem;
+}
+
+.about-proof-card {
+  display: grid;
+  align-content: center;
+  gap: 0.8rem;
+  min-height: 100%;
+  padding: clamp(1.2rem, 3vw, 1.8rem);
+}
+
+.about-proof-card span {
+  display: inline-flex;
+  width: fit-content;
+  color: var(--ink);
+  background: linear-gradient(135deg, var(--accent), var(--accent-2));
+  border-radius: 999px;
+  padding: 0.45rem 0.75rem;
+  font-size: 0.78rem;
+  font-weight: 850;
+}
+
+.about-proof-card strong {
+  font-size: clamp(2.4rem, 6vw, 4rem);
+  line-height: 0.95;
+}
+
+.about-proof-card p {
+  color: var(--soft-muted, var(--muted));
+  margin: 0;
+}
+
+.project-context {
+  display: grid;
+  gap: 0.72rem;
+  margin-top: 1rem;
+  padding: 1rem;
+  border: 1px solid rgba(56, 189, 248, 0.22);
+  border-radius: var(--radius);
+  background: rgba(56, 189, 248, 0.08);
+}
+
+.project-context p {
+  color: var(--soft-muted, var(--muted));
+  margin: 0;
+  font-size: 0.94rem;
+  line-height: 1.65;
+}
+
+.project-context strong {
+  color: var(--text);
+}
+
+.skill-level-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+  gap: 1rem;
+}
+
+.skill-level-card {
+  min-width: 0;
+  padding: clamp(1.1rem, 2.5vw, 1.45rem);
+}
+
+.skill-level-card h3 {
+  margin: 0;
+  font-size: 1.2rem;
+  letter-spacing: 0;
+}
+
+.skill-level-card p {
+  color: var(--soft-muted, var(--muted));
+  margin: 0.45rem 0 1rem;
+  line-height: 1.65;
+}
+
+.skill-level-list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.65rem;
+}
+
+.skill-level-list a {
+  display: grid;
+  grid-template-columns: 2.2rem minmax(0, 1fr);
+  align-items: center;
+  gap: 0.65rem;
+  min-width: 0;
+  min-height: 3.25rem;
+  color: var(--text);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface-soft);
+  padding: 0.55rem;
+  font-weight: 720;
+  transition: transform 160ms ease, border-color 160ms ease, background 160ms ease;
+}
+
+.skill-level-list a:hover {
+  border-color: rgba(56, 189, 248, 0.58);
+  background: rgba(56, 189, 248, 0.12);
+  transform: translateY(-2px);
+}
+
+.skill-level-list span:last-child {
+  overflow-wrap: anywhere;
+  line-height: 1.15;
+}
+
+.skill-level-icon {
+  display: grid;
+  place-items: center;
+  width: 2.2rem;
+  height: 2.2rem;
+  border-radius: 0.55rem;
+  background: #fff;
+  border: 1px solid rgba(15, 23, 42, 0.08);
+}
+
+.skill-level-icon img {
+  width: 1.45rem;
+  height: 1.45rem;
+  object-fit: contain;
+}
+
+.skill-level-list a[href*="express"] img,
+.skill-level-list a[href*="vercel"] img,
+.skill-level-list a[href*="openai"] img,
+.skill-level-list a[href*="anthropic"] img {
+  filter: invert(1);
+}
+
+:root[data-theme="light"] .skill-level-list a[href*="express"] img,
+:root[data-theme="light"] .skill-level-list a[href*="vercel"] img,
+:root[data-theme="light"] .skill-level-list a[href*="openai"] img,
+:root[data-theme="light"] .skill-level-list a[href*="anthropic"] img {
+  filter: none;
+}
+
+.freelance-proof-section {
+  padding: 0 0 5.5rem;
+}
+
+.proof-grid {
+  display: grid;
+  grid-template-columns: 1.1fr repeat(3, minmax(8rem, 0.45fr));
+  gap: 1rem;
+  align-items: stretch;
+}
+
+.freelance-proof-section .proof-card {
+  display: grid;
+  align-content: center;
+  gap: 0.45rem;
+  min-height: 9.5rem;
+  padding: 1.2rem;
+}
+
+.freelance-proof-section .proof-card.is-copy {
+  align-content: start;
+}
+
+.proof-card strong {
+  font-size: clamp(2rem, 5vw, 3.2rem);
+  line-height: 1;
+}
+
+.proof-card span {
+  color: var(--accent);
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  font-weight: 850;
+}
+
+.proof-card p {
+  color: var(--soft-muted, var(--muted));
+  margin: 0;
+  line-height: 1.7;
+}
+
+.final-hire-section {
+  padding: 0 0 5rem;
+}
+
+.final-hire-card {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 1.25rem;
+  align-items: center;
+  padding: clamp(1.25rem, 4vw, 2.3rem);
+}
+
+.final-hire-card p {
+  max-width: 48rem;
+  color: var(--soft-muted, var(--muted));
+  margin: 1rem 0 0;
+  line-height: 1.75;
+}
+
+.final-hire-actions {
+  display: grid;
+  grid-template-columns: repeat(3, max-content);
+  gap: 0.7rem;
+  align-items: center;
+}
+
+.final-hire-actions .button {
+  white-space: nowrap;
+}
+
+.hire-me-sticky {
+  position: fixed;
+  right: max(1rem, calc((100vw - var(--max)) / 2));
+  bottom: 1rem;
+  z-index: 60;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 2.85rem;
+  padding: 0.85rem 1rem;
+  color: var(--ink);
+  background: linear-gradient(135deg, var(--accent), var(--accent-2));
+  border: 1px solid transparent;
+  border-radius: 999px;
+  box-shadow: 0 18px 45px rgba(56, 189, 248, 0.35);
+  font-weight: 850;
+}
+
+.hire-me-sticky:hover {
+  transform: translateY(-2px);
+}
+
+@media (width <= 1080px) {
+  .about-hook-grid,
+  .proof-grid,
+  .final-hire-card {
+    grid-template-columns: 1fr;
+  }
+
+  .proof-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .proof-card.is-copy {
+    grid-column: 1 / -1;
+  }
+
+  .final-hire-actions {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    width: 100%;
+  }
+
+  .final-hire-actions .button {
+    min-width: 0;
+  }
+}
+
+@media (width <= 760px) {
+  .about-hook-section {
+    padding: 4rem 0 3.4rem;
+  }
+
+  .about-hook-copy,
+  .about-proof-card,
+  .skill-level-card,
+  .freelance-proof-section .proof-card,
+  .final-hire-card {
+    padding: 1rem;
+  }
+
+  .skill-level-grid,
+  .proof-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .skill-level-list {
+    grid-template-columns: 1fr;
+  }
+
+  .freelance-proof-section,
+  .final-hire-section {
+    padding-bottom: 4rem;
+  }
+
+  .final-hire-actions {
+    grid-template-columns: 1fr;
+  }
+
+  .hire-me-sticky {
+    right: 0.75rem;
+    bottom: 0.75rem;
+    min-height: 2.7rem;
+    padding: 0.75rem 0.9rem;
+  }
+}
+
+@media (width <= 420px) {
+  .about-hook-copy h2,
+  .final-hire-card h2 {
+    font-size: 1.85rem;
+  }
+
+  .project-context,
+  .skill-level-list a {
+    padding: 0.75rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-reveal],
+  .skill-level-list a,
+  .hire-me-sticky {
+    transition-duration: 0.01ms !important;
+  }
+}
