@@ -1,8 +1,255 @@
-@import "./style.recruiter-final-base.css";
+@import "./style.no3d-base.css";
 
-.skill-level-list a[href*="express"] img,
-.skill-level-list a[href*="vercel"] img,
-.skill-level-list a[href*="openai"] img,
-.skill-level-list a[href*="anthropic"] img {
-  filter: none;
+.hero-smooth {
+  background:
+    radial-gradient(circle at 78% 28%, rgba(56, 189, 248, 0.24), transparent 24rem),
+    radial-gradient(circle at 18% 68%, rgba(45, 212, 191, 0.18), transparent 20rem);
+}
+
+.hero-smooth::after,
+.page-hero-smooth::after {
+  content: "";
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background:
+    linear-gradient(120deg, transparent 18%, rgba(255, 255, 255, 0.07), transparent 36%),
+    repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.045) 0 1px, transparent 1px 84px);
+  opacity: 0.4;
+}
+
+:root[data-theme="light"] .hero-smooth {
+  background:
+    radial-gradient(circle at 78% 28%, rgba(2, 132, 199, 0.18), transparent 24rem),
+    radial-gradient(circle at 18% 68%, rgba(15, 118, 110, 0.14), transparent 20rem);
+}
+
+.hero-visual-panel {
+  display: grid;
+  gap: 1rem;
+  align-self: center;
+  justify-self: end;
+  width: min(100%, 25rem);
+}
+
+.hero-profile-card,
+.stack-spotlight,
+.mini-dashboard,
+.experience-feature-card {
+  border: 1px solid var(--glass-line, var(--line));
+  border-radius: var(--radius);
+  background:
+    linear-gradient(145deg, rgba(255, 255, 255, 0.12), transparent 46%),
+    var(--surface);
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(16px);
+}
+
+.hero-profile-card {
+  display: grid;
+  grid-template-columns: 6.6rem minmax(0, 1fr);
+  gap: 1rem;
+  align-items: center;
+  padding: 1rem;
+}
+
+.hero-profile-card img {
+  width: 6.6rem;
+  aspect-ratio: 1;
+  object-fit: cover;
+  object-position: center top;
+  border: 1px solid var(--line);
+  border-radius: 50% / 44%;
+}
+
+.hero-profile-card span,
+.experience-meta,
+.stack-spotlight p {
+  color: var(--accent);
+  font-size: 0.78rem;
+  font-weight: 850;
+  text-transform: uppercase;
+}
+
+.hero-profile-card strong {
+  display: block;
+  margin-top: 0.25rem;
+  font-size: 1.2rem;
+  line-height: 1.1;
+}
+
+.stack-spotlight {
+  padding: 1rem;
+}
+
+.stack-spotlight p {
+  margin: 0 0 0.75rem;
+}
+
+.stack-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.6rem;
+}
+
+.stack-pill {
+  display: grid;
+  grid-template-columns: 2rem minmax(0, 1fr);
+  align-items: center;
+  gap: 0.55rem;
+  min-height: 3rem;
+  color: var(--text);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface-soft);
+  padding: 0.48rem;
+  font-size: 0.86rem;
+  font-weight: 760;
+}
+
+.stack-pill:hover {
+  border-color: rgba(56, 189, 248, 0.6);
+  transform: translateY(-2px);
+}
+
+.mini-dashboard {
+  display: grid;
+  grid-template-columns: 1.1fr 0.8fr 0.65fr;
+  gap: 0.65rem;
+  min-height: 6.4rem;
+  padding: 1rem;
+}
+
+.mini-dashboard span {
+  display: block;
+  align-self: end;
+  min-height: 2rem;
+  border-radius: var(--radius);
+  background: linear-gradient(180deg, var(--accent), var(--accent-2));
+  opacity: 0.85;
+}
+
+.mini-dashboard span:nth-child(1) {
+  height: 5rem;
+}
+
+.mini-dashboard span:nth-child(2) {
+  height: 3.4rem;
+}
+
+.mini-dashboard span:nth-child(3) {
+  height: 4.3rem;
+}
+
+.experience-feature-card {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 1.25rem;
+  padding: clamp(1.25rem, 4vw, 2rem);
+}
+
+.active-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: fit-content;
+  min-height: 2rem;
+  color: var(--ink);
+  background: linear-gradient(135deg, var(--accent), var(--accent-2));
+  border-radius: 999px;
+  padding: 0.4rem 0.75rem;
+  font-size: 0.78rem;
+  font-weight: 850;
+}
+
+.experience-feature-card h3 {
+  margin: 0.35rem 0 0;
+  font-size: clamp(1.6rem, 4vw, 2.35rem);
+  line-height: 1.05;
+}
+
+.experience-feature-card p {
+  color: var(--soft-muted, var(--muted));
+  margin: 0.75rem 0 0;
+}
+
+.experience-feature-card .feature-list {
+  margin-top: 1rem;
+}
+
+.experience-focus-list {
+  display: grid;
+  align-content: start;
+  gap: 0.65rem;
+  min-width: 13rem;
+}
+
+.experience-focus-list span {
+  display: inline-flex;
+  justify-content: center;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--surface-soft);
+  padding: 0.55rem 0.75rem;
+  color: var(--text);
+  font-weight: 780;
+}
+
+.experience-focus-list span:last-child {
+  color: var(--accent-3);
+  border-color: rgba(251, 191, 36, 0.42);
+  background: rgba(251, 191, 36, 0.12);
+}
+
+.skill-growth-label {
+  color: var(--accent-3);
+  font-size: 0.72rem;
+  font-weight: 850;
+  text-transform: uppercase;
+}
+
+.skill-level-list a.is-growing {
+  border-color: rgba(251, 191, 36, 0.42);
+  background: rgba(251, 191, 36, 0.1);
+}
+
+.smooth-contact-copy {
+  max-width: 46rem;
+}
+
+@media (width <= 1080px) {
+  .hero-visual-panel {
+    justify-self: start;
+    width: min(100%, 42rem);
+  }
+
+  .experience-feature-card {
+    grid-template-columns: 1fr;
+  }
+
+  .experience-focus-list {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    min-width: 0;
+  }
+}
+
+@media (width <= 760px) {
+  .hero-profile-card {
+    grid-template-columns: 5rem minmax(0, 1fr);
+  }
+
+  .hero-profile-card img {
+    width: 5rem;
+  }
+
+  .stack-grid,
+  .experience-focus-list {
+    grid-template-columns: 1fr;
+  }
+
+  .mini-dashboard {
+    min-height: 5rem;
+  }
 }
