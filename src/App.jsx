@@ -4,13 +4,9 @@ import AppSmoothBase from "./AppSmoothBase.jsx";
 const aiIcon = "https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/openai.svg";
 const aiHref = "https://platform.openai.com/docs/overview";
 
-function setTextIfChanged(node, value) {
-  if (node && node.textContent !== value) node.textContent = value;
-}
-
 function replaceText(selector, value, match) {
   document.querySelectorAll(selector).forEach((node) => {
-    if (!match || node.textContent.includes(match)) setTextIfChanged(node, value);
+    if (!match || node.textContent.includes(match)) node.textContent = value;
   });
 }
 
@@ -20,21 +16,21 @@ function updateHeroAndBrand() {
 
   document.querySelectorAll(".hero h1").forEach((heading) => {
     if (heading.textContent.includes("Full Stack Developer")) {
-      setTextIfChanged(heading, "Full Stack AI Engineer for business-ready web apps, dashboards, and freelance delivery.");
+      heading.textContent = "Full Stack AI Engineer for business-ready web apps, dashboards, and freelance delivery.";
     }
   });
 
   const contactHero = [...document.querySelectorAll(".page-hero h1")].find((heading) =>
     heading.textContent.includes("Let's build")
   );
-  const copy = contactHero?.parentElement?.querySelector("p:last-child");
-  if (!copy) return;
-
-  copy.classList.add("smooth-contact-copy");
-  setTextIfChanged(
-    copy,
-    "Reach out for freelance + collaborations, junior developer opportunities, dashboards, React apps, MERN features, and portfolio websites."
-  );
+  if (contactHero) {
+    const copy = contactHero.parentElement?.querySelector("p:last-child");
+    if (copy) {
+      copy.classList.add("smooth-contact-copy");
+      copy.textContent =
+        "Reach out for freelance + collaborations, junior developer opportunities, dashboards, React apps, MERN features, and portfolio websites.";
+    }
+  }
 }
 
 function updateExperience() {
@@ -42,21 +38,22 @@ function updateExperience() {
   if (!section || section.querySelector(".experience-feature-card")) return;
 
   const heading = section.querySelector(".section-heading");
-  setTextIfChanged(heading?.querySelector("h2"), "Current fellowship and freelance-ready delivery.");
-  setTextIfChanged(
-    heading?.querySelector("p:last-child"),
-    "One active fellowship, focused on MERN product work, AI-assisted engineering, clean UI, and deployable web apps."
-  );
+  const title = heading?.querySelector("h2");
+  const copy = heading?.querySelector("p:last-child");
+  if (title) title.textContent = "Current fellowship and freelance-ready delivery.";
+  if (copy) {
+    copy.textContent =
+      "One active fellowship, focused on MERN product work, AI-assisted engineering, clean UI, and deployable web apps.";
+  }
 
   const timeline = section.querySelector(".timeline");
   if (!timeline) return;
-
   timeline.className = "container";
   timeline.innerHTML = `
     <article class="experience-feature-card">
       <div>
         <span class="active-badge">Active</span>
-        <p class="experience-meta">DevWeekends - Enrolled in Full Stack AI Engineering</p>
+        <p class="experience-meta">DevWeekends · Enrolled in Full Stack AI Engineering</p>
         <h3>Full Stack AI Engineer</h3>
         <p>Building modern MERN applications while growing deeper into AI-assisted workflows, LLM tooling, dashboards, API-ready structures, and production-minded UI delivery.</p>
         <ul class="feature-list">
@@ -69,7 +66,7 @@ function updateExperience() {
       <div class="experience-focus-list" aria-label="Current focus">
         <span>MERN</span>
         <span>Dashboards</span>
-        <span>AI / LLMs - Growing</span>
+        <span>AI / LLMs · Growing</span>
       </div>
     </article>
   `;
@@ -103,25 +100,12 @@ function applySmoothUpdates() {
   addAiSkill();
 }
 
-function scheduleSmoothUpdates() {
-  const timers = [0, 50, 180, 450].map((delay) => window.setTimeout(applySmoothUpdates, delay));
-  return () => timers.forEach((timer) => window.clearTimeout(timer));
-}
-
 export default function App() {
   useEffect(() => {
-    let cleanupTimers = scheduleSmoothUpdates();
-
-    const onRouteChange = () => {
-      cleanupTimers();
-      cleanupTimers = scheduleSmoothUpdates();
-    };
-
-    window.addEventListener("hashchange", onRouteChange);
-    return () => {
-      cleanupTimers();
-      window.removeEventListener("hashchange", onRouteChange);
-    };
+    applySmoothUpdates();
+    const observer = new MutationObserver(applySmoothUpdates);
+    observer.observe(document.documentElement, { childList: true, subtree: true });
+    return () => observer.disconnect();
   }, []);
 
   return <AppSmoothBase />;
