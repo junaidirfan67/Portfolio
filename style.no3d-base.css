@@ -1,8 +1,0 @@
-@import "./style.recruiter-final-base.css";
-
-.skill-level-list a[href*="express"] img,
-.skill-level-list a[href*="vercel"] img,
-.skill-level-list a[href*="openai"] img,
-.skill-level-list a[href*="anthropic"] img {
-  filter: none;
-}
