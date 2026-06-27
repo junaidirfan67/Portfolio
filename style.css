@@ -1,75 +1,124 @@
-@import "./style.guide-base.css";
+@import "./style.resume-guide-base.css";
 
-[data-reveal] {
-  transition-duration: 150ms !important;
-  transform: translateY(6px);
+.resume-current-experience,
+.core-strengths-card {
+  border: 1px solid var(--glass-line, var(--line));
+  border-radius: var(--radius);
+  background:
+    linear-gradient(145deg, rgba(255, 255, 255, 0.11), transparent 46%),
+    var(--surface);
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(16px);
 }
 
-.button,
-.project-card,
-.project-cover,
-.screen-strip figure,
-.site-nav a,
-.icon-button,
-.resume-link,
-.skill-level-list a,
-.contact-link-card {
-  transition-duration: 180ms !important;
+.resume-current-experience {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(12rem, 0.32fr);
+  gap: 1.25rem;
+  align-items: start;
+  padding: clamp(1.15rem, 3vw, 1.8rem);
 }
 
-.skills-banner {
-  display: none !important;
+.resume-current-experience + .timeline-item {
+  margin-top: 1rem;
 }
 
-.availability-badge {
+.active-badge {
   display: inline-flex;
-  align-items: center;
-  gap: 0.45rem;
-  min-height: 2.55rem;
-  color: var(--text);
-  border: 1px solid rgba(45, 212, 191, 0.42);
+  width: fit-content;
+  color: var(--ink);
+  background: linear-gradient(135deg, var(--accent), var(--accent-2));
   border-radius: 999px;
-  background: rgba(45, 212, 191, 0.12);
-  padding: 0.55rem 0.85rem;
-  font-size: 0.84rem;
+  padding: 0.38rem 0.72rem;
+  font-size: 0.78rem;
   font-weight: 850;
-  white-space: nowrap;
 }
 
-.availability-badge span {
-  width: 0.58rem;
-  height: 0.58rem;
+.experience-meta {
+  color: var(--accent);
+  margin: 0.75rem 0 0.35rem;
+  font-size: 0.78rem;
+  font-weight: 850;
+  text-transform: uppercase;
+}
+
+.resume-current-experience h3 {
+  margin: 0;
+  font-size: clamp(1.45rem, 3vw, 2.1rem);
+  line-height: 1.1;
+}
+
+.resume-current-experience p:not(.experience-meta) {
+  color: var(--soft-muted, var(--muted));
+  margin: 0.8rem 0 0;
+}
+
+.experience-focus-list {
+  display: grid;
+  gap: 0.65rem;
+}
+
+.experience-focus-list span {
+  display: inline-flex;
+  justify-content: center;
+  border: 1px solid var(--line);
   border-radius: 999px;
-  background: #22c55e;
-  box-shadow: 0 0 0 0.28rem rgba(34, 197, 94, 0.18);
+  background: var(--surface-soft);
+  padding: 0.55rem 0.75rem;
+  color: var(--text);
+  font-weight: 780;
 }
 
-.project-context p + p {
-  margin-top: 0.45rem;
+.resume-ai-card {
+  grid-column: 1 / -1;
 }
 
-.skill-level-list a[href*="openai"],
-.skill-level-list a[href*="anthropic"],
-.skill-level-list a[href*="deepseek"],
-.skill-level-list a[href*="chatgpt"] {
-  display: none !important;
+.resume-ai-card p:not(.eyebrow) {
+  color: var(--soft-muted, var(--muted));
+  margin: 0.5rem 0 1rem;
 }
 
-.hire-me-sticky {
-  min-width: 7.5rem;
+.core-strengths-section {
+  padding-top: 0;
 }
 
-@media (max-width: 1080px) {
-  .availability-badge {
-    justify-self: end;
-  }
+.core-strengths-card {
+  display: grid;
+  grid-template-columns: minmax(0, 0.85fr) minmax(18rem, 1fr);
+  gap: 1.4rem;
+  align-items: center;
+  padding: clamp(1.25rem, 4vw, 2rem);
 }
 
-@media (max-width: 760px) {
-  .availability-badge {
-    grid-column: 1 / -1;
-    justify-self: stretch;
-    justify-content: center;
-    order: 6;
+.core-strengths-card h2 {
+  margin: 0;
+  font-size: clamp(1.75rem, 4vw, 2.7rem);
+  line-height: 1.08;
+}
+
+.core-strengths-card p:last-child {
+  color: var(--soft-muted, var(--muted));
+  margin: 0.9rem 0 0;
+}
+
+.strength-chip-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+}
+
+.strength-chip-grid span {
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--surface-soft);
+  padding: 0.58rem 0.78rem;
+  color: var(--text);
+  font-weight: 760;
+}
+
+@media (max-width: 900px) {
+  .resume-current-experience,
+  .core-strengths-card {
+    grid-template-columns: 1fr;
   }
 }

@@ -4212,4 +4212,60 @@ void main() {
           <a class="button button-soft" href="https://github.com/Ali-Jun" target="_blank" rel="noreferrer">GitHub</a>
         </div>
       </div>
-    `)}function Fu(){document.querySelectorAll(`.eyebrow`).forEach(e=>{e.textContent.includes(`AI-Driven`)&&Ou(e,`Building Modern MERN Applications`)}),document.querySelectorAll(`.service-card h3`).forEach(e=>{if(!e.textContent.includes(`AI-Assisted`))return;Ou(e,`Deployment & Handoff`);let t=e.parentElement?.querySelector(`p`);Ou(t,`Vercel deployments, GitHub repositories, clean project documentation, and handoff-ready portfolio presentation.`)}),document.querySelectorAll(`.tech-orbit-node`).forEach(e=>{let t=e.querySelector(`span`);if(!t||t.textContent!==`AI Tools`)return;Ou(t,`REST APIs`),e.setAttribute(`href`,`https://developer.mozilla.org/en-US/docs/Glossary/REST`);let n=e.querySelector(`img`);n&&n.setAttribute(`src`,`https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/swagger.svg`)})}function Iu(){Au(),ju(),Mu(),Nu(),Pu(),Fu()}function Lu(){let e=[0,80,240,600].map(e=>window.setTimeout(Iu,e));return()=>e.forEach(e=>window.clearTimeout(e))}function Ru(){return(0,_.useEffect)(()=>{let e=Lu(),t=()=>{e(),e=Lu()};return window.addEventListener(`hashchange`,t),()=>{e(),window.removeEventListener(`hashchange`,t)}},[]),(0,X.jsx)(Su,{})}(0,v.createRoot)(document.getElementById(`root`)).render((0,X.jsx)(_.StrictMode,{children:(0,X.jsx)(Ru,{})}));
+    `)}function Fu(){document.querySelectorAll(`.eyebrow`).forEach(e=>{e.textContent.includes(`AI-Driven`)&&Ou(e,`Building Modern MERN Applications`)}),document.querySelectorAll(`.service-card h3`).forEach(e=>{if(!e.textContent.includes(`AI-Assisted`))return;Ou(e,`Deployment & Handoff`);let t=e.parentElement?.querySelector(`p`);Ou(t,`Vercel deployments, GitHub repositories, clean project documentation, and handoff-ready portfolio presentation.`)}),document.querySelectorAll(`.tech-orbit-node`).forEach(e=>{let t=e.querySelector(`span`);if(!t||t.textContent!==`AI Tools`)return;Ou(t,`REST APIs`),e.setAttribute(`href`,`https://developer.mozilla.org/en-US/docs/Glossary/REST`);let n=e.querySelector(`img`);n&&n.setAttribute(`src`,`https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/swagger.svg`)})}function Iu(){Au(),ju(),Mu(),Nu(),Pu(),Fu()}function Lu(){let e=[0,80,240,600].map(e=>window.setTimeout(Iu,e));return()=>e.forEach(e=>window.clearTimeout(e))}function Ru(){return(0,_.useEffect)(()=>{let e=Lu(),t=()=>{e(),e=Lu()};return window.addEventListener(`hashchange`,t),()=>{e(),window.removeEventListener(`hashchange`,t)}},[]),(0,X.jsx)(Su,{})}var zu=[[`OpenAI API`,`https://platform.openai.com/docs/overview`,`https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/openai.svg`],[`Claude API`,`https://docs.anthropic.com/`,`https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/anthropic.svg`],[`Codex`,`https://platform.openai.com/docs/codex/overview`,`https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/openai.svg`],[`DeepSeek`,`https://www.deepseek.com/`,`https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/deepseek.svg`]],Bu=[`Client Communication`,`Fast Learning`,`Problem Solving`,`Team Collaboration`,`Scope Clarity`,`Adaptability`,`Attention to Detail`];function Vu(e,t){e&&e.textContent!==t&&(e.textContent=t)}function Hu(){document.title=`Junaid Irfan | Full Stack MERN Developer & AI Engineering Fellow`}function Uu(){document.querySelectorAll(`a[href$="Junaid-Irfan-Resume.pdf"]`).forEach(e=>{let t=e.getAttribute(`href`)||``;e.setAttribute(`href`,t.replace(`Junaid-Irfan-Resume.pdf`,`Junaid-Irfan-Resume.docx`)),e.setAttribute(`download`,`Junaid-Irfan-Resume.docx`),e.setAttribute(`aria-label`,`Download Junaid Irfan resume`)})}function Wu(){let e=document.querySelector(`.about-hook-section`);if(!e||e.dataset.resumeEnhanced===`true`)return;let t=e.querySelector(`.about-hook-copy`);t&&(e.dataset.resumeEnhanced=`true`,t.innerHTML=`
+    <p>I build complete MERN stack applications: from React frontends to Node.js backends, MongoDB databases, and Vercel deployments.</p>
+    <p>I'm currently enrolled with DevWeekends in the Full Stack AI Engineering fellowship, where I'm integrating OpenAI and Claude APIs into full-stack web applications and building AI-powered features.</p>
+    <p>I've shipped 30+ projects including e-commerce stores, role-based dashboards, and job portals while actively deepening Data Structures & Algorithms and real engineering workflow skills.</p>
+  `)}function Gu(){let e=document.getElementById(`experience`),t=e?.querySelector(`.timeline`);if(!e||!t||e.querySelector(`.resume-current-experience`))return;let n=e.querySelector(`.section-heading`);Vu(n?.querySelector(`h2`),`Current fellowship, project experience, and MERN delivery.`),Vu(n?.querySelector(`p:last-child`),`Currently growing through the DevWeekends Full Stack AI Engineering program while continuing to build live MERN projects.`);let r=document.createElement(`article`);r.className=`resume-current-experience`,r.innerHTML=`
+    <div>
+      <span class="active-badge">Active</span>
+      <p class="experience-meta">DevWeekends - Remote - June 2026 - Present</p>
+      <h3>Full Stack AI Engineering Fellow</h3>
+      <p>Integrating AI APIs into full-stack web applications, building React components, developing Node.js/Express APIs, and practicing Data Structures & Algorithms daily.</p>
+      <ul class="feature-list">
+        <li>Integrating OpenAI and Claude APIs into MERN applications to build intelligent, AI-powered features.</li>
+        <li>Developing React frontend components and Node.js/Express backend APIs as part of real engineering tasks.</li>
+        <li>Practicing DSA daily, including arrays, linked lists, recursion, and problem-solving patterns.</li>
+        <li>Working remotely with task assignments, code reviews, and collaborative delivery.</li>
+      </ul>
+    </div>
+    <div class="experience-focus-list" aria-label="Current focus">
+      <span>MERN Stack</span>
+      <span>AI APIs</span>
+      <span>DSA Practice</span>
+    </div>
+  `,t.prepend(r)}function Ku(){let e=document.querySelector(`#skills .skill-level-grid`);if(!e||e.querySelector(`.resume-ai-card`))return;let t=document.createElement(`article`);t.className=`skill-level-card resume-ai-card`,t.innerHTML=`
+    <p class="eyebrow">AI Integration</p>
+    <h3>Building AI-powered features.</h3>
+    <p>Currently learning and applying AI APIs through the DevWeekends Full Stack AI Engineering program.</p>
+    <div class="skill-level-list">
+      ${zu.map(([e,t,n])=>`
+            <a href="${t}" target="_blank" rel="noreferrer">
+              <span class="skill-level-icon"><img src="${n}" alt="" loading="lazy" aria-hidden="true"></span>
+              <span>${e}</span>
+            </a>
+          `).join(``)}
+    </div>
+  `,e.appendChild(t)}function qu(){let e=document.querySelector(`.final-hire-section`);if(!e||document.querySelector(`.core-strengths-section`))return;let t=document.createElement(`section`);t.className=`section core-strengths-section`,t.setAttribute(`data-reveal`,`true`),t.innerHTML=`
+    <div class="container core-strengths-card">
+      <div>
+        <p class="eyebrow">Core Strengths</p>
+        <h2>Reliable habits for junior roles and client work.</h2>
+        <p>These are the working traits I am building alongside technical skill: clear communication, fast learning, problem solving, and careful delivery.</p>
+      </div>
+      <div class="strength-chip-grid">
+        ${Bu.map(e=>`<span>${e}</span>`).join(``)}
+      </div>
+    </div>
+  `,e.parentElement?.insertBefore(t,e)}function Ju(){let e=document.querySelector(`.final-hire-section`);if(!e||e.dataset.resumeEnhanced===`true`)return;let t=e.querySelector(`h2`),n=e.querySelector(`p:last-child`);Vu(t,`I'm seeking a junior Full Stack, React, or MERN role where I can grow and contribute.`),Vu(n,`I bring live projects, current DevWeekends AI engineering experience, and daily DSA practice.`),e.dataset.resumeEnhanced=`true`}function Yu(){let e=document.querySelector(`.resume-document`);if(!e||e.dataset.resumeEnhanced===`true`)return;let t=[...e.querySelectorAll(`section`)].find(e=>e.querySelector(`h2`)?.textContent.includes(`Summary`));t&&Vu(t.querySelector(`p`),`Motivated Full Stack Developer currently enrolled with DevWeekends in the Full Stack AI Engineering program. Passionate about real-world MERN applications, AI-powered features, role-based dashboards, e-commerce platforms, and job portals.`);let n=[...e.querySelectorAll(`section`)].find(e=>e.querySelector(`h2`)?.textContent.includes(`Projects`));if(n){let t=document.createElement(`section`);t.innerHTML=`
+      <h2>Current Experience</h2>
+      <div class="resume-item">
+        <h3>Full Stack AI Engineering Fellow - DevWeekends</h3>
+        <p>Remote | June 2026 - Present</p>
+        <ul>
+          <li>Integrating OpenAI and Claude APIs into full-stack web applications.</li>
+          <li>Developing React frontend components and Node.js/Express backend APIs.</li>
+          <li>Practicing Data Structures & Algorithms daily.</li>
+        </ul>
+      </div>
+    `,e.insertBefore(t,n)}e.dataset.resumeEnhanced=`true`}function Xu(){Hu(),Uu(),Wu(),Gu(),Ku(),qu(),Ju(),Yu()}function Zu(){let e=[0,120,360,800].map(e=>window.setTimeout(Xu,e));return()=>e.forEach(e=>window.clearTimeout(e))}function Qu(){return(0,_.useEffect)(()=>{let e=Zu(),t=()=>{e(),e=Zu()};return window.addEventListener(`hashchange`,t),()=>{e(),window.removeEventListener(`hashchange`,t)}},[]),(0,X.jsx)(Ru,{})}(0,v.createRoot)(document.getElementById(`root`)).render((0,X.jsx)(_.StrictMode,{children:(0,X.jsx)(Qu,{})}));
