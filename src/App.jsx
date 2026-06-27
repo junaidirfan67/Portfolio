@@ -1,287 +1,259 @@
 import { useEffect } from "react";
-import AppRecruiterRuntime from "./AppRecruiterRuntime.jsx";
+import AppGuideBase from "./AppGuideBase.jsx";
 
-const techIcons = new Map([
-  ["HTML5", "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/html5/html5-original.svg"],
-  ["CSS3", "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/css3/css3-original.svg"],
-  ["JavaScript", "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/javascript/javascript-original.svg"],
+const skillIcons = new Map([
   ["React.js", "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/react/react-original.svg"],
-  ["React", "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/react/react-original.svg"],
-  ["Tailwind CSS", "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/tailwindcss/tailwindcss-original.svg"],
-  ["Bootstrap", "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/bootstrap/bootstrap-original.svg"],
-  ["Node.js", "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nodejs/nodejs-original.svg"],
-  ["Express.js", "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/express/express-original.svg"],
-  ["REST APIs", "https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/swagger.svg"],
+  ["Node.js + Express.js", "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nodejs/nodejs-original.svg"],
   ["MongoDB", "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mongodb/mongodb-original.svg"],
+  ["JavaScript (ES6+)", "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/javascript/javascript-original.svg"],
+  ["Tailwind CSS + Bootstrap", "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/tailwindcss/tailwindcss-original.svg"],
+  ["REST APIs", "https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/swagger.svg"],
+  ["JWT Authentication", "https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/jsonwebtokens.svg"],
+  ["Git + GitHub", "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/github/github-original.svg"],
+  ["Vercel Deployment", "https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/vercel.svg"],
   ["MySQL", "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mysql/mysql-original.svg"],
-  ["JWT", "https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/jsonwebtokens.svg"],
-  ["bcrypt.js", "https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/jsonwebtokens.svg"],
-  ["Git", "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/git/git-original.svg"],
-  ["GitHub", "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/github/github-original.svg"],
   ["Figma", "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/figma/figma-original.svg"],
-  ["VS Code", "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/vscode/vscode-original.svg"],
-  ["Vercel", "https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/vercel.svg"],
-  ["Claude", "https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/anthropic.svg"],
-  ["ChatGPT", "https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/openai.svg"],
-  ["Codex", "https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/openai.svg"],
-  ["DeepSeek", "https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/deepseek.svg"],
+  ["bcrypt.js", "https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/jsonwebtokens.svg"],
 ]);
 
 const skillLinks = new Map([
-  ["HTML5", "https://developer.mozilla.org/en-US/docs/Web/HTML"],
-  ["CSS3", "https://developer.mozilla.org/en-US/docs/Web/CSS"],
-  ["JavaScript", "https://developer.mozilla.org/en-US/docs/Web/JavaScript"],
   ["React.js", "https://react.dev/"],
-  ["Tailwind CSS", "https://tailwindcss.com/"],
-  ["Bootstrap", "https://getbootstrap.com/"],
-  ["Node.js", "https://nodejs.org/"],
-  ["Express.js", "https://expressjs.com/"],
-  ["REST APIs", "https://developer.mozilla.org/en-US/docs/Glossary/REST"],
+  ["Node.js + Express.js", "https://nodejs.org/"],
   ["MongoDB", "https://www.mongodb.com/"],
+  ["JavaScript (ES6+)", "https://developer.mozilla.org/en-US/docs/Web/JavaScript"],
+  ["Tailwind CSS + Bootstrap", "https://tailwindcss.com/"],
+  ["REST APIs", "https://developer.mozilla.org/en-US/docs/Glossary/REST"],
+  ["JWT Authentication", "https://jwt.io/"],
+  ["Git + GitHub", "https://github.com/"],
+  ["Vercel Deployment", "https://vercel.com/"],
   ["MySQL", "https://www.mysql.com/"],
-  ["JWT", "https://jwt.io/"],
-  ["bcrypt.js", "https://github.com/dcodeIO/bcrypt.js"],
-  ["Git", "https://git-scm.com/"],
-  ["GitHub", "https://github.com/"],
   ["Figma", "https://www.figma.com/"],
-  ["VS Code", "https://code.visualstudio.com/"],
-  ["Vercel", "https://vercel.com/"],
-  ["Claude", "https://claude.ai/"],
-  ["ChatGPT", "https://chatgpt.com/"],
-  ["Codex", "https://platform.openai.com/docs/codex/overview"],
-  ["DeepSeek", "https://www.deepseek.com/"],
+  ["bcrypt.js", "https://github.com/dcodeIO/bcrypt.js"],
 ]);
 
-const projectContext = new Map([
+const proficientSkills = [
+  "React.js",
+  "Node.js + Express.js",
+  "MongoDB",
+  "JavaScript (ES6+)",
+  "Tailwind CSS + Bootstrap",
+  "REST APIs",
+  "JWT Authentication",
+  "Git + GitHub",
+  "Vercel Deployment",
+];
+
+const familiarSkills = ["MySQL", "Figma", "bcrypt.js"];
+
+const projectGuide = new Map([
   [
     "Modern Animated MERN E-Commerce Store",
     {
+      what:
+        "A full-stack menswear e-commerce platform with product catalog, cart, checkout flow, and a complete admin dashboard with analytics and profit/loss tracking.",
       built:
-        "What I built: a full e-commerce experience with storefront, cart, checkout, user dashboard, and admin tools for products, orders, banners, coupons, stock, and profit tracking.",
-      learned:
-        "What I learned: how to structure business workflows across customer and admin screens, keep UI responsive, and prepare a MERN app for real deployment.",
+        "Product catalog, cart and checkout flow, user dashboard, admin product management, order handling, sales analytics, and profit/loss tracking.",
+      challenge:
+        "The biggest challenge was building the admin analytics system: aggregating order data and calculating useful business numbers like revenue and profit margins.",
+      stack: "React, Node.js, Express, MongoDB, JWT auth, Vercel",
     },
   ],
   [
     "Auto Tech Management System",
     {
+      what:
+        "A vehicle service management portal with separate role-based dashboards for admins, mechanics, and customers.",
       built:
-        "What I built: a service-management portal for workshop bookings, mechanic assignment, invoices, PKR payments, feedback, and role-based dashboards.",
-      learned:
-        "What I learned: how to design dashboard flows where Admin, Customer, and Mechanic users each need different data, actions, and protected screens.",
+        "Customers can book services, track vehicle status, and pay in PKR. Admins manage bookings and invoices, while mechanics receive assignments and update job status.",
+      challenge:
+        "The trickiest part was building the role-based routing system so each user type only sees their own dashboard, data, and actions.",
+      stack: "React.js, role-based dashboards, Vercel",
     },
   ],
   [
     "HireHub Job Portal",
     {
+      what:
+        "A MERN stack job portal where employers can post jobs and candidates can search, filter, and apply through protected routes.",
       built:
-        "What I built: a hiring product with job discovery, search flows, candidate/employer logic, and dashboard-ready authentication structure.",
-      learned:
-        "What I learned: how to think through two-sided marketplace workflows, protected routes, job filtering, and application management.",
+        "Separate onboarding flows for employers and candidates, job discovery UI, protected dashboard structure, and authentication-ready product flows.",
+      challenge:
+        "The main challenge was keeping employer and candidate data isolated with protected routes and a clear authentication flow.",
+      stack: "React, Node.js, Express, MongoDB, JWT",
     },
   ],
   [
     "Task Manager",
     {
+      what:
+        "A productivity dashboard for creating, filtering, tracking, and reviewing task progress in a clean SaaS-style workspace.",
       built:
-        "What I built: a productivity dashboard with task status filters, priority views, search, progress tracking, and clean SaaS-style cards.",
-      learned:
-        "What I learned: how small UI details like empty states, filters, and counters make a simple app feel more usable and professional.",
+        "Task counters, search, filters, priority views, status tabs, progress summary, and a clear empty-state workflow.",
+      challenge:
+        "The useful challenge was making a simple app feel complete through dashboard states, filters, counters, and responsive layout polish.",
+      stack: "React, JavaScript, dashboard UI",
     },
   ],
 ]);
 
-const proficientSkills = [
-  "HTML5",
-  "CSS3",
-  "JavaScript",
-  "React.js",
-  "Tailwind CSS",
-  "Bootstrap",
-  "Node.js",
-  "Express.js",
-  "REST APIs",
-  "MongoDB",
-  "JWT",
-  "GitHub",
-  "Vercel",
-];
-
-const familiarSkills = ["MySQL", "bcrypt.js", "Git", "Figma", "VS Code", "Claude", "ChatGPT", "Codex", "DeepSeek"];
-
-function iconMarkup(label) {
-  const icon = techIcons.get(label);
-  if (!icon) return "";
-  return `<span class="skill-level-icon"><img src="${icon}" alt="" loading="lazy" aria-hidden="true"></span>`;
+function setText(node, value) {
+  if (node && node.textContent !== value) node.textContent = value;
 }
 
-function skillLink(label) {
-  const href = skillLinks.get(label) || "#/skills";
-  const external = href.startsWith("http");
-  return `<a href="${href}" ${external ? 'target="_blank" rel="noreferrer"' : ""}>${iconMarkup(label)}<span>${label}</span></a>`;
+function skillMarkup(skill) {
+  const icon = skillIcons.get(skill);
+  const href = skillLinks.get(skill) || "#/skills";
+  return `
+    <a href="${href}" target="_blank" rel="noreferrer">
+      <span class="skill-level-icon"><img src="${icon}" alt="" loading="lazy" aria-hidden="true"></span>
+      <span>${skill}</span>
+    </a>
+  `;
 }
 
-function addAboutHook() {
-  const experience = document.getElementById("experience");
-  if (!experience || document.querySelector(".about-hook-section")) return;
+function updateMeta() {
+  document.title = "Junaid Irfan | Full Stack MERN Developer - Lahore";
+}
 
-  const section = document.createElement("section");
-  section.className = "section about-hook-section";
-  section.setAttribute("data-reveal", "true");
+function updateAbout() {
+  const section = document.querySelector(".about-hook-section");
+  if (!section || section.dataset.guideApplied === "true") return;
+
+  section.dataset.guideApplied = "true";
   section.innerHTML = `
     <div class="container about-hook-grid">
       <div>
         <p class="eyebrow">About Me</p>
-        <h2>I'm a MERN stack developer who ships full-stack apps with clean UI and real deployments, not just tutorials.</h2>
+        <h2>Hi, I'm Junaid - a Full Stack Developer based in Lahore.</h2>
       </div>
       <div class="about-hook-copy">
-        <p>I focus on React frontends, dashboard workflows, REST API structure, MongoDB-backed features, and Vercel deployments that recruiters and clients can actually open.</p>
-        <p>My strongest work is building practical business apps: e-commerce stores, service portals, job portals, booking systems, and admin panels with responsive UI.</p>
+        <p>I build complete MERN stack applications: from React frontends to Node.js backends, MongoDB databases, and Vercel deployments.</p>
+        <p>I've shipped 30+ projects including e-commerce stores, job portals, and role-based dashboards. I'm actively looking for my first professional role where I can contribute from day one.</p>
       </div>
     </div>
   `;
-
-  experience.parentElement?.insertBefore(section, experience);
 }
 
-function addProjectContext() {
+function updateProjects() {
   document.querySelectorAll(".project-card").forEach((card) => {
-    if (card.querySelector(".project-context")) return;
     const title = card.querySelector("h3")?.textContent?.trim();
-    const context = title ? projectContext.get(title) : null;
-    const role = card.querySelector(".project-role");
-    if (!context || !role) return;
+    const guide = title ? projectGuide.get(title) : null;
+    const existing = card.querySelector(".project-context");
+    if (!guide || !existing || existing.dataset.guideApplied === "true") return;
 
-    const block = document.createElement("div");
-    block.className = "project-context";
-    block.innerHTML = `
-      <p><strong>What I built:</strong> ${context.built.replace("What I built: ", "")}</p>
-      <p><strong>What I learned:</strong> ${context.learned.replace("What I learned: ", "")}</p>
+    existing.dataset.guideApplied = "true";
+    existing.innerHTML = `
+      <p><strong>What it is:</strong> ${guide.what}</p>
+      <p><strong>What I built:</strong> ${guide.built}</p>
+      <p><strong>What was challenging:</strong> ${guide.challenge}</p>
+      <p><strong>Stack:</strong> ${guide.stack}</p>
     `;
-
-    role.insertAdjacentElement("afterend", block);
   });
 }
 
-function replaceSkillsSection() {
+function updateSkills() {
   const section = document.getElementById("skills");
-  const grid = section?.querySelector(".skills-grid");
-  if (!section || !grid || grid.dataset.recruiterSkills === "true") return;
+  const grid = section?.querySelector(".skill-level-grid");
+  if (!section || !grid || grid.dataset.guideApplied === "true") return;
 
   const heading = section.querySelector(".section-heading p:last-child");
-  if (heading) {
-    heading.textContent = "Grouped by interview confidence, not every tool I have ever touched.";
-  }
+  setText(heading, "Split by interview confidence: tools I use daily, and tools I have used but am still improving.");
 
-  grid.className = "container skill-level-grid";
-  grid.dataset.recruiterSkills = "true";
+  grid.dataset.guideApplied = "true";
   grid.innerHTML = `
     <article class="skill-level-card">
       <p class="eyebrow">Proficient</p>
-      <h3>Tools I can discuss and use confidently.</h3>
-      <div class="skill-level-list">${proficientSkills.map(skillLink).join("")}</div>
+      <h3>Use daily, can be interviewed on.</h3>
+      <div class="skill-level-list">${proficientSkills.map(skillMarkup).join("")}</div>
     </article>
     <article class="skill-level-card is-familiar">
       <p class="eyebrow">Familiar</p>
-      <h3>Tools I have used in projects or workflow support.</h3>
-      <div class="skill-level-list">${familiarSkills.map(skillLink).join("")}</div>
+      <h3>Used in projects, still learning.</h3>
+      <div class="skill-level-list">${familiarSkills.map(skillMarkup).join("")}</div>
     </article>
   `;
 }
 
-function addFreelanceProof() {
-  const contactPreview = document.querySelector(".contact-preview");
-  if (!contactPreview || document.querySelector(".freelance-proof-section")) return;
-
-  const section = document.createElement("section");
-  section.className = "section freelance-proof-section";
-  section.setAttribute("data-reveal", "true");
-  section.innerHTML = `
-    <div class="container section-heading">
-      <p class="eyebrow">Freelance Proof</p>
-      <h2>Built like client work, with live links and handoff-ready repos.</h2>
-      <p>I do not want to fake testimonials. Instead, this portfolio shows the proof I can stand behind today: live deployments, project screenshots, GitHub repositories, and practical business workflows.</p>
-    </div>
-    <div class="container proof-grid">
-      <article>
-        <strong>30+</strong>
-        <span>project builds completed across practice, academic, and client-style work</span>
-      </article>
-      <article>
-        <strong>4</strong>
-        <span>flagship live demos prepared for recruiter and marketplace review</span>
-      </article>
-      <article>
-        <strong>100%</strong>
-        <span>focused on responsive UI, real deployments, and clear project documentation</span>
-      </article>
-    </div>
-  `;
-
-  contactPreview.parentElement?.insertBefore(section, contactPreview);
-}
-
-function addHireCta() {
-  if (!document.querySelector(".hire-me-sticky")) {
-    const sticky = document.createElement("a");
-    sticky.className = "hire-me-sticky";
-    sticky.href = "mailto:junaidirfan810@gmail.com?subject=Portfolio%20Opportunity%20for%20Junaid";
-    sticky.textContent = "Hire Me";
-    document.body.appendChild(sticky);
+function updateCta() {
+  const header = document.querySelector(".site-header");
+  if (header && !header.querySelector(".availability-badge")) {
+    const badge = document.createElement("a");
+    badge.className = "availability-badge";
+    badge.href = "#/contact";
+    badge.innerHTML = '<span aria-hidden="true"></span>Available for work';
+    const resume = header.querySelector(".resume-link");
+    header.insertBefore(badge, resume || header.lastElementChild);
   }
 
-  const footer = document.querySelector(".site-footer");
-  if (!footer || document.querySelector(".final-hire-section")) return;
-
-  const section = document.createElement("section");
-  section.className = "section final-hire-section";
-  section.innerHTML = `
-    <div class="container final-hire-card">
-      <div>
-        <p class="eyebrow">Let's Talk</p>
-        <h2>Need a junior MERN developer who can ship clean UI and deployed full-stack apps?</h2>
-        <p>Email me directly or open my LinkedIn/GitHub. I keep the next step simple.</p>
+  const cta = document.querySelector(".final-hire-section");
+  if (cta && cta.dataset.guideApplied !== "true") {
+    cta.dataset.guideApplied = "true";
+    cta.innerHTML = `
+      <div class="container final-hire-card">
+        <div>
+          <p class="eyebrow">Let's work together</p>
+          <h2>I'm actively looking for my first professional role as a Full Stack or React Developer.</h2>
+          <p>If you have an opportunity, I'd love to hear from you.</p>
+        </div>
+        <div class="final-hire-actions">
+          <a class="button button-primary" href="mailto:junaidirfan810@gmail.com?subject=Portfolio%20Opportunity%20for%20Junaid">Email Me</a>
+          <a class="button button-ghost" href="https://www.linkedin.com/in/junaid-irfan-ba1027241" target="_blank" rel="noreferrer">LinkedIn</a>
+          <a class="button button-soft" href="https://github.com/Ali-Jun" target="_blank" rel="noreferrer">GitHub</a>
+        </div>
       </div>
-      <div class="final-hire-actions">
-        <a class="button button-primary" href="mailto:junaidirfan810@gmail.com?subject=Portfolio%20Opportunity%20for%20Junaid">Email Junaid</a>
-        <a class="button button-ghost" href="https://www.linkedin.com/in/junaid-irfan-ba1027241" target="_blank" rel="noreferrer">LinkedIn</a>
-        <a class="button button-soft" href="https://github.com/Ali-Jun" target="_blank" rel="noreferrer">GitHub</a>
-      </div>
-    </div>
-  `;
-
-  footer.parentElement?.insertBefore(section, footer);
+    `;
+  }
 }
 
-function updateResumeLinks() {
-  document.querySelectorAll('a[href$="Junaid-Irfan-Resume.pdf"]').forEach((link) => {
-    link.setAttribute("href", `${link.getAttribute("href")}`);
-    if (!link.textContent?.toLowerCase().includes("pdf")) return;
-    link.textContent = link.textContent;
+function updateVisibleCopy() {
+  document.querySelectorAll(".eyebrow").forEach((node) => {
+    if (node.textContent.includes("AI-Driven")) setText(node, "Building Modern MERN Applications");
+  });
+
+  document.querySelectorAll(".service-card h3").forEach((title) => {
+    if (!title.textContent.includes("AI-Assisted")) return;
+    setText(title, "Deployment & Handoff");
+    const copy = title.parentElement?.querySelector("p");
+    setText(copy, "Vercel deployments, GitHub repositories, clean project documentation, and handoff-ready portfolio presentation.");
+  });
+
+  document.querySelectorAll(".tech-orbit-node").forEach((node) => {
+    const label = node.querySelector("span");
+    if (!label || label.textContent !== "AI Tools") return;
+    setText(label, "REST APIs");
+    node.setAttribute("href", "https://developer.mozilla.org/en-US/docs/Glossary/REST");
+    const img = node.querySelector("img");
+    if (img) img.setAttribute("src", "https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/swagger.svg");
   });
 }
 
-function applyRecruiterFixes() {
-  addAboutHook();
-  addProjectContext();
-  replaceSkillsSection();
-  addFreelanceProof();
-  addHireCta();
-  updateResumeLinks();
+function applyGuide() {
+  updateMeta();
+  updateAbout();
+  updateProjects();
+  updateSkills();
+  updateCta();
+  updateVisibleCopy();
+}
+
+function scheduleGuideUpdates() {
+  const timers = [0, 80, 240, 600].map((delay) => window.setTimeout(applyGuide, delay));
+  return () => timers.forEach((timer) => window.clearTimeout(timer));
 }
 
 export default function App() {
   useEffect(() => {
-    applyRecruiterFixes();
-
-    const observer = new MutationObserver(applyRecruiterFixes);
-    observer.observe(document.documentElement, {
-      childList: true,
-      subtree: true,
-    });
-
-    return () => observer.disconnect();
+    let cleanup = scheduleGuideUpdates();
+    const onRouteChange = () => {
+      cleanup();
+      cleanup = scheduleGuideUpdates();
+    };
+    window.addEventListener("hashchange", onRouteChange);
+    return () => {
+      cleanup();
+      window.removeEventListener("hashchange", onRouteChange);
+    };
   }, []);
 
-  return <AppRecruiterRuntime />;
+  return <AppGuideBase />;
 }
