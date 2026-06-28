@@ -1,13 +1,21 @@
+import { resolve } from "node:path";
 import { defineConfig } from "vite";
-import react from "@vitejs/plugin-react";
 
 const isVercel = process.env.VERCEL === "1";
 
 export default defineConfig({
   base: isVercel ? "/" : "/Portfolio/",
-  plugins: [react()],
   build: {
     outDir: isVercel ? "dist" : "docs",
-    emptyOutDir: true
+    emptyOutDir: true,
+    rollupOptions: {
+      input: {
+        main: resolve(__dirname, "index.html"),
+        about: resolve(__dirname, "about.html"),
+        skills: resolve(__dirname, "skills.html"),
+        projects: resolve(__dirname, "projects.html"),
+        experience: resolve(__dirname, "experience.html")
+      }
+    }
   }
 });

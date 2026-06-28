@@ -4,600 +4,22 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Junaid Irfan | Full Stack MERN Developer</title>
-    <meta name="description" content="Junaid Irfan is a MERN stack developer building full-stack apps with clean UI, real deployments, dashboards, and AI-powered features." />
-    <style>
-      :root {
-        --bg: #FAFAF8;
-        --surface: #FFFFFF;
-        --text-primary: #1C1C1E;
-        --text-secondary: #6B6B6F;
-        --text-muted: #A0A0A4;
-        --accent: #2563EB;
-        --border: #E8E2D9;
-        --tag-ai-bg: #EAF1FF;
-        --tag-ai-text: #1D4ED8;
-        --tag-ui-bg: #FAECE7;
-        --tag-ui-text: #993C1D;
-        --tag-default-bg: #F0EBE3;
-        --tag-default-text: #6B6B6F;
-        --tag-full-bg: #EEEDFE;
-        --tag-full-text: #3C3489;
-      }
-
-      * {
-        box-sizing: border-box;
-      }
-
-      html {
-        scroll-behavior: smooth;
-      }
-
-      body {
-        margin: 0;
-        background: var(--bg);
-        color: var(--text-primary);
-        font-family: system-ui, -apple-system, sans-serif;
-        font-size: 13px;
-        line-height: 1.6;
-      }
-
-      a {
-        color: inherit;
-        text-decoration: none;
-      }
-
-      .navbar {
-        position: sticky;
-        top: 0;
-        z-index: 10;
-        height: 50px;
-        background: var(--surface);
-        border-bottom: 1px solid var(--border);
-      }
-
-      .nav-inner {
-        display: grid;
-        grid-template-columns: auto 1fr auto;
-        align-items: center;
-        gap: 18px;
-        max-width: 660px;
-        height: 50px;
-        margin: 0 auto;
-        padding: 0 40px;
-      }
-
-      .logo {
-        color: var(--text-primary);
-        font-size: 14px;
-        font-weight: 800;
-        letter-spacing: -0.3px;
-      }
-
-      .logo span {
-        color: var(--accent);
-      }
-
-      .nav-links {
-        display: flex;
-        justify-content: center;
-        gap: 16px;
-      }
-
-      .nav-links a {
-        color: var(--text-secondary);
-        font-size: 12px;
-      }
-
-      .talk-button {
-        border-radius: 20px;
-        background: var(--accent);
-        color: #fff;
-        padding: 6px 16px;
-        font-size: 12px;
-        font-weight: 700;
-        white-space: nowrap;
-      }
-
-      section {
-        border-bottom: 1px solid var(--border);
-      }
-
-      .wrap {
-        max-width: 660px;
-        margin: 0 auto;
-        padding: 40px;
-      }
-
-      .section-label {
-        margin: 0 0 10px;
-        color: var(--text-muted);
-        font-size: 10px;
-        font-weight: 700;
-        letter-spacing: 1.4px;
-        line-height: 1.2;
-        text-transform: uppercase;
-      }
-
-      .section-heading {
-        margin: 0 0 18px;
-        color: var(--text-primary);
-        font-size: 22px;
-        font-weight: 800;
-        letter-spacing: -0.4px;
-        line-height: 1.18;
-      }
-
-      .hero-grid {
-        display: grid;
-        grid-template-columns: minmax(0, 1fr) 120px;
-        gap: 22px;
-        align-items: center;
-      }
-
-      .hero-eyebrow {
-        margin: 0 0 14px;
-        color: var(--accent);
-        font-size: 10px;
-        font-weight: 800;
-        letter-spacing: 1.4px;
-        text-transform: uppercase;
-      }
-
-      .hero-eyebrow::before {
-        content: "";
-        display: inline-block;
-        width: 18px;
-        height: 2px;
-        margin-right: 8px;
-        background: var(--accent);
-        vertical-align: middle;
-      }
-
-      h1 {
-        margin: 0;
-        color: var(--text-primary);
-        font-size: 40px;
-        font-weight: 800;
-        letter-spacing: -1.5px;
-        line-height: 1.05;
-      }
-
-      h1 span {
-        color: var(--accent);
-      }
-
-      .subtitle {
-        margin: 12px 0 0;
-        color: var(--text-secondary);
-        font-size: 18px;
-        line-height: 1.35;
-      }
-
-      .cursor {
-        display: inline-block;
-        width: 2px;
-        height: 18px;
-        background: #2563EB;
-        margin-left: 2px;
-        vertical-align: middle;
-        animation: blink 1s step-end infinite;
-      }
-
-      @keyframes blink {
-        50% {
-          opacity: 0;
-        }
-      }
-
-      .bio {
-        max-width: 520px;
-        margin: 18px 0 0;
-        color: var(--text-secondary);
-        font-size: 13.5px;
-        line-height: 1.75;
-      }
-
-      strong {
-        color: var(--text-primary);
-        font-weight: 750;
-      }
-
-      .profile-card {
-        border: 1px solid var(--border);
-        border-radius: 10px;
-        background: var(--surface);
-        padding: 8px;
-      }
-
-      .profile-card img {
-        display: block;
-        width: 100%;
-        aspect-ratio: 1;
-        border-radius: 50%;
-        object-fit: cover;
-      }
-
-      .profile-card p {
-        margin: 8px 0 0;
-        color: var(--text-secondary);
-        font-size: 11px;
-        line-height: 1.35;
-        text-align: center;
-      }
-
-      .actions,
-      .socials {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 8px;
-      }
-
-      .actions {
-        margin-top: 22px;
-      }
-
-      .socials {
-        margin-top: 10px;
-      }
-
-      .button {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        border-radius: 7px;
-        padding: 9px 18px;
-        font-size: 12px;
-        font-weight: 600;
-      }
-
-      .button-primary {
-        background: var(--text-primary);
-        color: #fff;
-      }
-
-      .button-secondary {
-        border: 1px solid var(--border);
-        background: transparent;
-        color: var(--text-primary);
-      }
-
-      .social-pill {
-        border: 1px solid var(--border);
-        border-radius: 20px;
-        padding: 6px 12px;
-        color: var(--text-secondary);
-        font-size: 11px;
-      }
-
-      .skills-grid {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 10px;
-      }
-
-      .card,
-      .project-card,
-      .contact-card {
-        background: var(--surface);
-        border: 1px solid var(--border);
-        border-radius: 10px;
-      }
-
-      .card {
-        padding: 13px;
-      }
-
-      .card h3 {
-        margin: 0 0 8px;
-        color: var(--text-primary);
-        font-size: 11px;
-        font-weight: 700;
-      }
-
-      .tags {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 4px;
-      }
-
-      .tag {
-        border-radius: 3px;
-        background: var(--tag-default-bg);
-        color: var(--tag-default-text);
-        padding: 2px 6px;
-        font-family: "Courier New", monospace;
-        font-size: 10px;
-        line-height: 1.4;
-      }
-
-      .tag.ai,
-      .badge.mern {
-        background: var(--tag-ai-bg);
-        color: var(--tag-ai-text);
-      }
-
-      .tag.frontend,
-      .badge.role {
-        background: var(--tag-ui-bg);
-        color: var(--tag-ui-text);
-      }
-
-      .badge.full {
-        background: var(--tag-full-bg);
-        color: var(--tag-full-text);
-      }
-
-      .project-card {
-        display: flex;
-        justify-content: space-between;
-        gap: 18px;
-        margin-bottom: 10px;
-        padding: 16px 18px;
-      }
-
-      .project-main {
-        min-width: 0;
-      }
-
-      .badge {
-        display: inline-flex;
-        width: fit-content;
-        margin-bottom: 8px;
-        border-radius: 10px;
-        padding: 2px 7px;
-        font-size: 9px;
-        font-weight: 700;
-        letter-spacing: 0.6px;
-        line-height: 1.35;
-        text-transform: uppercase;
-      }
-
-      .project-card h3 {
-        margin: 0 0 5px;
-        color: var(--text-primary);
-        font-size: 13px;
-        font-weight: 700;
-      }
-
-      .project-card p {
-        margin: 0 0 10px;
-        color: var(--text-secondary);
-        font-size: 11.5px;
-        line-height: 1.55;
-      }
-
-      .project-actions {
-        display: flex;
-        flex: 0 0 auto;
-        gap: 6px;
-        align-items: flex-start;
-      }
-
-      .mini-button {
-        display: inline-flex;
-        border: 1px solid var(--border);
-        border-radius: 5px;
-        padding: 4px 10px;
-        color: var(--text-secondary);
-        font-size: 10px;
-        font-weight: 650;
-        line-height: 1.4;
-      }
-
-      .more-projects {
-        display: flex;
-        justify-content: space-between;
-        gap: 12px;
-        border: 1px solid var(--border);
-        border-radius: 7px;
-        background: #F5F2ED;
-        padding: 10px 14px;
-      }
-
-      .more-projects span {
-        color: var(--text-muted);
-        font-size: 11.5px;
-      }
-
-      .more-projects a {
-        color: var(--accent);
-        font-size: 11px;
-        font-weight: 600;
-        white-space: nowrap;
-      }
-
-      .timeline-row {
-        display: grid;
-        grid-template-columns: 80px 1fr;
-        gap: 14px;
-        border-bottom: 1px solid var(--border);
-        padding: 15px 0;
-      }
-
-      .timeline-row:last-child {
-        border-bottom: 0;
-      }
-
-      .timeline-year {
-        color: var(--text-muted);
-        font-family: "Courier New", monospace;
-        font-size: 10px;
-        line-height: 1.7;
-      }
-
-      .active-pill {
-        display: inline-flex;
-        border-radius: 8px;
-        background: var(--tag-ai-bg);
-        color: var(--tag-ai-text);
-        padding: 1px 7px;
-        font-size: 9px;
-        font-weight: 600;
-      }
-
-      .timeline-role {
-        margin: 6px 0 1px;
-        color: var(--text-primary);
-        font-size: 13px;
-        font-weight: 700;
-      }
-
-      .timeline-company {
-        color: var(--accent);
-        font-size: 11px;
-        font-weight: 600;
-      }
-
-      .timeline-desc {
-        margin: 5px 0 0;
-        color: var(--text-secondary);
-        font-size: 11.5px;
-        line-height: 1.6;
-      }
-
-      .strengths {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 7px;
-      }
-
-      .chip,
-      .contact-chip {
-        border: 1px solid var(--border);
-        border-radius: 20px;
-        background: var(--surface);
-        color: var(--text-secondary);
-        padding: 6px 13px;
-        font-size: 11.5px;
-      }
-
-      .contact-card {
-        border-radius: 12px;
-        padding: 28px;
-        text-align: center;
-      }
-
-      .avatar {
-        display: grid;
-        width: 46px;
-        height: 46px;
-        margin: 0 auto 12px;
-        place-items: center;
-        border-radius: 50%;
-        background: var(--tag-ai-bg);
-        color: var(--tag-ai-text);
-        font-size: 14px;
-        font-weight: 700;
-        overflow: hidden;
-      }
-
-      .avatar img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-      }
-
-      .contact-card h2 {
-        margin: 0;
-        color: var(--text-primary);
-        font-size: 18px;
-        font-weight: 800;
-      }
-
-      .contact-card p {
-        max-width: 420px;
-        margin: 9px auto 0;
-        color: var(--text-secondary);
-        font-size: 12px;
-        line-height: 1.6;
-      }
-
-      .email {
-        display: inline-flex;
-        margin-top: 12px;
-        color: var(--accent);
-        font-size: 13px;
-        font-weight: 600;
-      }
-
-      .contact-chips {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: 7px;
-        margin-top: 15px;
-      }
-
-      footer {
-        background: var(--text-primary);
-        color: var(--text-secondary);
-        padding: 16px 40px;
-        text-align: center;
-        font-size: 11px;
-      }
-
-      footer span {
-        color: var(--accent);
-      }
-
-      @media (max-width: 680px) {
-        .nav-inner {
-          grid-template-columns: auto auto;
-          padding: 0 18px;
-        }
-
-        .nav-links {
-          display: none;
-        }
-
-        .wrap {
-          padding: 34px 22px;
-        }
-
-        .hero-grid {
-          grid-template-columns: 1fr;
-        }
-
-        .profile-card {
-          width: 120px;
-        }
-
-        .skills-grid {
-          grid-template-columns: 1fr;
-        }
-
-        .project-card,
-        .more-projects {
-          flex-direction: column;
-        }
-
-        .project-actions {
-          width: 100%;
-        }
-
-        .mini-button {
-          flex: 1;
-          justify-content: center;
-        }
-
-        .timeline-row {
-          grid-template-columns: 1fr;
-          gap: 5px;
-        }
-      }
-    </style>
+    <meta name="description" content="Junaid Irfan builds MERN stack apps with clean UI, real deployments, dashboards, and AI-powered features." />
+    <script type="module" crossorigin src="/Portfolio/assets/portfolio-DuHRorB6.js"></script>
+    <link rel="stylesheet" crossorigin href="/Portfolio/assets/portfolio-DGI_RC9x.css">
   </head>
   <body>
     <header class="navbar">
       <div class="nav-inner">
-        <a class="logo" href="#about">junaid<span>.dev</span></a>
-        <nav class="nav-links" aria-label="Primary navigation">
-          <a href="#about">About</a>
-          <a href="#skills">Skills</a>
-          <a href="#projects">Projects</a>
-          <a href="#experience">Experience</a>
+        <a class="logo" href="index.html"><img src="/Portfolio/assets/junaid-profile-YmW7U4yh.png" alt="Junaid Irfan" />junaid<span>.dev</span></a>
+        <nav class="nav-links" data-nav-links aria-label="Primary navigation">
+          <a href="about.html" data-nav-link>About</a>
+          <a href="skills.html" data-nav-link>Skills</a>
+          <a href="projects.html" data-nav-link>Projects</a>
+          <a href="experience.html" data-nav-link>Experience</a>
         </nav>
         <a class="talk-button" href="mailto:junaidirfan810@gmail.com?subject=Portfolio%20Opportunity%20for%20Junaid">Let's talk</a>
+        <button class="theme-toggle" type="button" data-theme-toggle aria-label="Switch to dark theme">Dark</button><button class="menu-button" type="button" data-menu-button aria-expanded="false">Menu</button>
       </div>
     </header>
 
@@ -613,7 +35,7 @@
                 I'm a <strong>MERN stack developer</strong> who ships <strong>full-stack apps with clean UI and real deployments</strong>, not just tutorials. I build React dashboards, role-based portals, e-commerce workflows, REST APIs, and AI-powered features with OpenAI, Claude, Codex, and DeepSeek.
               </p>
               <div class="actions">
-                <a class="button button-primary" href="#projects">View Projects</a>
+                <a class="button button-primary" href="projects.html">View Projects</a>
                 <a class="button button-secondary" href="assets/Junaid-Irfan-Resume.docx" download>Download Resume</a>
               </div>
               <div class="socials">
@@ -638,43 +60,30 @@
             <article class="card">
               <h3>Frontend</h3>
               <div class="tags">
-                <span class="tag frontend">React.js</span>
-                <span class="tag frontend">JavaScript</span>
-                <span class="tag frontend">HTML5</span>
-                <span class="tag frontend">CSS3</span>
-                <span class="tag frontend">Tailwind</span>
-                <span class="tag frontend">Bootstrap</span>
+                <span class="tag frontend"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" alt="" />React.js</span>
+                <span class="tag frontend"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="" />JavaScript</span>
+                <span class="tag frontend"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" alt="" />HTML5</span>
+                <span class="tag frontend"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" alt="" />CSS3</span>
+                <span class="tag frontend"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg" alt="" />Tailwind</span>
               </div>
             </article>
             <article class="card">
               <h3>Backend</h3>
               <div class="tags">
-                <span class="tag">Node.js</span>
-                <span class="tag">Express.js</span>
+                <span class="tag"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" alt="" />Node.js</span>
+                <span class="tag"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original.svg" alt="" />Express.js</span>
                 <span class="tag">REST APIs</span>
                 <span class="tag">JWT</span>
-                <span class="tag">bcrypt.js</span>
               </div>
             </article>
             <article class="card">
               <h3>Database &amp; Tools</h3>
               <div class="tags">
-                <span class="tag">MongoDB</span>
-                <span class="tag">MySQL</span>
-                <span class="tag">Git</span>
-                <span class="tag">GitHub</span>
+                <span class="tag"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg" alt="" />MongoDB</span>
+                <span class="tag"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" alt="" />MySQL</span>
+                <span class="tag"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" alt="" />Git</span>
+                <span class="tag"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt="" />GitHub</span>
                 <span class="tag">Vercel</span>
-                <span class="tag">Figma</span>
-              </div>
-            </article>
-            <article class="card">
-              <h3>AI Workflow</h3>
-              <div class="tags">
-                <span class="tag ai">OpenAI API</span>
-                <span class="tag ai">Claude API</span>
-                <span class="tag ai">Codex</span>
-                <span class="tag ai">DeepSeek</span>
-                <span class="tag ai">ChatGPT</span>
               </div>
             </article>
           </div>
@@ -685,19 +94,15 @@
         <div class="wrap">
           <p class="section-label">Projects</p>
           <h2 class="section-heading">Selected work with live deployments.</h2>
-
           <article class="project-card">
             <div class="project-main">
               <span class="badge mern">MERN</span>
               <h3>Modern Animated MERN E-Commerce Store</h3>
-              <p>Premium men's fashion store with animated storefront, product catalog, cart, checkout, user dashboard, and admin controls for orders, products, banners, coupons, stock, and profit tracking.</p>
+              <p>Premium men's fashion store with storefront, product catalog, cart, checkout, user dashboard, and admin controls.</p>
               <div class="tags">
-                <span class="tag frontend">React</span>
-                <span class="tag frontend">Vite</span>
-                <span class="tag">Node.js</span>
-                <span class="tag">Express</span>
-                <span class="tag">MongoDB</span>
-                <span class="tag">JWT</span>
+                <span class="tag frontend"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" alt="" />React</span>
+                <span class="tag"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" alt="" />Node</span>
+                <span class="tag"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg" alt="" />MongoDB</span>
               </div>
             </div>
             <div class="project-actions">
@@ -705,62 +110,18 @@
               <a class="mini-button" href="https://github.com/Ali-Jun" target="_blank" rel="noreferrer">Code</a>
             </div>
           </article>
-
           <article class="project-card">
             <div class="project-main">
               <span class="badge role">Role-based</span>
               <h3>Auto Tech Management System</h3>
-              <p>Vehicle workshop portal with customer booking, admin dashboards, mechanic assignment, invoices, PKR payments, feedback, reports, and role-based workspace flows.</p>
-              <div class="tags">
-                <span class="tag frontend">React</span>
-                <span class="tag">Role Dashboards</span>
-                <span class="tag">PKR Payments</span>
-                <span class="tag">Vercel</span>
-              </div>
+              <p>Vehicle workshop portal with service booking, dashboards, mechanic assignment, invoices, PKR payments, and reports.</p>
+              <div class="tags"><span class="tag frontend">React</span><span class="tag">Dashboards</span><span class="tag">Vercel</span></div>
             </div>
             <div class="project-actions">
               <a class="mini-button" href="https://autotechmanagementsystem.vercel.app" target="_blank" rel="noreferrer">Live</a>
               <a class="mini-button" href="https://github.com/Ali-Jun/AutoTechmanagementsystem" target="_blank" rel="noreferrer">Code</a>
             </div>
           </article>
-
-          <article class="project-card">
-            <div class="project-main">
-              <span class="badge mern">MERN</span>
-              <h3>HireHub Job Portal</h3>
-              <p>Job portal concept for role discovery, company listings, search flows, employer pipelines, candidate applications, and authentication-ready product structure.</p>
-              <div class="tags">
-                <span class="tag frontend">React</span>
-                <span class="tag">Node.js</span>
-                <span class="tag">Express</span>
-                <span class="tag">MongoDB</span>
-                <span class="tag">JWT</span>
-              </div>
-            </div>
-            <div class="project-actions">
-              <a class="mini-button" href="https://lnkd.in/da95uY8H" target="_blank" rel="noreferrer">Live</a>
-              <a class="mini-button" href="https://lnkd.in/dUQmbrYE" target="_blank" rel="noreferrer">Code</a>
-            </div>
-          </article>
-
-          <article class="project-card">
-            <div class="project-main">
-              <span class="badge full">Full Stack</span>
-              <h3>Task Manager</h3>
-              <p>Clean productivity dashboard with task counters, board filters, priority mix, progress tracking, search, sorting, and a SaaS-style workspace layout.</p>
-              <div class="tags">
-                <span class="tag frontend">React</span>
-                <span class="tag frontend">JavaScript</span>
-                <span class="tag">Dashboard UI</span>
-                <span class="tag">Workflow</span>
-              </div>
-            </div>
-            <div class="project-actions">
-              <a class="mini-button" href="https://lnkd.in/dnVkPFCK" target="_blank" rel="noreferrer">Live</a>
-              <a class="mini-button" href="https://github.com/Ali-Jun/Task-Manager" target="_blank" rel="noreferrer">Code</a>
-            </div>
-          </article>
-
           <div class="more-projects">
             <span>30+ more projects available on GitHub</span>
             <a href="https://github.com/Ali-Jun" target="_blank" rel="noreferrer">View all &rarr;</a>
@@ -789,14 +150,6 @@
               <p class="timeline-desc">Worked on 30+ academic, practice, and client-style projects, including e-commerce stores, dashboards, job portals, service-management systems, and deployment-ready web apps.</p>
             </div>
           </div>
-          <div class="timeline-row">
-            <div class="timeline-year">2020-2025</div>
-            <div>
-              <div class="timeline-role">BS Software Engineering</div>
-              <div class="timeline-company">Lahore Leads University</div>
-              <p class="timeline-desc">Studied software engineering foundations including Data Structures &amp; Algorithms, Database Systems, Web Technologies, Software Engineering Principles, and UI/UX Design.</p>
-            </div>
-          </div>
         </div>
       </section>
 
@@ -805,13 +158,7 @@
           <p class="section-label">Strengths</p>
           <h2 class="section-heading">Reliable habits for junior roles and client work.</h2>
           <div class="strengths">
-            <span class="chip">Client Communication</span>
-            <span class="chip">Fast Learning</span>
-            <span class="chip">Problem Solving</span>
-            <span class="chip">Team Collaboration</span>
-            <span class="chip">Scope Clarity</span>
-            <span class="chip">Adaptability</span>
-            <span class="chip">Attention to Detail</span>
+            <span class="chip">Client Communication</span><span class="chip">Fast Learning</span><span class="chip">Problem Solving</span><span class="chip">Team Collaboration</span><span class="chip">Scope Clarity</span><span class="chip">Adaptability</span>
           </div>
         </div>
       </section>
@@ -821,7 +168,7 @@
           <div class="contact-card">
             <div class="avatar"><img src="/Portfolio/assets/junaid-profile-YmW7U4yh.png" alt="Junaid Irfan" /></div>
             <h2>Let's build something clean and useful.</h2>
-            <p>Open to junior Full Stack, React, MERN, dashboard, portfolio, and freelance web projects. Send a short message with your project type, pages, features, and deadline.</p>
+            <p>Open to junior Full Stack, React, MERN, dashboard, portfolio, and freelance web projects.</p>
             <a class="email" href="mailto:junaidirfan810@gmail.com">junaidirfan810@gmail.com</a>
             <div class="contact-chips">
               <a class="contact-chip" href="mailto:junaidirfan810@gmail.com">Gmail</a>
@@ -833,8 +180,6 @@
       </section>
     </main>
 
-    <footer>
-      Built by <span>Junaid Irfan</span> - Full Stack MERN Developer.
-    </footer>
+    <footer>Built by <span>Junaid Irfan</span> - Full Stack MERN Developer.</footer>
   </body>
 </html>
