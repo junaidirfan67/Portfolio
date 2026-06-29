@@ -1,51 +1,77 @@
 # Junaid Irfan Portfolio
 
-A recruiter-friendly portfolio built with React, Vite, CSS, and JavaScript.
+A clean, recruiter-friendly portfolio for Junaid Irfan, a Lahore-based Full Stack MERN Developer building deployed dashboards, e-commerce projects, role-based portals, and AI-assisted web applications.
 
 Live site: https://ali-jun.github.io/Portfolio/
 
-## Files
+## Highlights
 
-- `src/App.jsx` - React portfolio app with Home, About, Resume, and Contact views
-- `src/main.jsx` - React entry point
-- `index.html` - Vite app shell
-- `about.html`, `contact.html`, `resume.html` - compatibility redirects to the React routes
-- `style.css` - responsive light/dark theme
-- `public/` - assets copied into the production build
-- `docs/` - production build served by GitHub Pages
-- `images/developer-workspace.png` - generated hero image
-- `images/junaid-profile.png` - profile photo used in the hero
-- `images/hirehub-project.png` - HireHub project screenshot
-- `images/task-manager-project.png` - Task Manager project screenshot
-- `assets/Junaid-Irfan-Resume.pdf` - generated resume PDF
-- `scripts/generate-resume-pdf.mjs` - regenerates the resume PDF in `assets/` and `public/assets/`
+- Based in Lahore, Pakistan - open to remote junior roles and freelance projects
+- Separate About, Skills, Projects, and Experience pages
+- Light/dark mode with saved preference
+- Profile photo logo and responsive mobile navigation
+- Project screenshots, live links, source links, and outcome-focused descriptions
+- Resume download served as PDF, not DOCX
+- Static HTML, CSS, and JavaScript built with Vite
 
-The homepage includes an icon-only moving skills banner using high-quality Devicon and Simple Icons SVGs for MERN, full stack tools, and AI tools: MongoDB, Express, React, Node.js, HTML5, CSS3, JavaScript, Tailwind CSS, Bootstrap, PHP, MySQL, Git, GitHub, Figma, VS Code, Vercel, Claude, ChatGPT, Codex, and DeepSeek.
+## Featured Projects
 
-The navbar logo uses Junaid's profile photo. Light mode uses a blue theme, and dark mode uses a deep dark-blue theme.
+### Modern Animated MERN E-Commerce Store
 
-Skill icons and matching skill chips link to their official websites or documentation.
+![Modern Store screenshot](images/modern-store-home.png)
 
-Current profile links:
+Premium menswear e-commerce store with product catalog, cart, checkout, JWT-ready auth flow, user dashboard, and admin dashboard for products, categories, orders, sales, coupons, stock, banners, profit/loss, returns, and notifications.
 
-- GitHub: `https://github.com/Ali-Jun`
-- LinkedIn: `https://www.linkedin.com/in/junaid-irfan-ba1027241`
+Live: https://modern-store-e-commerce-client.vercel.app
 
-Featured projects: Auto Tech Management System, HireHub Job Portal, Task Manager Application, and Time-Off Microservice.
+### Auto Tech Management System
 
-## Development
+![Auto Tech dashboard screenshot](images/autotech-admin-dashboard.png)
 
-Install dependencies and run the React dev server:
+React vehicle service portal with role-based customer/admin dashboards, service booking, booking management, mechanic assignment, invoices, PKR payments, feedback, reports, and live Vercel deployment.
+
+Live: https://autotechmanagementsystem.vercel.app  
+Source: https://github.com/Ali-Jun/AutoTechmanagementsystem
+
+### HireHub Job Portal
+
+![HireHub screenshot](images/hirehub-project.png)
+
+MERN job portal concept with job search, location filtering, featured roles, employer pipeline UI, and responsive talent workspace screens.
+
+Live: https://lnkd.in/da95uY8H  
+Source: https://lnkd.in/dUQmbrYE
+
+### Task Manager
+
+![Task Manager screenshot](images/task-manager-project.png)
+
+Productivity dashboard with task creation, status views, priority filters, progress tracking, task counters, board controls, and a clean admin-style layout.
+
+Live: https://lnkd.in/dnVkPFCK  
+Source: https://github.com/Ali-Jun/Task-Manager
+
+## Tech Stack
+
+HTML5, CSS3, JavaScript, React.js, Tailwind CSS, Node.js, Express.js, MongoDB, MySQL, Git, GitHub, Vercel, OpenAI, Claude, Codex, and DeepSeek.
+
+## Local Setup
 
 ```bash
 npm install
 npm run dev
 ```
 
-Build for GitHub Pages:
+## Build
 
 ```bash
 npm run build
 ```
 
-The live site is deployed from `main/docs` on GitHub Pages.
+The GitHub Pages build is generated in `docs/`. The Vercel build is generated in `dist/` when `VERCEL=1` is set.
+
+## Contact
+
+Email: junaidirfan810@gmail.com  
+LinkedIn: https://www.linkedin.com/in/junaid-irfan-ba1027241  
+GitHub: https://github.com/Ali-Jun
