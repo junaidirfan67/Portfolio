@@ -7,7 +7,7 @@ Live site: https://ali-jun.github.io/Portfolio/
 ## Highlights
 
 - Based in Lahore, Pakistan - open to remote junior roles and freelance projects
-- Separate About, Skills, Projects, and Experience pages
+- Separate About, Skills, Projects, Experience, and Education pages
 - Light/dark mode with saved preference
 - Profile photo logo and responsive mobile navigation
 - Project screenshots, live links, source links, and outcome-focused descriptions

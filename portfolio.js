@@ -57,3 +57,23 @@ document.querySelectorAll("[data-nav-link]").forEach((link) => {
     link.classList.add("is-active");
   }
 });
+
+const revealItems = document.querySelectorAll("section:not(.hero-section), .project-card, .card, .timeline-row, .contact-card");
+
+if ("IntersectionObserver" in window) {
+  revealItems.forEach((item) => item.classList.add("reveal"));
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("is-visible");
+          observer.unobserve(entry.target);
+        }
+      });
+    },
+    { threshold: 0.14 }
+  );
+  revealItems.forEach((item) => observer.observe(item));
+} else {
+  revealItems.forEach((item) => item.classList.add("is-visible"));
+}
