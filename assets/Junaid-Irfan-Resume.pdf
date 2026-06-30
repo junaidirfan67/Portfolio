@@ -15,7 +15,7 @@ endobj
 << /Type /Font /Subtype /Type1 /BaseFont /Helvetica-Bold >>
 endobj
 6 0 obj
-<< /Length 3898 >>
+<< /Length 3934 >>
 stream
 0.08 0.13 0.11 rg
 54 666 504 1.2 re f
@@ -25,8 +25,8 @@ stream
 BT /F2 26 Tf 54 742 Td (Junaid Irfan) Tj ET
 BT /F1 12.2 Tf 54 720 Td (Full Stack Developer | MERN Stack Developer | AI-Driven Applications) Tj ET
 BT /F1 9.3 Tf 54 704 Td (Phone: 0320-6304078 | Email: junaidirfan810@gmail.com) Tj ET
-BT /F1 9.3 Tf 54 691 Td (LinkedIn: linkedin.com/in/junaid-irfan-ba1027241 | GitHub: github.com/Ali-Jun) Tj ET
-BT /F1 9.3 Tf 54 678 Td (Portfolio: https://ali-jun.github.io/Portfolio/) Tj ET
+BT /F1 9.3 Tf 54 691 Td (LinkedIn: linkedin.com/in/junaid-irfan-ba1027241 | GitHub: github.com/junaidirfan67) Tj ET
+BT /F1 9.3 Tf 54 678 Td (Portfolio: https://junaid-portfolio-two-phi.vercel.app/) Tj ET
 BT /F2 13 Tf 54 652 Td (Professional Summary) Tj ET
 BT /F1 9.2 Tf 54 634 Td (Building modern & AI-driven applications with MERN apps, React interfaces, dashboards, and freelance projects.) Tj ET
 BT /F1 9.2 Tf 54 622 Td (Worked on 30+ projects across e-commerce stores, role-based dashboards, booking flows, job portals,) Tj ET
@@ -51,10 +51,10 @@ BT /F1 8.2 Tf 64 334 Td (- Premium menswear store with catalog, cart, checkout, 
 BT /F1 8.3 Tf 64 322 Td (Live: modern-store-e-commerce-client.vercel.app) Tj ET
 BT /F2 9.4 Tf 54 304 Td (Auto Tech Management System | React.js, role-based dashboards, Vercel) Tj ET
 BT /F1 8.3 Tf 64 292 Td (- Vehicle service portal with booking, mechanic assignment, invoices, PKR payments, feedback, and reports.) Tj ET
-BT /F1 8 Tf 64 280 Td (Live: autotechmanagementsystem.vercel.app | Code: github.com/Ali-Jun/AutoTechmanagementsystem) Tj ET
+BT /F1 8 Tf 64 280 Td (Live: autotechmanagementsystem.vercel.app | Code: github.com/junaidirfan67/AutoTechmanagementsystem) Tj ET
 BT /F2 9.4 Tf 54 262 Td (HireHub Job Portal | React, Node.js, Express, MongoDB, JWT) Tj ET
 BT /F1 8.3 Tf 64 250 Td (- MERN job portal concept with candidate/employer auth, job search, applications, and protected dashboards.) Tj ET
-BT /F1 8.3 Tf 64 238 Td (Live: lnkd.in/da95uY8H | Code: lnkd.in/dUQmbrYE) Tj ET
+BT /F1 8.3 Tf 64 238 Td (Live: lnkd.in/da95uY8H | Code: github.com/junaidirfan67/hirehub) Tj ET
 BT /F2 13 Tf 54 214 Td (Education) Tj ET
 BT /F2 9.4 Tf 54 196 Td (BS Software Engineering, Lahore Leads University) Tj ET
 BT /F1 8.3 Tf 54 184 Td (Coursework: Data Structures & Algorithms, Database Systems, Software Engineering, Web Technologies, UI/UX) Tj ET
@@ -74,5 +74,5 @@ xref
 trailer
 << /Size 7 /Root 1 0 R >>
 startxref
-4346
+4382
 %%EOF

@@ -1118,3 +1118,313 @@ h1 span {
     grid-template-columns: 1fr;
   }
 }
+/* Modern portfolio card polish */
+.social-pill,
+.contact-chip {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  font-weight: 700;
+}
+
+.social-pill img,
+.contact-chip img {
+  width: 14px;
+  height: 14px;
+  flex: 0 0 14px;
+  object-fit: contain;
+}
+
+.social-pill:hover,
+.contact-chip:hover,
+.mini-button:hover {
+  border-color: color-mix(in srgb, var(--accent) 46%, var(--border));
+  color: var(--accent);
+  transform: translateY(-1px);
+}
+
+.skills-grid {
+  gap: 16px;
+}
+
+.skills-grid .card {
+  position: relative;
+  min-height: 178px;
+  overflow: hidden;
+  border-radius: 18px;
+  padding: 24px;
+  background:
+    linear-gradient(145deg, color-mix(in srgb, var(--surface) 96%, var(--accent)), var(--surface)),
+    var(--surface);
+  box-shadow: 0 22px 58px rgba(15, 23, 42, 0.08);
+  transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease;
+}
+
+.skills-grid .card::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto;
+  height: 3px;
+  background: linear-gradient(90deg, var(--accent), transparent 72%);
+}
+
+.skills-grid .card::after {
+  content: "";
+  position: absolute;
+  right: -36px;
+  top: -36px;
+  width: 112px;
+  height: 112px;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--accent) 10%, transparent);
+  pointer-events: none;
+}
+
+.skills-grid .card:hover {
+  border-color: color-mix(in srgb, var(--accent) 38%, var(--border));
+  box-shadow: var(--shadow);
+  transform: translateY(-4px);
+}
+
+.skills-grid .card h3 {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 14px;
+  font-size: 15px;
+  font-weight: 850;
+  letter-spacing: -0.2px;
+}
+
+.skills-grid .card h3::before {
+  content: "";
+  width: 34px;
+  height: 34px;
+  flex: 0 0 34px;
+  border: 1px solid color-mix(in srgb, var(--accent) 24%, var(--border));
+  border-radius: 12px;
+  background: color-mix(in srgb, var(--accent) 10%, var(--surface));
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 19px 19px;
+  box-shadow: 0 12px 28px rgba(15, 23, 42, 0.08);
+}
+
+.skills-grid .card:nth-child(1) h3::before {
+  background-image: url("https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg");
+}
+
+.skills-grid .card:nth-child(2) h3::before {
+  background-image: url("https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg");
+}
+
+.skills-grid .card:nth-child(3) h3::before {
+  background-image: url("https://cdn.simpleicons.org/github/2563EB");
+}
+
+.skills-grid .tag {
+  min-height: 27px;
+  border: 1px solid color-mix(in srgb, var(--border) 72%, transparent);
+  border-radius: 999px;
+  padding: 5px 9px;
+  background: color-mix(in srgb, var(--tag-default-bg) 82%, var(--surface));
+  font-size: 10.5px;
+  font-weight: 800;
+}
+
+.skills-grid .tag img {
+  width: 16px;
+  height: 16px;
+}
+
+.project-card {
+  position: relative;
+  overflow: hidden;
+  border-radius: 22px;
+  border-color: color-mix(in srgb, var(--border) 82%, var(--accent));
+  background:
+    linear-gradient(145deg, color-mix(in srgb, var(--surface) 94%, var(--accent)), var(--surface) 58%),
+    var(--surface);
+  box-shadow: 0 24px 70px rgba(15, 23, 42, 0.08);
+  transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease;
+}
+
+.project-card::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto;
+  height: 4px;
+  background: linear-gradient(90deg, var(--accent), color-mix(in srgb, var(--accent) 16%, transparent), transparent 86%);
+}
+
+.project-card:hover {
+  border-color: color-mix(in srgb, var(--accent) 42%, var(--border));
+  box-shadow: var(--shadow);
+  transform: translateY(-5px);
+}
+
+.project-card.has-thumb {
+  grid-template-columns: minmax(190px, 270px) minmax(0, 1fr) auto;
+  gap: 22px;
+  align-items: stretch;
+  padding: 18px;
+}
+
+.project-thumb {
+  min-height: 176px;
+  border-radius: 16px;
+  background: var(--subtle-bg);
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--surface) 70%, transparent);
+}
+
+.project-thumb img {
+  height: 100%;
+  min-height: 176px;
+  border-radius: inherit;
+  transition: transform 220ms ease, filter 220ms ease;
+}
+
+.project-card:hover .project-thumb img {
+  filter: saturate(1.08) contrast(1.03);
+  transform: scale(1.035);
+}
+
+.project-main {
+  display: flex;
+  min-height: 100%;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 4px 0;
+}
+
+.project-card h3 {
+  margin-bottom: 8px;
+  font-size: 17px;
+  font-weight: 850;
+  letter-spacing: -0.25px;
+  line-height: 1.2;
+}
+
+.project-card p {
+  max-width: 680px;
+  font-size: 12.5px;
+  line-height: 1.68;
+}
+
+.project-card .tags {
+  margin-top: auto;
+}
+
+.badge {
+  min-height: 22px;
+  align-items: center;
+  border: 1px solid color-mix(in srgb, currentColor 22%, transparent);
+  border-radius: 999px;
+  padding: 3px 9px;
+  font-size: 9.5px;
+  font-weight: 850;
+}
+
+.metric-row {
+  gap: 7px;
+  margin-bottom: 12px;
+}
+
+.metric-row span {
+  border-color: color-mix(in srgb, var(--accent) 18%, var(--border));
+  background: color-mix(in srgb, var(--subtle-bg) 78%, var(--surface));
+  color: var(--text-secondary);
+  padding: 4px 8px;
+  font-size: 10.5px;
+}
+
+.project-actions {
+  align-self: stretch;
+  flex-direction: column;
+  justify-content: flex-start;
+  min-width: 82px;
+  padding-top: 4px;
+}
+
+.mini-button {
+  justify-content: center;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-size: 11px;
+  font-weight: 800;
+  transition: transform 160ms ease, border-color 160ms ease, color 160ms ease, background 160ms ease;
+}
+
+.project-actions .mini-button:first-child {
+  border-color: var(--accent);
+  background: var(--accent);
+  color: #fff;
+}
+
+.project-actions .mini-button:first-child:hover {
+  color: #fff;
+  filter: brightness(1.04);
+}
+
+.more-projects {
+  align-items: center;
+  border-radius: 16px;
+  padding: 14px 18px;
+  background: linear-gradient(135deg, color-mix(in srgb, var(--accent) 9%, var(--subtle-bg)), var(--subtle-bg));
+}
+
+.more-projects a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--accent) 10%, var(--surface));
+  padding: 6px 11px;
+}
+
+@media (max-width: 900px) {
+  .project-card.has-thumb {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .project-thumb,
+  .project-thumb img {
+    min-height: 210px;
+  }
+
+  .project-actions {
+    min-width: 0;
+    flex-direction: row;
+    padding-top: 0;
+  }
+}
+
+@media (max-width: 560px) {
+  .skills-grid .card {
+    min-height: auto;
+    padding: 20px;
+  }
+
+  .project-card.has-thumb {
+    padding: 14px;
+    border-radius: 18px;
+  }
+
+  .project-thumb,
+  .project-thumb img {
+    min-height: 170px;
+  }
+
+  .project-card h3 {
+    font-size: 15.5px;
+  }
+
+  .project-card p {
+    font-size: 12px;
+  }
+
+  .more-projects {
+    align-items: stretch;
+  }
+}

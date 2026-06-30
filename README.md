@@ -31,7 +31,7 @@ Live: https://modern-store-e-commerce-client.vercel.app
 React vehicle service portal with role-based customer/admin dashboards, service booking, booking management, mechanic assignment, invoices, PKR payments, feedback, reports, and live Vercel deployment.
 
 Live: https://autotechmanagementsystem.vercel.app  
-Source: https://github.com/Ali-Jun/AutoTechmanagementsystem
+Source: https://github.com/junaidirfan67/AutoTechmanagementsystem
 
 ### HireHub Job Portal
 
@@ -40,7 +40,7 @@ Source: https://github.com/Ali-Jun/AutoTechmanagementsystem
 MERN job portal concept with job search, location filtering, featured roles, employer pipeline UI, and responsive talent workspace screens.
 
 Live: https://lnkd.in/da95uY8H  
-Source: https://lnkd.in/dUQmbrYE
+Source: https://github.com/junaidirfan67/hirehub
 
 ### Task Manager
 
@@ -74,4 +74,4 @@ The GitHub Pages build is generated in `docs/`. The Vercel build is generated in
 
 Email: junaidirfan810@gmail.com  
 LinkedIn: https://www.linkedin.com/in/junaid-irfan-ba1027241  
-GitHub: https://github.com/Ali-Jun
+GitHub: https://github.com/junaidirfan67
