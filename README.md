@@ -2,7 +2,7 @@
 
 A clean, recruiter-friendly portfolio for Junaid Irfan, a Lahore-based Full Stack MERN Developer building deployed dashboards, e-commerce projects, role-based portals, and AI-assisted web applications.
 
-Live site: https://ali-jun.github.io/Portfolio/
+Live site: https://junaid-portfolio-two-phi.vercel.app/
 
 ## Highlights
 
@@ -12,7 +12,7 @@ Live site: https://ali-jun.github.io/Portfolio/
 - Profile photo logo and responsive mobile navigation
 - Project screenshots, live links, source links, and outcome-focused descriptions
 - Resume download served as PDF, not DOCX
-- Static HTML, CSS, and JavaScript built with Vite
+- React.js app built with Vite, component-based pages, saved light/dark theme, and responsive routing
 
 ## Featured Projects
 
@@ -53,7 +53,7 @@ Source: https://github.com/Ali-Jun/Task-Manager
 
 ## Tech Stack
 
-HTML5, CSS3, JavaScript, React.js, Tailwind CSS, Node.js, Express.js, MongoDB, MySQL, Git, GitHub, Vercel, OpenAI, Claude, Codex, and DeepSeek.
+React.js, Vite, HTML5, CSS3, JavaScript, Node.js, Express.js, MongoDB, MySQL, Git, GitHub, Vercel, OpenAI, Claude, Codex, and DeepSeek.
 
 ## Local Setup
 
@@ -68,7 +68,7 @@ npm run dev
 npm run build
 ```
 
-The GitHub Pages build is generated in `docs/`. The Vercel build is generated in `dist/` when `VERCEL=1` is set.
+The GitHub Pages-style build is generated in `docs/`. The Vercel build is generated in `dist/` when `VERCEL=1` is set. React page shells are emitted for About, Skills, Projects, Experience, and Education routes.
 
 ## Contact
 
