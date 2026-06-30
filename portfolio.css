@@ -1,45 +1,63 @@
 :root {
-  --bg: #FAFAF8;
+  --bg: #F7FAFF;
   --surface: #FFFFFF;
-  --text-primary: #1C1C1E;
-  --text-secondary: #6B6B6F;
-  --text-muted: #A0A0A4;
+  --surface-raised: #FFFFFF;
+  --surface-soft: #EEF5FF;
+  --surface-glass: rgba(255, 255, 255, 0.82);
+  --text-primary: #111827;
+  --text-secondary: #566174;
+  --text-muted: #8A96AA;
   --accent: #2563EB;
-  --border: #E8E2D9;
-  --nav-bg: rgba(255, 255, 255, 0.94);
-  --footer-bg: #1C1C1E;
-  --subtle-bg: #F5F2ED;
-  --hero-overlay: rgba(250, 250, 248, 0.86);
-  --hero-overlay-strong: rgba(250, 250, 248, 0.96);
+  --accent-2: #0EA5E9;
+  --accent-soft: rgba(37, 99, 235, 0.1);
+  --border: #DDE8F7;
+  --nav-bg: rgba(255, 255, 255, 0.84);
+  --footer-bg: #0B1220;
+  --subtle-bg: #EEF5FF;
+  --hero-overlay: rgba(247, 250, 255, 0.84);
+  --hero-overlay-strong: rgba(247, 250, 255, 0.97);
+  --page-glow-one: rgba(37, 99, 235, 0.13);
+  --page-glow-two: rgba(14, 165, 233, 0.12);
+  --card-gradient: linear-gradient(145deg, rgba(255, 255, 255, 0.98), rgba(239, 246, 255, 0.76));
   --shadow: 0 24px 70px rgba(37, 99, 235, 0.16);
+  --shadow-soft: 0 18px 50px rgba(15, 23, 42, 0.08);
   --tag-ai-bg: #EAF1FF;
   --tag-ai-text: #1D4ED8;
-  --tag-ui-bg: #FAECE7;
-  --tag-ui-text: #993C1D;
-  --tag-default-bg: #F0EBE3;
-  --tag-default-text: #6B6B6F;
-  --tag-full-bg: #EEEDFE;
+  --tag-ui-bg: #FFF1E8;
+  --tag-ui-text: #A64212;
+  --tag-default-bg: #EEF2F8;
+  --tag-default-text: #516070;
+  --tag-full-bg: #EEF0FF;
   --tag-full-text: #3C3489;
 }
 [data-theme="dark"] {
-  --bg: #07111F;
-  --surface: #0E1B2D;
+  --bg: #06111F;
+  --surface: #0B1A2D;
+  --surface-raised: #10243B;
+  --surface-soft: #0F2239;
+  --surface-glass: rgba(11, 26, 45, 0.78);
   --text-primary: #F8FAFC;
-  --text-secondary: #B8C2D6;
-  --text-muted: #7E8AA0;
+  --text-secondary: #B7C5D9;
+  --text-muted: #7E8DA4;
   --accent: #60A5FA;
-  --border: #1E314B;
-  --nav-bg: rgba(7, 17, 31, 0.94);
-  --footer-bg: #050B14;
-  --subtle-bg: #0A1728;
-  --hero-overlay: rgba(7, 17, 31, 0.82);
-  --hero-overlay-strong: rgba(7, 17, 31, 0.94);
-  --shadow: 0 26px 80px rgba(2, 8, 23, 0.42);
+  --accent-2: #38BDF8;
+  --accent-soft: rgba(96, 165, 250, 0.14);
+  --border: #1C3657;
+  --nav-bg: rgba(6, 17, 31, 0.86);
+  --footer-bg: #030712;
+  --subtle-bg: #0D2036;
+  --hero-overlay: rgba(6, 17, 31, 0.78);
+  --hero-overlay-strong: rgba(6, 17, 31, 0.95);
+  --page-glow-one: rgba(96, 165, 250, 0.18);
+  --page-glow-two: rgba(14, 165, 233, 0.12);
+  --card-gradient: linear-gradient(145deg, rgba(16, 36, 59, 0.98), rgba(8, 25, 44, 0.92));
+  --shadow: 0 30px 90px rgba(2, 8, 23, 0.54);
+  --shadow-soft: 0 18px 55px rgba(2, 8, 23, 0.36);
   --tag-ai-bg: #102C54;
   --tag-ai-text: #93C5FD;
-  --tag-ui-bg: #321C24;
+  --tag-ui-bg: #351F2B;
   --tag-ui-text: #FDBA9A;
-  --tag-default-bg: #142239;
+  --tag-default-bg: #142842;
   --tag-default-text: #C7D2E5;
   --tag-full-bg: #211D44;
   --tag-full-text: #C4B5FD;
@@ -1427,4 +1445,124 @@ h1 span {
   .more-projects {
     align-items: stretch;
   }
+}
+
+/* Light/dark theme refinement */
+body {
+  background:
+    radial-gradient(circle at 12% -8%, var(--page-glow-one), transparent 30rem),
+    radial-gradient(circle at 88% 0%, var(--page-glow-two), transparent 32rem),
+    linear-gradient(180deg, var(--bg), color-mix(in srgb, var(--surface-soft) 46%, var(--bg)) 52%, var(--bg));
+}
+
+.navbar {
+  box-shadow: 0 10px 32px rgba(15, 23, 42, 0.05);
+}
+
+[data-theme="dark"] .navbar {
+  box-shadow: 0 12px 38px rgba(0, 0, 0, 0.28);
+}
+
+.card,
+.project-card,
+.contact-card,
+.profile-card,
+.education-card,
+.story-card {
+  background: var(--card-gradient);
+  border-color: color-mix(in srgb, var(--border) 84%, var(--accent));
+}
+
+.card,
+.contact-card,
+.education-card,
+.story-card {
+  box-shadow: var(--shadow-soft);
+}
+
+.theme-toggle,
+.button-secondary,
+.social-pill,
+.contact-chip,
+.chip,
+.mini-button {
+  background: var(--surface-glass);
+  backdrop-filter: blur(12px);
+}
+
+.theme-toggle:hover,
+.button-secondary:hover,
+.social-pill:hover,
+.contact-chip:hover,
+.chip:hover {
+  border-color: color-mix(in srgb, var(--accent) 50%, var(--border));
+  color: var(--accent);
+}
+
+.button-primary,
+.talk-button,
+.project-actions .mini-button:first-child {
+  background: linear-gradient(135deg, var(--accent), var(--accent-2));
+  box-shadow: 0 14px 32px color-mix(in srgb, var(--accent) 28%, transparent);
+}
+
+.button-primary:hover,
+.talk-button:hover,
+.project-actions .mini-button:first-child:hover {
+  filter: brightness(1.04) saturate(1.06);
+  transform: translateY(-1px);
+}
+
+.hero-section {
+  background:
+    linear-gradient(90deg, var(--hero-overlay-strong) 0%, var(--hero-overlay) 46%, color-mix(in srgb, var(--bg) 48%, transparent) 100%),
+    radial-gradient(circle at 78% 20%, color-mix(in srgb, var(--accent) 16%, transparent), transparent 22rem),
+    url("images/developer-workspace.png") center / cover no-repeat;
+}
+
+[data-theme="dark"] .hero-section {
+  background:
+    linear-gradient(90deg, var(--hero-overlay-strong) 0%, var(--hero-overlay) 50%, rgba(6, 17, 31, 0.58) 100%),
+    radial-gradient(circle at 78% 20%, rgba(96, 165, 250, 0.18), transparent 22rem),
+    url("images/developer-workspace.png") center / cover no-repeat;
+}
+
+.hero-stats span,
+.tech-slider,
+.more-projects {
+  background: var(--surface-glass);
+  backdrop-filter: blur(14px);
+}
+
+.tech-item {
+  background: linear-gradient(135deg, color-mix(in srgb, var(--accent) 14%, var(--surface-raised)), color-mix(in srgb, var(--surface-glass) 88%, transparent));
+}
+
+[data-theme="dark"] .tech-item img,
+[data-theme="dark"] .tech-icon-letter,
+[data-theme="dark"] .social-pill img,
+[data-theme="dark"] .contact-chip img {
+  background: rgba(248, 250, 252, 0.94);
+  border-radius: 999px;
+  padding: 2px;
+}
+
+[data-theme="dark"] .profile-card img,
+[data-theme="dark"] .project-thumb img {
+  filter: saturate(1.08) contrast(1.04);
+}
+
+[data-theme="dark"] .project-thumb {
+  background: #081728;
+}
+
+[data-theme="dark"] h1 {
+  background: linear-gradient(90deg, #93C5FD, #F8FAFC 44%, #38BDF8);
+  background-size: 220% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+
+[data-theme="dark"] footer {
+  border-top: 1px solid var(--border);
 }
