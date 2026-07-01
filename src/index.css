@@ -225,3 +225,11 @@
     @apply h-full w-full object-contain;
   }
 }
+
+@layer components {
+  .social-pill[href*="linkedin"] .icon-mark img,
+  .contact-chip[href*="linkedin"] .icon-mark img {
+    @apply opacity-100;
+    filter: invert(30%) sepia(92%) saturate(1636%) hue-rotate(186deg) brightness(91%) contrast(91%);
+  }
+}

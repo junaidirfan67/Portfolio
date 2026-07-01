@@ -23,7 +23,7 @@ const brandIcons = {
   mysql: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg",
   git: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg",
   github: "https://cdn.simpleicons.org/github/181717",
-  linkedin: "https://cdn.simpleicons.org/linkedin/0A66C2",
+  linkedin: "https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/linkedin.svg",
   gmail: "https://cdn.simpleicons.org/gmail/EA4335",
   vercel: "https://cdn.simpleicons.org/vercel/111827",
   openai: "https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/openai.svg",
