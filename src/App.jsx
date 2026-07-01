@@ -10,10 +10,30 @@ const linkedInUrl = "https://www.linkedin.com/in/junaid-irfan-ba1027241";
 const emailUrl = "mailto:junaidirfan810@gmail.com";
 const resumeUrl = `${import.meta.env.BASE_URL}assets/Junaid-Irfan-Resume.pdf`;
 
-const socialIcons = {
-  github: "https://cdn.simpleicons.org/github/2563EB",
+const brandIcons = {
+  react: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg",
+  javascript: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg",
+  html: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg",
+  css: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg",
+  tailwind: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg",
+  node: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg",
+  express: "https://cdn.simpleicons.org/express/111827",
+  mongodb: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg",
+  mysql: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg",
+  git: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg",
+  github: "https://cdn.simpleicons.org/github/181717",
   linkedin: "https://cdn.simpleicons.org/linkedin/0A66C2",
-  gmail: "https://cdn.simpleicons.org/gmail/EA4335"
+  gmail: "https://cdn.simpleicons.org/gmail/EA4335",
+  vercel: "https://cdn.simpleicons.org/vercel/111827",
+  openai: "https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/openai.svg",
+  claude: "https://cdn.simpleicons.org/anthropic/111827",
+  deepseek: "https://cdn.simpleicons.org/deepseek/2563EB"
+};
+
+const socialIcons = {
+  github: brandIcons.github,
+  linkedin: brandIcons.linkedin,
+  gmail: brandIcons.gmail
 };
 
 const navItems = [
@@ -25,47 +45,48 @@ const navItems = [
 ];
 
 const techItems = [
-  { label: "React", href: "https://react.dev/", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" },
-  { label: "JavaScript", href: "https://developer.mozilla.org/en-US/docs/Web/JavaScript", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" },
-  { label: "Node.js", href: "https://nodejs.org/", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" },
-  { label: "Express", href: "https://expressjs.com/", icon: "https://cdn.simpleicons.org/express/111827" },
-  { label: "MongoDB", href: "https://www.mongodb.com/", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg" },
+  { label: "React", href: "https://react.dev/", icon: brandIcons.react },
+  { label: "JavaScript", href: "https://developer.mozilla.org/en-US/docs/Web/JavaScript", icon: brandIcons.javascript },
+  { label: "Tailwind", href: "https://tailwindcss.com/", icon: brandIcons.tailwind },
+  { label: "Node.js", href: "https://nodejs.org/", icon: brandIcons.node },
+  { label: "Express", href: "https://expressjs.com/", icon: brandIcons.express },
+  { label: "MongoDB", href: "https://www.mongodb.com/", icon: brandIcons.mongodb },
   { label: "REST APIs", href: "https://developer.mozilla.org/en-US/docs/Glossary/REST", textIcon: "API" },
-  { label: "Vercel", href: "https://vercel.com/", icon: "https://cdn.simpleicons.org/vercel/111827" },
-  { label: "OpenAI", href: "https://openai.com/", icon: "https://cdn.simpleicons.org/openai/111827" },
-  { label: "Claude", href: "https://www.anthropic.com/claude", icon: "https://cdn.simpleicons.org/anthropic/111827" },
-  { label: "Codex", href: "https://openai.com/codex/", textIcon: "CX" },
-  { label: "DeepSeek", href: "https://www.deepseek.com/", textIcon: "DS" }
+  { label: "Vercel", href: "https://vercel.com/", icon: brandIcons.vercel },
+  { label: "OpenAI", href: "https://openai.com/", icon: brandIcons.openai },
+  { label: "Claude", href: "https://www.anthropic.com/claude", icon: brandIcons.claude },
+  { label: "Codex", href: "https://openai.com/codex/", icon: brandIcons.openai },
+  { label: "DeepSeek", href: "https://www.deepseek.com/", icon: brandIcons.deepseek }
 ];
 
 const skills = [
   {
     title: "Frontend",
     tags: [
-      { label: "React.js", type: "frontend", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" },
-      { label: "JavaScript", type: "frontend", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" },
-      { label: "HTML5", type: "frontend", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" },
-      { label: "CSS3", type: "frontend", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" },
-      { label: "Tailwind", type: "frontend", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg" }
+      { label: "React.js", type: "frontend", icon: brandIcons.react },
+      { label: "JavaScript", type: "frontend", icon: brandIcons.javascript },
+      { label: "HTML5", type: "frontend", icon: brandIcons.html },
+      { label: "CSS3", type: "frontend", icon: brandIcons.css },
+      { label: "Tailwind", type: "frontend", icon: brandIcons.tailwind }
     ]
   },
   {
     title: "Backend",
     tags: [
-      { label: "Node.js", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" },
-      { label: "Express.js", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original.svg" },
-      { label: "REST APIs" },
-      { label: "JWT" }
+      { label: "Node.js", icon: brandIcons.node },
+      { label: "Express.js", icon: brandIcons.express },
+      { label: "REST APIs", textIcon: "API" },
+      { label: "JWT", textIcon: "JWT" }
     ]
   },
   {
     title: "Database & Tools",
     tags: [
-      { label: "MongoDB", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg" },
-      { label: "MySQL", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" },
-      { label: "Git", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" },
-      { label: "GitHub", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" },
-      { label: "Vercel" }
+      { label: "MongoDB", icon: brandIcons.mongodb },
+      { label: "MySQL", icon: brandIcons.mysql },
+      { label: "Git", icon: brandIcons.git },
+      { label: "GitHub", icon: brandIcons.github },
+      { label: "Vercel", icon: brandIcons.vercel }
     ]
   }
 ];
@@ -73,11 +94,11 @@ const skills = [
 const aiSkills = {
   title: "AI + Tools",
   tags: [
-    { label: "OpenAI API", type: "ai" },
-    { label: "Claude API", type: "ai" },
-    { label: "Codex", type: "ai" },
-    { label: "DeepSeek", type: "ai" },
-    { label: "GitHub", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" }
+    { label: "OpenAI API", type: "ai", icon: brandIcons.openai },
+    { label: "Claude API", type: "ai", icon: brandIcons.claude },
+    { label: "Codex", type: "ai", icon: brandIcons.openai },
+    { label: "DeepSeek", type: "ai", icon: brandIcons.deepseek },
+    { label: "GitHub", icon: brandIcons.github }
   ]
 };
 
@@ -93,9 +114,9 @@ const projects = [
     description: "Full-stack menswear store with product catalog, cart, checkout, JWT-ready auth flow, user dashboard, and admin dashboard for products, categories, orders, sales, coupons, stock, banners, profit/loss, returns, and notifications.",
     metrics: ["14 screenshots", "162 product demo catalog", "Responsive mobile views"],
     tags: [
-      { label: "React", type: "frontend", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" },
-      { label: "Node.js", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" },
-      { label: "MongoDB", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg" }
+      { label: "React", type: "frontend", icon: brandIcons.react },
+      { label: "Node.js", icon: brandIcons.node },
+      { label: "MongoDB", icon: brandIcons.mongodb }
     ]
   },
   {
@@ -109,9 +130,9 @@ const projects = [
     description: "React vehicle service portal with role-based customer/admin dashboards, service booking, booking management, mechanic assignment, invoices, PKR payments, feedback, reports, and live Vercel deployment.",
     metrics: ["5 workflow screenshots", "PKR payment flow", "Admin/customer roles"],
     tags: [
-      { label: "React", type: "frontend", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" },
-      { label: "Dashboards" },
-      { label: "Vercel" }
+      { label: "React", type: "frontend", icon: brandIcons.react },
+      { label: "Dashboards", textIcon: "DB" },
+      { label: "Vercel", icon: brandIcons.vercel }
     ]
   },
   {
@@ -125,9 +146,9 @@ const projects = [
     description: "MERN job portal concept with a polished landing page, job search, location filtering, featured roles, hiring team data, candidate/employer flows, and responsive UI for a talent workspace.",
     metrics: ["3+ open roles demo", "Employer pipeline UI", "Responsive landing"],
     tags: [
-      { label: "React", type: "frontend", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" },
-      { label: "Node.js", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" },
-      { label: "MongoDB", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg" }
+      { label: "React", type: "frontend", icon: brandIcons.react },
+      { label: "Node.js", icon: brandIcons.node },
+      { label: "MongoDB", icon: brandIcons.mongodb }
     ]
   },
   {
@@ -141,9 +162,9 @@ const projects = [
     description: "Productivity dashboard with task creation, status views, priority filters, progress tracking, task counters, board controls, and a clean admin-style layout for daily task management.",
     metrics: ["4 status views", "Priority mix", "Dashboard UI"],
     tags: [
-      { label: "React", type: "frontend", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" },
-      { label: "JavaScript", type: "frontend", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" },
-      { label: "Dashboard UI" }
+      { label: "React", type: "frontend", icon: brandIcons.react },
+      { label: "JavaScript", type: "frontend", icon: brandIcons.javascript },
+      { label: "Dashboard UI", textIcon: "UI" }
     ]
   }
 ];
@@ -274,11 +295,21 @@ function useDocumentMeta(route) {
   }, [route]);
 }
 
+function IconMark({ icon, textIcon, className = "" }) {
+  if (!icon && !textIcon) return null;
+
+  return (
+    <span className={`icon-mark ${className}`} aria-hidden="true">
+      {icon ? <img src={icon} alt="" loading="lazy" decoding="async" /> : <span>{textIcon}</span>}
+    </span>
+  );
+}
+
 function IconLink({ className, href, icon, children, download }) {
   const external = href.startsWith("http");
   return (
     <a className={className} href={href} target={external ? "_blank" : undefined} rel={external ? "noreferrer" : undefined} download={download}>
-      {icon ? <img src={icon} alt="" /> : null}
+      <IconMark icon={icon} />
       {children}
     </a>
   );
@@ -287,7 +318,7 @@ function IconLink({ className, href, icon, children, download }) {
 function Tag({ tag }) {
   return (
     <span className={`tag${tag.type ? ` ${tag.type}` : ""}`}>
-      {tag.icon ? <img src={tag.icon} alt="" /> : null}
+      <IconMark icon={tag.icon} textIcon={tag.textIcon} />
       {tag.label}
     </span>
   );
@@ -408,7 +439,7 @@ function TechSlider() {
       <div className="tech-track">
         {loopItems.map((item, index) => (
           <a className="tech-item" href={item.href} target="_blank" rel="noreferrer" key={`${item.label}-${index}`}>
-            {item.icon ? <img src={item.icon} alt="" /> : <span className="tech-icon-letter">{item.textIcon}</span>}
+            <IconMark icon={item.icon} textIcon={item.textIcon} className="tech-logo" />
             <span className="tech-label">{item.label}</span>
           </a>
         ))}
@@ -664,3 +695,5 @@ function App() {
 }
 
 export default App;
+
+
