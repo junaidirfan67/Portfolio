@@ -6,6 +6,7 @@ import hireHubImg from "../images/hirehub-project.png";
 import taskManagerImg from "../images/task-manager-project.png";
 
 const githubUrl = "https://github.com/junaidirfan67";
+const repositoriesUrl = "https://github.com/junaidirfan67?tab=repositories";
 const linkedInUrl = "https://www.linkedin.com/in/junaid-irfan-ba1027241";
 const emailUrl = "mailto:junaidirfan810@gmail.com";
 const resumeUrl = `${import.meta.env.BASE_URL}assets/Junaid-Irfan-Resume.pdf`;
@@ -110,9 +111,9 @@ const projects = [
     image: modernStoreImg,
     imageAlt: "Modern Store e-commerce homepage screenshot",
     live: "https://modern-store-e-commerce-client.vercel.app",
-    code: githubUrl,
-    description: "Full-stack menswear store with product catalog, cart, checkout, JWT-ready auth flow, user dashboard, and admin dashboard for products, categories, orders, sales, coupons, stock, banners, profit/loss, returns, and notifications.",
-    metrics: ["14 screenshots", "162 product demo catalog", "Responsive mobile views"],
+    code: "https://github.com/Ali-Jun/ModernStore-e-commerce",
+    description: "Built to help a menswear store manage shopping and operations from one place: React storefront with cart, checkout, JWT-based auth, and an admin dashboard for products, stock, orders, discounts, banners, and profit tracking. I structured reusable product/order data so customer browsing and admin workflows stay clear on desktop and mobile.",
+    metrics: ["162 product demo catalog", "JWT-based auth flow", "Reusable product/order data"],
     tags: [
       { label: "React", type: "frontend", icon: brandIcons.react },
       { label: "Node.js", icon: brandIcons.node },
@@ -127,8 +128,8 @@ const projects = [
     imageAlt: "Auto Tech admin dashboard screenshot",
     live: "https://autotechmanagementsystem.vercel.app",
     code: "https://github.com/junaidirfan67/AutoTechmanagementsystem",
-    description: "React vehicle service portal with role-based customer/admin dashboards, service booking, booking management, mechanic assignment, invoices, PKR payments, feedback, reports, and live Vercel deployment.",
-    metrics: ["5 workflow screenshots", "PKR payment flow", "Admin/customer roles"],
+    description: "Built for garage service teams that need customers, admins, and mechanics working from separate views. The role-based React portal handles service booking, mechanic assignment, invoice generation, PKR payments, feedback, and reports, replacing scattered manual tracking with one clear workflow.",
+    metrics: ["Admin/customer roles", "PKR invoice handling", "Mechanic assignment flow"],
     tags: [
       { label: "React", type: "frontend", icon: brandIcons.react },
       { label: "Dashboards", textIcon: "DB" },
@@ -181,7 +182,7 @@ const experienceRows = [
     year: "2024-now",
     role: "Full Stack Developer - Project-Based Experience",
     company: "Working portfolio projects",
-    desc: "Worked on 30+ academic, practice, and client-style projects, including e-commerce stores, dashboards, job portals, service-management systems, and deployment-ready web apps."
+    desc: "Built multiple academic, practice, and client-style projects, including e-commerce stores, dashboards, job portals, service-management systems, and deployment-ready web apps."
   },
   {
     year: "2020-2025",
@@ -200,12 +201,12 @@ const educationCards = [
   {
     title: "Full Stack AI Engineering",
     org: "DevWeekends - Current",
-    text: "Currently enrolled and building stronger full-stack AI skills with React, Node.js, APIs, OpenAI, Claude, Codex, DeepSeek, and production workflows."
+    text: "Currently enrolled and building stronger full-stack AI skills with React, Node.js, APIs, production workflows, and practical AI features such as dashboard summary generation."
   },
   {
     title: "Project-Based Learning",
-    org: "30+ working projects",
-    text: "Applied learning through dashboards, e-commerce stores, service systems, job portals, responsive portfolios, deployment, and client-style workflows."
+    org: "Working project portfolio",
+    text: "Applied learning through dashboards, e-commerce stores, service systems, job portals, responsive portfolios, deployment, and client-style workflows with visible live demos."
   }
 ];
 
@@ -400,10 +401,10 @@ function Hero({ onNavigate }) {
           <div className="hero-copy">
             <p className="hero-eyebrow">Full Stack MERN Developer</p>
             <h1><span>Junaid</span> Irfan</h1>
-            <p className="subtitle">Building Modern &amp; AI-Driven Applications<span className="cursor" aria-hidden="true" /></p>
+            <p className="subtitle">Building clean MERN apps that actually ship<span className="cursor" aria-hidden="true" /></p>
             <p className="availability">Based in Lahore, Pakistan - Open to remote junior roles and freelance projects</p>
             <p className="bio">
-              I'm a <strong>MERN stack developer</strong> who ships <strong>full-stack apps with clean UI and real deployments</strong>, not just tutorials. I build React dashboards, role-based portals, e-commerce workflows, REST APIs, and AI-assisted features with OpenAI, Claude, Codex, and DeepSeek.
+              I'm a <strong>MERN stack developer</strong> who ships <strong>full-stack apps with clean UI and real deployments</strong>, not just tutorials. I build React dashboards, role-based portals, e-commerce workflows, REST APIs, and practical AI features such as dashboard summary generation.
             </p>
             <div className="actions">
               <a className="button button-primary" href="projects.html" onClick={(event) => onNavigate(event, "projects")}>View Projects</a>
@@ -415,7 +416,7 @@ function Hero({ onNavigate }) {
               <IconLink className="social-pill" href={emailUrl} icon={socialIcons.gmail}>Gmail</IconLink>
             </div>
             <div className="hero-stats" aria-label="Portfolio highlights">
-              <span><strong>30+</strong> Projects</span>
+              <span><strong>4</strong> Featured Projects</span>
               <span><strong>MERN</strong> Stack</span>
               <span><strong>AI</strong> Assisted</span>
             </div>
@@ -470,8 +471,8 @@ function ProjectsSection({ compact = false }) {
         <h2 className="section-heading">{compact ? "Selected work with live deployments." : "Visual proof, live links, and outcomes."}</h2>
         {shownProjects.map((project) => <ProjectCard project={project} key={project.title} />)}
         <div className="more-projects">
-          <span>30+ more projects available on GitHub</span>
-          <a href={githubUrl} target="_blank" rel="noreferrer">View all &rarr;</a>
+          <span>More repositories and practice work available on GitHub</span>
+          <a href={repositoriesUrl} target="_blank" rel="noreferrer">View all &rarr;</a>
         </div>
       </div>
     </section>
@@ -590,7 +591,7 @@ function AboutPage() {
           <h1><span>Why</span> I build</h1>
           <p className="availability">Based in Lahore, Pakistan - Open to remote junior roles and freelance projects</p>
           <p className="bio">I build because I like turning a messy idea into a working product someone can actually use. My strongest direction is <strong>MERN stack development</strong>: clean React interfaces, dashboards, forms, auth-ready flows, APIs, databases, and real deployment.</p>
-          <p className="bio">I am currently enrolled in <strong>Full Stack AI Engineering at DevWeekends</strong>, where I am improving my backend thinking, Data Structures &amp; Algorithms, and AI-assisted application workflows with tools like OpenAI, Claude, Codex, and DeepSeek.</p>
+          <p className="bio">I am currently enrolled in <strong>Full Stack AI Engineering at DevWeekends</strong>, where I am improving my backend thinking, Data Structures &amp; Algorithms, and practical AI application workflows such as dashboard summary generation.</p>
         </div>
       </section>
       <section>
